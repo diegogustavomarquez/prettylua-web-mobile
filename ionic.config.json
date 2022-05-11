@@ -1,0 +1,7 @@
+{
+  "name": "prettylua-web-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
