@@ -8,4 +8,4 @@
 
 ## abrir consola y ejecutar el siguientes comando: 
 
-ionic serve
+- ionic serve
