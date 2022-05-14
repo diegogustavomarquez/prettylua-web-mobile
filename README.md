@@ -2,7 +2,9 @@
 
 ## Para instalar localmente: 
 
-npm install 
+- npm install -g @ionic/cli 
+
+- npm install 
 
 ## abrir consola y ejecutar el siguientes comando: 
 
