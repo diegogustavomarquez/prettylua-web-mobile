@@ -16,7 +16,11 @@ const routes: Routes = [
     path: '',
     pathMatch : 'full',
     redirectTo: 'main/tabs/tab1'
+  },  {
+    path: 'mascotas',
+    loadChildren: () => import('./pages/mascotas/mascotas.module').then( m => m.MascotasPageModule)
   }
+
 ];
 @NgModule({
   imports: [

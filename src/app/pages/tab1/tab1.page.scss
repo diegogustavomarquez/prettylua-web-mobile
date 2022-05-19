@@ -1,0 +1,38 @@
+.slide-image {
+    width: 250px;
+    text-align: center;
+
+  
+    position: relative;
+   
+}
+
+#slide-alto{
+height: 250px;
+}
+
+ion-content{
+    ion-col{
+        text-align: center;
+        ion-icon{
+            zoom: 2.8;
+            padding: 5px;
+            &:first-child{
+                zoom: 3.8;
+                padding: 5px;
+            }
+        }
+    }
+}
+h1,h2{
+    margin-top: 0;
+}
+page-home {
+    ion-icon {
+        font-size: 5em;
+    }
+}
+
+ion-card{
+    text-align: center;
+}

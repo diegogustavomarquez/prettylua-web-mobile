@@ -12,11 +12,11 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 import { Camera } from '@awesome-cordova-plugins/camera/ngx';
-
+import { MenuComponent } from './components/menu/menu.component';
 import { FileTransfer } from '@awesome-cordova-plugins/file-transfer/ngx';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,MenuComponent],
   entryComponents: [],
   imports: [
     BrowserModule, 
@@ -24,6 +24,9 @@ import { FileTransfer } from '@awesome-cordova-plugins/file-transfer/ngx';
     AppRoutingModule,
     HttpClientModule,
     IonicStorageModule.forRoot()
+  ],
+  exports:[
+    MenuComponent
   ],
   providers: [
     Geolocation,
