@@ -1,0 +1,72 @@
+
+<!--     
+
+
+
+
+
+<ion-content>
+    
+
+      
+<ion-grid fixed>
+  
+<form (ngSubmit)="registro(fRegistro)" #fRegistro="ngForm">
+  <ion-row>
+      <ion-col>
+          <ion-list>
+              <ion-item>
+              <ion-label>Nombre: </ion-label>
+              <ion-input name="nombre" 
+                          type="text"
+                          [(ngModel)]="registerMascota.nombre"
+                          required></ion-input>
+              </ion-item>
+
+              <ion-item>
+              <ion-label>Especie</ion-label>
+              <ion-input name="especie"
+                          type="text"
+                          [(ngModel)]="registerMascota.especie"
+                          required></ion-input>
+              </ion-item>
+
+              <ion-item>
+              <ion-label>Raza</ion-label>
+              <ion-input name="raza"
+                          type="text"
+                          [(ngModel)]="registerMascota.raza"
+                          required></ion-input>
+              </ion-item>
+
+            <ion-item>
+              <ion-label>Fecha Nacimiento: </ion-label>
+              <ion-datetime name="fnac"
+                      
+                          presentacion="date"
+                          [(ngModel)]="registerMascota.fnac.toISOString"
+                          required></ion-datetime>
+              </ion-item>
+
+          </ion-list>
+      </ion-col>
+  </ion-row>
+
+             <ion-row>
+                <ion-col>
+                    <ion-button type="submit"
+                                color="tertiary"
+                                shape="round">
+                       Alta de Mascota
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+            
+            </form>
+        </ion-grid>
+  
+  
+
+
+  </ion-content>
+  -->

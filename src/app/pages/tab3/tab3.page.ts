@@ -4,6 +4,7 @@ import { Usuario } from 'src/app/interfaces/interfaces';
 import { PostsService } from 'src/app/services/posts.service';
 import { UiServiceService } from 'src/app/services/ui-service.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -16,7 +17,9 @@ export class Tab3Page {
 
   constructor( private usuarioService: UsuarioService,
                private uiService: UiServiceService,
-               private postsService: PostsService ) { }
+               private postsService: PostsService ,
+               private navCtrl: NavController,
+               public alertCtrl: AlertController) { }
 
   ngOnInit() {
 
@@ -34,7 +37,10 @@ export class Tab3Page {
     const actualizado = await this.usuarioService.actualizarUsuario( this.usuario );
     if ( actualizado ) {
       // toast con el mensaje de actualizado
-      this.uiService.presentToast( 'Registro actualizado' );
+      //this.uiService.presentToast( 'Registro actualizado' );
+      this.presentAlert();
+      //que vuelva al inicio
+      this.navCtrl.navigateRoot( '/login', { animated: true } );
     } else {
       // toast con el error
       this.uiService.presentToast( 'No se pudo actualizar' );
@@ -44,6 +50,17 @@ export class Tab3Page {
 
 
 
+  async presentAlert() {
+    const alert = await this.alertCtrl.create({
+     // cssClass: 'my-custom-class',//para classe personalizada
+     backdropDismiss:false,
+      header: 'Alert',
+      subHeader: 'ATENTI!!',
+      message: 'Registro Actualizado',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
   logout() {
 
     this.postsService.paginaPosts = 0;

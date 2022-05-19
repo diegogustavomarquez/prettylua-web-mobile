@@ -1,13 +1,9 @@
 <ion-content>
-
-
   <ion-slides class="mainSlide" #slidePrincipal>
-    
     <ion-slide>
 
       <form (ngSubmit)="login(fLogin)" #fLogin="ngForm">
         <ion-grid fixed>
-
           <ion-row>
             <ion-col>
               <img src="/assets/avatars/av-1.png">
@@ -16,15 +12,15 @@
         
           <ion-row>
             <ion-col>
-              
                 <ion-list>
-                  
                   <ion-item>
                     <ion-label>Email</ion-label>
                     <ion-input name="email"
                                 type="email"
                                 [(ngModel)]="loginUser.email"
-                                required></ion-input>
+                                required 
+                                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                                #email></ion-input>
                   </ion-item>
 
                   <ion-item>
@@ -51,47 +47,49 @@
 
         </ion-grid>
       </form>
-    
-
-
     </ion-slide>
+   <ion-slide>
 
-    <ion-slide>
-
-      
-      <ion-grid fixed>
-
-        
-
+    <ion-grid fixed>
             <!-- Avatar Selector -->
-            <app-avatar-selector (avatarSel)="registerUser.avatar = $event"></app-avatar-selector>
-
+  <app-avatar-selector (avatarSel)="registerUser.avatar = $event"></app-avatar-selector>
             <form (ngSubmit)="registro(fRegistro)" #fRegistro="ngForm">
+
                 <ion-row>
                     <ion-col>
-                        
-                        <ion-list>
-                            
+                      <ion-list>
                             <ion-item>
-                            <ion-label>Email</ion-label>
+                            <ion-label>Email :</ion-label>
                             <ion-input name="email" 
                                         type="email"
+                                        placeholder="email"
+                                        pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
                                         [(ngModel)]="registerUser.email"
                                         required></ion-input>
                             </ion-item>
 
                             <ion-item>
-                            <ion-label>Nombre</ion-label>
+                            <ion-label>Nombre :</ion-label>
                             <ion-input name="nombre"
+                                       placeholder = "nombre"
                                         type="text"
                                         [(ngModel)]="registerUser.nombre"
                                         required></ion-input>
                             </ion-item>
+                            <ion-item>
+                              <ion-label>Apellido : </ion-label>
+                              <ion-input name="apellido"
+                                         placeholder = "apellido"
+                                          type="text"
+                                          [(ngModel)]="registerUser.apellido"
+                                          required></ion-input>
+                              </ion-item>
 
                             <ion-item>
-                            <ion-label>Password</ion-label>
+                            <ion-label>Password: </ion-label>
                             <ion-input name="password"
                                         type="password"
+                                        placeholder = "password"
                                         [(ngModel)]="registerUser.password"
                                         required></ion-input>
                             </ion-item>
@@ -102,7 +100,9 @@
                 
                 <ion-row>
                 <ion-col>
-                    <ion-button type="submit"
+                    <ion-button 
+                    [disabled]="fRegistro.invalid"
+                                 type="submit"
                                 color="tertiary"
                                 shape="round">
                         Crear usuario
@@ -113,22 +113,14 @@
             </form>
         </ion-grid>
   
-  
       </ion-slide>
-
-
-  </ion-slides>
-
-
-
+</ion-slides>
 </ion-content>
 
 
 <ion-footer no-border>
   <ion-toolbar>
-    
     <ion-row>
-
       <ion-col>
           <ion-button shape="round"
                       expand="full"

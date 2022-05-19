@@ -6,6 +6,7 @@ import { UiServiceService } from 'src/app/services/ui-service.service';
 import { UsuarioService } from '../../services/usuario.service';
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -14,16 +15,18 @@ import { UsuarioService } from '../../services/usuario.service';
 export class LoginPage implements OnInit {
 
   @ViewChild('slidePrincipal', {static: true}) slides: IonSlides;
+ 
 
   loginUser = {
-    email: 'diegomarquez86@gmail.com',
-    password: '123456'
+    email: 'ursulalesiuk@gmail.com',
+    password: 'ursula'
   };
 
   registerUser: Usuario = {
-    email: 'test@gmail.com',
-    password: '123456',
-    nombre: 'Test',
+    email: '',
+    password: '',
+    nombre: '',
+    apellido: '',
     avatar: 'av-1.png'
   };
 
@@ -35,6 +38,7 @@ export class LoginPage implements OnInit {
     this.slides.lockSwipes(true);
   }
 
+
   async login( fLogin: NgForm ) {
     if ( fLogin.invalid ) { return; }
 
@@ -43,6 +47,7 @@ export class LoginPage implements OnInit {
     if ( valido ) {
       // navegar al tabs
       this.navCtrl.navigateRoot( '/main/tabs/tab1', { animated: true } );
+    
     } else {
       // mostrar alerta de usuario y contraseña no correctos
       this.uiService.alertaInformativa('Usuario y/o contraseña no son correctos.');
@@ -58,7 +63,7 @@ export class LoginPage implements OnInit {
 
     if ( valido ) {
       // navegar al tabs
-      this.navCtrl.navigateRoot( '/main/tabs/tab1', { animated: true } );
+     this.navCtrl.navigateRoot( '/main/tabs/tab1', { animated: true } );
     } else {
       // mostrar alerta de usuario y contraseña no correctos
       this.uiService.alertaInformativa('Ese correo electrónico ya existe.');

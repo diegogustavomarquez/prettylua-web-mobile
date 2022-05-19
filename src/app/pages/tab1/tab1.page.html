@@ -1,19 +1,40 @@
-<ion-header no-border>
+<ion-header>
   <ion-toolbar>
-
     <ion-buttons slot="start">
       <ion-icon slot="icon-only" name="bonfire"></ion-icon>
     </ion-buttons>
+    <ion-title class="ion-text-capitalize">
+      {{ email}} BIENVENIDO A PRETTY LUA </ion-title>
+     
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+
+  <ion-button  (click)="altaMascota()">
+    <ion-icon slot="start" name="star" ></ion-icon>
+    Ingresar mascota
+  </ion-button>
+  <ion-button  (click)="modificarMascota()">
+    <ion-icon slot="start" name="star" ></ion-icon>
+    Modificar mascota
+  </ion-button>
+  
+</ion-content>
 
 
-    <ion-title>
+<!-- 
+  <ion-header no-border>
+  <ion-toolbar>
+  <ion-buttons slot="start">
+      <ion-icon slot="icon-only" name="bonfire"></ion-icon>
+    </ion-buttons>
+   <ion-title>
       Pretty Lua
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="light">
-
-  <h2>TO DO</h2>
-
-</ion-content>
+<h1>BIENVENIDO</h1>
+</ion-content> 
+-->
