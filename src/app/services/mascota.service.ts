@@ -22,7 +22,7 @@ export class MascotaService {
 
     return new Promise(resolve => {
 
-      this.http.post(`${URL}/mascota/createMascota`, mascota)
+      this.http.post(`${URL}/mascota/create`, mascota)
         .subscribe(async resp => {
           console.log(resp);
 
@@ -53,7 +53,7 @@ export class MascotaService {
 
     return new Promise(resolve => {
 
-      this.http.post(`${URL}/mascota/updateMascota`, mascota)
+      this.http.post(`${URL}/mascota/update`, mascota)
         .subscribe(resp => {
 
           if (resp['ok']) {

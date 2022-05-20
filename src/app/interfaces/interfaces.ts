@@ -1,4 +1,10 @@
 
+export interface Componente {
+  icon :string;
+  name :string;
+  redirectTo: string;
+  
+  }
 export interface RespuestaPosts {
   ok: boolean;
   pagina: number;
@@ -19,6 +25,7 @@ export interface Usuario {
   _id?: string;
   nombre?: string;
   apellido?: string;
+  telefono?:number;
   email?: string;
   password?: string;
  // codigo:number;
@@ -27,9 +34,10 @@ export interface Usuario {
 export interface Mascota {
   _id?:string;
   nombre? :string;
-  especie? : string;
   raza? : string;
-  fechaNacimiento? : Date;
+  sexo?:string;
+  anio? : Number;
+  mes? : Number;
   foto? :string[];
   estado? : string;
   codigo?:Usuario;

@@ -1,0 +1,36 @@
+<ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+  
+  </ion-toolbar>
+  
+  <ion-menu side="start"  menuId="mainMenu" contentId="main">
+  <ion-content>
+  <div class="menu-header-bg">Menu</div>
+    <div class="header-content">
+      <img src="/assets/logo.svg" alt="">
+      <ion-label>
+        <h2> Bienvenido </h2>
+      </ion-label>
+    </div>
+  
+    <ion-list class="menu-items" lines="none">
+      <ion-item>
+        <ion-icon name="person-outline"></ion-icon>Mi perfil
+      </ion-item>
+      <ion-item>
+        <ion-icon name="paw-outline" routerLink="mascota" onclick=" altaMascota()"></ion-icon> Mis mascotas
+      </ion-item>
+  
+      <ion-item>
+        <ion-icon name="mail-outline"></ion-icon> Notificaciones
+        
+      </ion-item> 
+  
+  
+     
+    </ion-list>
+  </ion-content>
+  
+  </ion-menu>

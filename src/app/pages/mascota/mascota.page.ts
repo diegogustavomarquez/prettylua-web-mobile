@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { IonSlides, NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { UiServiceService } from 'src/app/services/ui-service.service';
 import { MascotaService } from '../../services/mascota.service';
 import { Mascota } from '../../interfaces/interfaces';
@@ -11,26 +11,35 @@ import { Mascota } from '../../interfaces/interfaces';
   styleUrls: ['./mascota.page.scss'],
 })
 export class mascotaPage implements OnInit {
+ 
+  listaMes:number[] = [1,2,3,4,5];
+  listaAnio:number[] = [1,2,3,4,5,6,7,8,9,10];
 
-
-  //fnac : Date = new Date();
   registerMascota: Mascota = {
     nombre: '',
-    especie: '',
+    sexo : '',
     raza: '',
-    fechaNacimiento : null,
+    anio : null,
+    mes : null,
    // foto: 'av-1.png',
     estado : 'Activo'
 
   };
-
+  mascota : Mascota = {};
   
   constructor(private mascotaService: MascotaService,
               private navCtrl: NavController,
-              private uiService: UiServiceService ) { }
+              private uiService: UiServiceService ,
+              public alertCtrl: AlertController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
 
+  this.mascota = this.mascotaService.getMascota();
+              
+  console.log(this.mascota);
+              }
+
+  /*---------------------------------* */
   async registro( fRegistro: NgForm ) {
 
     if ( fRegistro.invalid ) { return; }
@@ -38,15 +47,91 @@ export class mascotaPage implements OnInit {
     const valido = await this.mascotaService.registro( this.registerMascota);
 
     if ( valido ) {
-      // navegar al tabs
-     // this.navCtrl.navigateRoot( '/main/tabs/tab4', { animated: true } );
       this.navCtrl.navigateRoot( '/mascota', { animated: true } );
     } else {
-      // mostrar alerta de usuario y contraseña no correctos
       this.uiService.alertaInformativa('La mascota ya existe.');
     }
 
   }
+  async presentAlert() {
+    const alert = await this.alertCtrl.create({
+      backdropDismiss:false,
+      header: 'Alert',
+      message: 'Registro Cargado',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+  async presentActualizado() {
+    const alert = await this.alertCtrl.create({
+      backdropDismiss:false,
+      header: 'Alert',
+      message: 'Registro Actualizado',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+  async presentAlertConfirm() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirm!',
+      message: 'Confirma el registro de su Mascota?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Okay',
+          id: 'confirm-button',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+  
+    await alert.present();
+  }
+
+
+
+
+  async registrarMascota( fRegistro: NgForm ) {
+  
+        if ( fRegistro.invalid ) { return; }
+  
+        const valido = await this.mascotaService.registro( this.registerMascota);
+  
+        if ( valido ) {
+   
+        this.presentAlert();
+        } else {
+   
+        this.uiService.alertaInformativa('La mascota ya existe.');
+        }
+  
+  }
+  
+  async actualizarMascota( fActualizar: NgForm ) {
+  
+    if ( fActualizar.invalid ) { return; }
+  
+    const actualizado = await this.mascotaService.actualizarMascota( this.mascota );
+    if ( actualizado ) {
+      this.presentActualizado();
+    } else {
+      // toast con el error
+      this.uiService.presentToast( 'No se pudo actualizar' );
+    }
+  
+  }
+  
+  
 
 
 }

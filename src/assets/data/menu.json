@@ -1,0 +1,26 @@
+
+[
+    {
+    "icon": "person-outline",
+    "name": "Mi perfil",
+    "redirectTo": "/login"
+},
+
+  {
+    "icon": "paw-outline",
+    "name" : "Mi Mascota",
+    "redirectTo" : "/mascota"
+  },
+  {
+    "icon": "mail-outline",
+    "name": "Notificaciones",
+    "redirectTo" : "/avatar"
+  },
+
+  {
+    "icon": "exit-outline",
+    "name": "Cerrar Sesion",
+    "redirectTo" : "/logout"
+  }
+
+]

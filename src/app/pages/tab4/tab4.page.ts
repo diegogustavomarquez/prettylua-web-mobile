@@ -15,15 +15,16 @@ export class Tab4Page implements OnInit {
 //fnac : Date = new Date();
 registerMascota: Mascota = {
   nombre: '',
-  especie: '',
+  sexo : '',
   raza: '',
-  fechaNacimiento: null,
+  anio : null,
+  mes : null,
  // foto: 'av-1.png',
   estado : 'Activo'
 
 };
 
-  mascota : Mascota = {};
+mascota : Mascota = {};
 
   constructor(private mascotaService: MascotaService,
               private navCtrl: NavController,
