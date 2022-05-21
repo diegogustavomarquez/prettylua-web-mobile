@@ -18,8 +18,8 @@ export class LoginPage implements OnInit {
  
 
   loginUser = {
-    email: 'ursulalesiuk@gmail.com',
-    password: 'ursula'
+    email: '',
+    password: ''
   };
 
   registerUser: Usuario = {

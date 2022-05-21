@@ -7,7 +7,6 @@ import { ExploreContainerComponentModule } from '../../explore-container/explore
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { ComponentsModule } from '../../components/components.module';
-import { MascotaModule } from '../mascota/mascota.module';
 
 @NgModule({
   imports: [
@@ -17,8 +16,6 @@ import { MascotaModule } from '../mascota/mascota.module';
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
     ComponentsModule,
-    MascotaModule
-
   ],
   declarations: [Tab1Page]
 })

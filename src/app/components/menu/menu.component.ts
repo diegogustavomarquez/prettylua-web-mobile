@@ -17,8 +17,6 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.componentes = this.DataService.getMenuOpts();
-                }
-
- 
+  }
 
 }

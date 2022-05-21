@@ -7,19 +7,20 @@ import { AvatarSelectorComponent } from './avatar-selector/avatar-selector.compo
 import { PipesModule } from '../pipes/pipes.module';
 import { MapaComponent } from './mapa/mapa.component';
 import { RouterModule } from '@angular/router';
-
-
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     PostsComponent,
     PostComponent,
     AvatarSelectorComponent,
-    MapaComponent
+    MapaComponent,
+    MenuComponent
   ],
   exports: [
     PostsComponent,
-    AvatarSelectorComponent
+    AvatarSelectorComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,

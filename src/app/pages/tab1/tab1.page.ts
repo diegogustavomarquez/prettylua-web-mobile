@@ -9,17 +9,32 @@ import {NavController } from '@ionic/angular';
 export class Tab1Page {
   slides: { img: string, titulo: string, desc: string }[] = [
     {
-      img: '/assets/slides/publi1.png',
+      img: '/assets/slides/publi4.jpg',
       titulo: '',
       desc: ''
     },
     {
-      img: '/assets/slides/publi1.png',
+      img: '/assets/slides/slide-publicidad1.jpg',
       titulo: '',
       desc: ''
     },
     {
-      img: '/assets/slides/publi1.png',
+      img: '/assets/slides/publi11.png',
+      titulo: '',
+      desc: ''
+    },
+    {
+      img: '/assets/slides/publi20.png',
+      titulo: '',
+      desc: ''
+    },
+    {
+      img: '/assets/slides/publi33.png',
+      titulo: '',
+      desc: ''
+    },
+    {
+      img: '/assets/slides/publi5.png',
       titulo: '',
       desc: ''
     }
