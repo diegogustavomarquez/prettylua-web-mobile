@@ -6,7 +6,7 @@ export interface Usuario {
   telefono?:number;
   email?: string;
   password?: string;
- // codigo:number;
+  perfil?: string;
 }
 
 export interface Mascota {

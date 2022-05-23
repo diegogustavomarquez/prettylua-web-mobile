@@ -18,7 +18,8 @@ export class CreateAccountPage implements OnInit {
     password: '',
     nombre: '',
     apellido: '',
-    avatar: 'av-1.png'
+    avatar: 'av-1.png',
+    perfil: 'Propietario'
   };
 
   constructor(private usuarioService: UsuarioService,
@@ -30,6 +31,7 @@ export class CreateAccountPage implements OnInit {
 
   async registro( fRegistro: NgForm ) {
 
+    console.log(fRegistro);
     if ( fRegistro.invalid ) { return; }
 
     const valido = await this.usuarioService.registro( this.registerUser );

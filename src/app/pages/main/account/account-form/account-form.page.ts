@@ -33,7 +33,7 @@ export class AccountFormPage implements OnInit {
       //this.uiService.presentToast( 'Registro actualizado' );
       this.presentAlert();
       //que vuelva al inicio
-      this.navCtrl.navigateRoot( '/login', { animated: true } );
+      this.navCtrl.navigateRoot( '/main/main/account', { animated: true } );
     } else {
       // toast con el error
       this.uiService.presentToast( 'No se pudo actualizar' );

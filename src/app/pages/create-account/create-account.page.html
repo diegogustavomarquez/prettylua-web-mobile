@@ -3,7 +3,6 @@
     <!-- Avatar Selector -->
     <app-avatar-selector (avatarSel)="registerUser.avatar = $event"></app-avatar-selector>
     <form (ngSubmit)="registro(fRegistro)" #fRegistro="ngForm">
-
       <ion-row>
         <ion-col>
           <ion-list>
@@ -35,6 +34,8 @@
               <ion-input name="password" type="password" placeholder="password" [(ngModel)]="registerUser.password"
                 required></ion-input>
             </ion-item>
+            <ion-input name="perfil" type="hidden" placeholder="perfil" [(ngModel)]="registerUser.perfil"
+              required></ion-input>
           </ion-list>
         </ion-col>
       </ion-row>
