@@ -31,7 +31,6 @@ export class CreateAccountPage implements OnInit {
 
   async registro( fRegistro: NgForm ) {
 
-    console.log(fRegistro);
     if ( fRegistro.invalid ) { return; }
 
     const valido = await this.usuarioService.registro( this.registerUser );

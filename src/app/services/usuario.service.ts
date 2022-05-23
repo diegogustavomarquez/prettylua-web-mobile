@@ -29,8 +29,6 @@ export class UsuarioService {
   login(email: string, password: string) {
     const data = { email, password };
     return new Promise(resolve => {
-      console.log(data);
-      console.log("datos a enviar");
       this.http.post(`${URL}/user/login`, data)
         .subscribe(async resp => {
           console.log(resp);
