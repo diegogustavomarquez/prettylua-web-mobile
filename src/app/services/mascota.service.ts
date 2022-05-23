@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Mascota } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
-import { Storage } from '@ionic/storage-angular';
 
 const URL = environment.url;
 
@@ -12,16 +11,16 @@ const URL = environment.url;
 })
 export class MascotaService {
 
-  private mascota: Mascota = {};
-
   constructor(private http: HttpClient,
-    private storage: Storage,
     private navCtrl: NavController) { }
 
+  /**
+   * 
+   * @param mascota 
+   * @returns 
+   */
   registro(mascota: Mascota) {
-
     return new Promise(resolve => {
-
       this.http.post(`${URL}/mascota/create`, mascota)
         .subscribe(async resp => {
           console.log(resp);
@@ -31,45 +30,47 @@ export class MascotaService {
             resolve(true);
           } else {
             //this.token = null;
-            this.storage.clear();
             resolve(false);
           }
         });
     });
   }
 
-  getMascota() {
-
-    if (!this.mascota._id) {
-      console.log(this.mascota._id);
-    }
-
-    return { ...this.mascota };
-
+  /**
+   * 
+   * @returns 
+   */
+  getMascota(id: string) : Mascota {
+    //TODO falta implementar el llamado al backend
+    return;
   }
 
+  /**
+   * 
+   * @returns 
+   */
+     getMascotas(idUsuario: string) {
+      //TODO falta implementar el llamado al backend
+      return;
+    }
+  
+
+  /**
+   * 
+   * @param mascota 
+   * @returns 
+   */
   actualizarMascota(mascota: Mascota) {
-
-
     return new Promise(resolve => {
-
       this.http.post(`${URL}/mascota/update`, mascota)
         .subscribe(resp => {
-
           if (resp['ok']) {
-            //   this.guardarToken( resp['token'] );
             resolve(true);
           } else {
             resolve(false);
           }
-
         });
-
     });
-
-
-
-
   }
 
 }

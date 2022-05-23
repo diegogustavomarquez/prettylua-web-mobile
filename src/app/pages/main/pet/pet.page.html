@@ -1,0 +1,24 @@
+<ion-header [translucent]="true" no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Mascotas</ion-title>
+    <app-logout slot="end"></app-logout>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Mascotas</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <strong class="capitalize">Mascotas</strong>
+    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-button [routerLink]="['pet-form']">Crear mascota</ion-button>
+    <ion-button [routerLink]="['pet-form', id]">Actualizar mascota {{id}}</ion-button>
+  </div>
+</ion-content>

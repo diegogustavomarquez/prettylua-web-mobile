@@ -1,0 +1,23 @@
+<ion-header [translucent]="true" no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Mi cuenta</ion-title>
+    <app-logout slot="end"></app-logout>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Mi Cuenta</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <strong class="capitalize">Mi Cuenta</strong>
+    <ion-button [routerLink]="['account-form']">Actualizar datos</ion-button>
+    <ion-button [routerLink]="['change-bussines']">Pasar a modo empresa</ion-button>
+  </div>
+</ion-content>
