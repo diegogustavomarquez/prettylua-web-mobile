@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { Usuario } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
+import { UsuarioGuard } from '../guards/usuario.guard';
 
 const URL = environment.url;
 
@@ -16,8 +17,8 @@ export class UsuarioService {
   private usuario: Usuario = {};
 
   constructor(private http: HttpClient,
-    private storage: Storage,
-    private navCtrl: NavController) { }
+              private storage: Storage,
+              private navCtrl: NavController) { }
 
 
   /**
@@ -68,6 +69,7 @@ export class UsuarioService {
           console.log(resp);
           if (resp['ok']) {
             await this.guardarToken(resp['token']);
+            await this.guardarUser(resp['data']);
             resolve(true);
           } else {
             this.token = null;
@@ -100,6 +102,18 @@ export class UsuarioService {
     await this.storage.set('token', token);
     await this.validaToken();
   }
+
+
+  /**
+   * 
+   * @param data 
+   */
+   async guardarUser(data: Usuario) {
+    this.usuario= data;
+    await this.storage.set('usuario', data);
+    await this.validaToken();
+  }
+
 
 
   /**
@@ -148,7 +162,7 @@ export class UsuarioService {
       'x-token': this.token
     });
     return new Promise(resolve => {
-      this.http.post(`${URL}/user/update`, usuario, { headers })
+      this.http.put(`${URL}/user/update`, usuario, { headers })
         .subscribe(resp => {
 
           if (resp['ok']) {

@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Mascota } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
+import { UsuarioService } from './usuario.service';
+
 
 const URL = environment.url;
 
@@ -11,49 +13,36 @@ const URL = environment.url;
 })
 export class MascotaService {
 
+ 
   constructor(private http: HttpClient,
-    private navCtrl: NavController) { }
+              private navCtrl: NavController,
+              private usuarioService: UsuarioService) { }
 
   /**
    * 
    * @param mascota 
    * @returns 
    */
-  registro(mascota: Mascota) {
-    return new Promise(resolve => {
-      this.http.post(`${URL}/mascota/create`, mascota)
+  save(mascota: Mascota) {
+    console.log(mascota)
+    const headers = new HttpHeaders({
+      'x-token': this.usuarioService.token
+    });
+   return new Promise(resolve => {
+      this.http.post(`${URL}/pet/createPet`,{headers})
         .subscribe(async resp => {
           console.log(resp);
-
           if (resp['ok']) {
-            // await this.guardarToken( resp['token'] );
             resolve(true);
+
+
           } else {
-            //this.token = null;
             resolve(false);
           }
         });
     });
   }
 
-  /**
-   * 
-   * @returns 
-   */
-  getMascota(id: string) : Mascota {
-    //TODO falta implementar el llamado al backend
-    return;
-  }
-
-  /**
-   * 
-   * @returns 
-   */
-     getMascotas(idUsuario: string) {
-      //TODO falta implementar el llamado al backend
-      return;
-    }
-  
 
   /**
    * 
@@ -71,6 +60,25 @@ export class MascotaService {
           }
         });
     });
+  }
+  /**
+   * 
+   * @param id 
+   * @returns 
+   */
+ /*  getMascota(id: string): Mascota {
+    if (!this.mascota.id) {
+      return;
+    }
+    return { ...this.id };
+  } */
+  get(){
+     return    this.http.get(`${URL}/mascota/`)
+   }
+
+
+  getUsuarios() {
+    return this.http.get('https://jsonplaceholder.typicode.com/users');
   }
 
 }

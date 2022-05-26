@@ -1,79 +1,68 @@
-<ion-header [translucent]="true" no-border>
+<ion-header [translucent]="true" mode="ios" class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Actualizar mascota</ion-title>
+    <ion-title>{{ titulo }}</ion-title>
     <app-logout slot="end"></app-logout>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-
+<ion-content [fullscreen]="true" mode="ios" class="ion-no-border">
 
   <ion-grid fixed>
-
-
-
-    <form (ngSubmit)="registrarMascota(fRegistro)" #fRegistro="ngForm">
-      <ion-row>
-        <ion-col>
-          <img src="/assets/perro-1.jpg">
-        </ion-col>
-      </ion-row>
+   <!--
+     <form (ngSubmit)="registrarMascota(fRegistro)" #fRegistro="ngForm">
+ <form (ngSubmit)="actualizarMascota( fActualizar )" #fActualizar="ngForm">
+  
+   --> 
+    <form (ngSubmit)="registro(fRegistro)" #fRegistro="ngForm">
       <ion-row>
         <ion-col>
           <ion-list>
-            <ion-item>
+            <ion-item >
               <ion-label>Nombre : </ion-label>
-              <ion-input name="nombre" type="text" [(ngModel)]="registerMascota.nombre" required></ion-input>
+              <ion-input name="name" type="text"
+                        [(ngModel)]="save.name" required></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label>Raza:</ion-label>
-              <ion-input name="especie" type="text" [(ngModel)]="registerMascota.raza" required></ion-input>
+              <ion-select   placeholder="Seleccione la raza" name="breed"  
+                            [(ngModel)]="save.breed" required>
+                <ion-select-option *ngFor="let raza of razas" [value]="raza" >{{ raza }}</ion-select-option>
+              </ion-select>
             </ion-item>
+            
             <ion-item>
-              <ion-label>Sexo : </ion-label>
-              <ion-select name="raza" type="text" [(ngModel)]="registerMascota.sexo" required>
-                <ion-select-option value="macho">Macho</ion-select-option>
-                <ion-select-option value="hembra">Hembra</ion-select-option>
+              <ion-select   placeholder="Seleccione el Sexo" expand="full"name="gender" 
+                            [(ngModel)]="save.gender" required>
+              <ion-select-option value="macho">Macho</ion-select-option>
+              <ion-select-option value="hembra">Hembra</ion-select-option>
+              <ion-select-option value="nie">Desconozco</ion-select-option>
+              </ion-select>
+              </ion-item>
+            
 
+            <ion-item >
+              <ion-select slot="start" placeholder="Año de la mascota" name="year" 
+                          [(ngModel)]="save.year">
+                <ion-select-option  [value]="item" *ngFor="let item of listaAnio">{{item}}</ion-select-option >
               </ion-select>
             </ion-item>
 
-
             <ion-item>
-              <ion-label>Año: </ion-label>
-              <select name="anio" [(ngModel)]="registerMascota.anio">
-                <option [value]="item" *ngFor="let item of listaAnio">{{item}}</option>
-              </select>
+             
+              <ion-select slot="start"  placeholder="Mes de la mascocta" name="month"
+                           [(ngModel)]="save.month">
+                <ion-select-option  [value]="item" *ngFor="let item of listaMes">{{item}}</ion-select-option >
+              </ion-select >
 
             </ion-item>
-
-            <ion-item>
-              <ion-label>Mes: </ion-label>
-              <select name="mes" [(ngModel)]="registerMascota.mes">
-                <option [value]="item" *ngFor="let item of listaMes">{{item}}</option>
-              </select>
-
-            </ion-item>
-
-
-
-
             <ion-item>
               <ion-label>Foto :</ion-label>
-              <ion-input name="foto" type="photo" [(ngModel)]="registerMascota.foto" required></ion-input>
+              <ion-input name="foto" type="photo" [(ngModel)]="save.pics" required></ion-input>
             </ion-item>
-            <ion-list>
-              <ion-item>
-                <ion-thumbnail slot="start">
-                  <ion-img [src]="" name="foto" [(ngModel)]="registerMascota.foto"></ion-img>
-                </ion-thumbnail>
-                <ion-label>foto</ion-label>
-              </ion-item>
-            </ion-list>
+         
 
           </ion-list>
         </ion-col>
@@ -86,7 +75,7 @@
           </ion-button>
         </ion-col>
       </ion-row>
-
+      <ion-button (click)="back()" *ngIf="!isDisplay" class="btn-sub">Back</ion-button>
     </form>
   </ion-grid>
 </ion-content>

@@ -10,14 +10,19 @@ export interface Usuario {
 }
 
 export interface Mascota {
-  _id?:string;
-  nombre? :string;
-  raza? : string;
-  sexo?:string;
-  anio? : Number;
-  mes? : Number;
-  foto? :string[];
-  estado? : string;
-  codigo?:Usuario;
+  id?:string;
+  name?: string;
+  gender? : string;
+  breed? : string;
+  kind? : string;
+  color? : string;
+  year?: Number;
+  month? : Number;
+  pics?: string[];
+  vets?: string[];
+  isAlive?: Boolean;
+  castrated?: Boolean;
+  status?: Boolean;
+  userId ?: String;
 }
 

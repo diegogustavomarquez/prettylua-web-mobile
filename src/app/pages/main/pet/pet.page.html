@@ -1,4 +1,4 @@
-<ion-header [translucent]="true" no-border>
+<ion-header [translucent]="true" mode="ios" class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -8,17 +8,38 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Mascotas</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+<!--
+<ion-content [fullscreen]="true" mode="ios" class="ion-no-border">
   <div id="container">
-    <strong class="capitalize">Mascotas</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-    <ion-button [routerLink]="['pet-form']">Crear mascota</ion-button>
-    <ion-button [routerLink]="['pet-form', id]">Actualizar mascota {{id}}</ion-button>
+        <ion-icon name="add-outline" style="zoom:3.0;" slot="end" [routerLink]="['pet-form']"></ion-icon>
+
+    <ion-button [routerLink]="['pet-form', id]" title="Actualizar Mascota">Actualizar mascota {{id}}</ion-button>
   </div>
+
 </ion-content>
+-->
+<ion-content [fullscreen]="true" mode="ios" class="ion-no-border">
+    <ion-list >
+      <ion-icon name="add-outline" style="zoom:3.0;" slot="end" [routerLink]="['pet-form']"></ion-icon>
+     
+      <ion-item-sliding *ngFor="let m of workStatuses" >
+          <ion-item >
+              <ion-label>
+                <h3>{{ m.id}} </h3>  
+                <h3>{{ m.description}} </h3>  
+              
+              </ion-label>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option color="warning" (click)="clickUpdate(mascota)">
+                <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+            </ion-item-option>
+            <ion-item-option color="danger" (click)="delete(mascota)">
+              <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+</ion-content>
+
+
