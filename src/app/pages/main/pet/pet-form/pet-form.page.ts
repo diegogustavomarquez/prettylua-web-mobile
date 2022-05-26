@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
-import { Mascota } from 'src/app/interfaces/interfaces';
+import { Mascota, Usuario } from 'src/app/interfaces/interfaces';
 import { MascotaService } from 'src/app/services/mascota.service';
 import { UsuarioService } from '../../../../services/usuario.service';
 import { UiServiceService } from 'src/app/services/ui-service.service';
-
+import { CommonsService } from '../../../../services/commons.service';
 
 @Component({
   selector: 'app-pet-form',
@@ -15,21 +15,22 @@ import { UiServiceService } from 'src/app/services/ui-service.service';
 })
 export class PetFormPage implements OnInit {
 
-  isDisplay: boolean = true;
+  titulo: string = '';
+  isNew: boolean = false;
+
   public id: string;
-  @Input() titulo: string = '';
+  listaAnio: number[] = [];
+  razas :string[]=[];
+  kinds :string[]=[];
+  genders: string[] = [];
 
-  listaMes: number[] = [1, 2, 3, 4, 5];
-  listaAnio: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  razas :string[]=['Cruzado', 'Boxer','Callejero','Terrier','Bulldog','Ovejero','Caniche','Otro']
-
- save: Mascota = {
+ mascota: Mascota = {
      id:'',
     name: '',
     gender : '',
     breed : '',
     kind : '',
-    color : '',
+    color : 'Marron', //este campo debe agregarse a los input pero no deberia ser obligatorio
     year: null,
     month : null,
     pics: [],
@@ -40,90 +41,61 @@ export class PetFormPage implements OnInit {
     userId : ''
 
   };
-  mascota: Mascota = {};
 
   constructor(private activatedRoute: ActivatedRoute,
               private mascotaService: MascotaService,
               private navCtrl: NavController,
               private alertCtrl: AlertController,
               private uiService: UiServiceService,
-              private usuarioService: UsuarioService) { }
+              private usuarioService: UsuarioService,
+              private commonsService: CommonsService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.listaAnio = this.commonsService.getYears();
+    this.razas = this.commonsService.getBreed();
+    this.kinds = this.commonsService.getKind();
+    this.genders = this.commonsService.getGender();
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     if (!this.id) {
-    //  this.mascota = this.mascotaService.getMascota(this.id);
+      this.mascota.userId = this.usuarioService.usuario._id;
+      this.titulo = 'Alta de mascota';
+    } else {
+      this.isNew = false;
+      this.mascota = await this.mascotaService.getbyId(this.id);
+      this.titulo = 'Actualizar datos de la mascota';
     }
-
-    console.log(this.mascota);
   }
 
   /**
    * 
-   * @param fRegistro 
+   * @param unaMascota 
    * @returns 
    */
-  async registro(fRegistro: NgForm) {
-    if (fRegistro.invalid) { return; }
+  async save(unaMascota: NgForm) {
+    if (unaMascota.invalid) { return; }
     const valido = await this.mascotaService.save(this.mascota);
     if (valido) {
-      this.navCtrl.navigateRoot('/mascota', { animated: true });
+      this.uiService.presentToast('La mascota se guardo correctamente');
+      this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
     } else {
       this.uiService.alertaInformativa('La mascota ya existe.');
     }
   }
-  /**
-   * 
-   */
-  async presentAlert() {
-    const alert = await this.alertCtrl.create({
-      backdropDismiss: false,
-      header: 'Exitoso!',
-      message: 'Registro Cargado',
-      buttons: ['OK']
-    });
-    await alert.present();
-  }
 
-  async presentActualizado() {
-    const alert = await this.alertCtrl.create({
-      backdropDismiss: false,
-      header: 'Exitoso',
-      message: 'Registro Actualizado',
-      buttons: ['OK']
-    });
-    await alert.present();
-  }
-
-  
-
-  back() {
-    this.isDisplay = true
-  }
-
-  /**
-   * 
-   * @param fRegistro 
-   * @returns 
-   */
-
- 
   /**
    * 
    * @param fActualizar 
    * @returns 
    */
-  async actualizarMascota(fActualizar: NgForm) {
+  async update(fActualizar: NgForm) {
     if (fActualizar.invalid) { return; }
-    const actualizado = await this.mascotaService.actualizarMascota(this.mascota);
+    const actualizado = await this.mascotaService.update(this.mascota);
     if (actualizado) {
-      this.presentActualizado();
+      this.uiService.presentToast('Se actualizaron los datos');
+      this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
     } else {
       this.uiService.presentToast('No se pudo actualizar');
     }
-
   }
-
-
 
 }

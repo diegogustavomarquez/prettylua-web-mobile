@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Mascota } from 'src/app/interfaces/interfaces';
 import { MascotaService } from 'src/app/services/mascota.service';
@@ -11,64 +11,25 @@ import { IonList, NavController } from '@ionic/angular';
 })
 export class PetPage implements OnInit {
 
-  public id: string = '1';
-  public titulo: string = '1';
-  public workStatuses = [
-    { id: 0, description: 'unknow' },
-    { id: 1, description: 'student' },
-    { id: 2, description: 'unemployed' },
-    { id: 3, description: 'employed' }
-  ];
-  @ViewChild(IonList) ionList: IonList;
-
-  isDisplay: boolean = true;
-
-   Mascota = {
-     id:'',
-    name: '',
-    gender : '',
-    breed : '',
-    kind : '',
-    color : '',
-    year: null,
-    month : null,
-    pics: [],
-    vets:[],
-    isAlive:true, 
-    castrated:false,
-    status:true,
-    userId : ''
-
-  };
-  mascota: Mascota = {};
-  //public mascotas: Mascota[] = [];
-  Id: any;
+  public mascotas: Mascota[] = [];
 
   constructor(private mascotaService: MascotaService,
-              private navCtrl: NavController) { }
+    private navCtrl: NavController) { }
 
-  ngOnInit() {
-  //   this.mascota = this.mascotaService.get()
-  this. workStatuses = [
-    { id: 0, description: 'unknow' },
-    { id: 1, description: 'student' },
-    { id: 2, description: 'unemployed' },
-    { id: 3, description: 'employed' }
-  ];
+  async ngOnInit() {
+    await this.mascotaService.getbyUserId().then(p => this.mascotas = p);
+
+    //evento que se queda escuchando cuando se agrega una nueva mascota
+    this.mascotaService.nuevaMascota
+      .subscribe(mascota => {
+
+        this.mascotas.unshift(mascota);
+
+      });
   }
- 
-  
-    delete(mascota: Mascota) {
-      console.log('delete', mascota.id);
-     this.ionList.closeSlidingItems();
-    }
-    clickUpdate(mascota: Mascota) {
-      this.navCtrl.navigateRoot( '/main/main/pet/pet-form', { animated: true } );
-    this.ionList.closeSlidingItems();
-    }
 
-    async actualizar( ) {
-      const actualizado = await this.mascotaService.actualizarMascota( this.mascota );
-    }
- 
+  delete(mascota: Mascota) {
+    console.log('delete', mascota.id);
+  }
+
 }

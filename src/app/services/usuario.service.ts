@@ -14,7 +14,7 @@ const URL = environment.url;
 export class UsuarioService {
 
   token: string = null;
-  private usuario: Usuario = {};
+  usuario: Usuario = {};
 
   constructor(private http: HttpClient,
               private storage: Storage,
@@ -69,7 +69,6 @@ export class UsuarioService {
           console.log(resp);
           if (resp['ok']) {
             await this.guardarToken(resp['token']);
-            await this.guardarUser(resp['data']);
             resolve(true);
           } else {
             this.token = null;
@@ -106,18 +105,6 @@ export class UsuarioService {
 
   /**
    * 
-   * @param data 
-   */
-   async guardarUser(data: Usuario) {
-    this.usuario= data;
-    await this.storage.set('usuario', data);
-    await this.validaToken();
-  }
-
-
-
-  /**
-   * 
    */
   async cargarToken() {
     this.token = await this.storage.get('token') || null;
@@ -141,7 +128,7 @@ export class UsuarioService {
       this.http.get(`${URL}/user/`, { headers })
         .subscribe(resp => {
           if (resp['ok']) {
-            this.usuario = resp['usuario'];
+            this.usuario = resp['user'][0];
             resolve(true);
           } else {
             this.navCtrl.navigateRoot('/login');

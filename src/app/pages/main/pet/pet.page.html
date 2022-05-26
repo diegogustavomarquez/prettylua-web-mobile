@@ -8,38 +8,47 @@
   </ion-toolbar>
 </ion-header>
 
-<!--
 <ion-content [fullscreen]="true" mode="ios" class="ion-no-border">
-  <div id="container">
-        <ion-icon name="add-outline" style="zoom:3.0;" slot="end" [routerLink]="['pet-form']"></ion-icon>
-
-    <ion-button [routerLink]="['pet-form', id]" title="Actualizar Mascota">Actualizar mascota {{id}}</ion-button>
-  </div>
-
+  <!-- <ion-card> -->
+    <ion-button [routerLink]="['pet-form']" class="btn-sub ion-no-border" color="tertiary" shape="round">Agregar</ion-button>
+    <!-- </ion-card> -->
+    <ion-card>
+      <ion-item>
+        <ion-grid>
+          <ion-row class="divide">
+            <ion-col size="3">
+              Nombre
+            </ion-col>
+            <ion-col size="3">
+              Tipo
+            </ion-col>
+            <ion-col size="3">
+              Raza
+            </ion-col>
+            <ion-col size="2">
+              Action
+            </ion-col>
+          </ion-row>
+          <ion-row *ngFor="let mascota of mascotas">
+            <ion-col size="3">
+              {{mascota.name}}
+            </ion-col>
+            <ion-col size="3">
+              {{mascota.kind}}
+            </ion-col>
+            <ion-col size="3">
+              {{mascota.breed}}
+            </ion-col>
+            <ion-col size="3">
+              <ion-button color="warning" [routerLink]="['pet-form', mascota._id]">
+                <ion-icon name="create-outline"></ion-icon>
+              </ion-button>
+              <ion-button color="danger" (click)="delete(mascota._id)">
+                <ion-icon name="trash-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-card>
 </ion-content>
--->
-<ion-content [fullscreen]="true" mode="ios" class="ion-no-border">
-    <ion-list >
-      <ion-icon name="add-outline" style="zoom:3.0;" slot="end" [routerLink]="['pet-form']"></ion-icon>
-     
-      <ion-item-sliding *ngFor="let m of workStatuses" >
-          <ion-item >
-              <ion-label>
-                <h3>{{ m.id}} </h3>  
-                <h3>{{ m.description}} </h3>  
-              
-              </ion-label>
-          </ion-item>
-          <ion-item-options side="end">
-            <ion-item-option color="warning" (click)="clickUpdate(mascota)">
-                <ion-icon slot="icon-only" name="create-outline"></ion-icon>
-            </ion-item-option>
-            <ion-item-option color="danger" (click)="delete(mascota)">
-              <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-          </ion-item-option>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list>
-</ion-content>
-
-

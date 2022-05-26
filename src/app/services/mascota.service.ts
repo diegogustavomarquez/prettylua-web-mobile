@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Mascota } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 import { UsuarioService } from './usuario.service';
+import { UiServiceService } from './ui-service.service';
 
 
 const URL = environment.url;
@@ -13,10 +14,63 @@ const URL = environment.url;
 })
 export class MascotaService {
 
- 
+  nuevaMascota = new EventEmitter<Mascota>();
+
+
   constructor(private http: HttpClient,
-              private navCtrl: NavController,
-              private usuarioService: UsuarioService) { }
+    private navCtrl: NavController,
+    private usuarioService: UsuarioService,
+    private uiService: UiServiceService) { }
+
+  /**
+  * Devuevle una lista de mascotas en base al id del usuario logueado
+  * 
+  * @returns 
+  */
+  getbyUserId(): Promise<Mascota[]> {
+    const headers = new HttpHeaders({
+      'x-token': this.usuarioService.token
+    });
+    let mascotas: Mascota[] = [];
+    return new Promise(resolve => {
+      this.http.get(`${URL}/pet/byUserId?userId=${this.usuarioService.usuario._id}`, { headers })
+        .subscribe(async resp => {
+          if (resp['ok']) {
+            mascotas = resp['data'] as Mascota[];
+            resolve(mascotas);
+          } else {
+            this.uiService.alertaInformativa('No se encontraron mascotas.');
+            resolve(mascotas);
+          }
+        });
+    });
+  }
+
+  /**
+   * Busca una mascota en base a su id
+   * 
+   * @returns 
+   */
+  getbyId(id: string): Promise<Mascota> {
+    const headers = new HttpHeaders({
+      'x-token': this.usuarioService.token
+    });
+    let mascota: Mascota;
+    return new Promise(resolve => {
+      this.http.get(`${URL}/pet/byId?petId=${id}`, { headers })
+        .subscribe(async resp => {
+          if (resp['ok']) {
+            console.log(resp);
+            mascota = resp['data'] as Mascota;
+            resolve(mascota);
+          } else {
+            this.uiService.alertaInformativa('No se encontro la mascota que se desea actualizar');
+            resolve(mascota);
+            this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
+          }
+        });
+    });
+  }
 
   /**
    * 
@@ -24,18 +78,16 @@ export class MascotaService {
    * @returns 
    */
   save(mascota: Mascota) {
-    console.log(mascota)
     const headers = new HttpHeaders({
       'x-token': this.usuarioService.token
     });
-   return new Promise(resolve => {
-      this.http.post(`${URL}/pet/createPet`,{headers})
+    return new Promise(resolve => {
+      this.http.post(`${URL}/pet/createPet`, mascota, { headers })
         .subscribe(async resp => {
-          console.log(resp);
           if (resp['ok']) {
+            console.log(resp);
+            //this.nuevaMascota.emit(resp['petResult '] as Mascota);
             resolve(true);
-
-
           } else {
             resolve(false);
           }
@@ -49,9 +101,13 @@ export class MascotaService {
    * @param mascota 
    * @returns 
    */
-  actualizarMascota(mascota: Mascota) {
+  update(mascota: Mascota) {
+    const headers = new HttpHeaders({
+      'x-token': this.usuarioService.token
+    });
+    console.log(mascota);
     return new Promise(resolve => {
-      this.http.post(`${URL}/mascota/update`, mascota)
+      this.http.put(`${URL}/pet/updatePet`, mascota, {headers})
         .subscribe(resp => {
           if (resp['ok']) {
             resolve(true);
@@ -60,25 +116,6 @@ export class MascotaService {
           }
         });
     });
-  }
-  /**
-   * 
-   * @param id 
-   * @returns 
-   */
- /*  getMascota(id: string): Mascota {
-    if (!this.mascota.id) {
-      return;
-    }
-    return { ...this.id };
-  } */
-  get(){
-     return    this.http.get(`${URL}/mascota/`)
-   }
-
-
-  getUsuarios() {
-    return this.http.get('https://jsonplaceholder.typicode.com/users');
   }
 
 }
