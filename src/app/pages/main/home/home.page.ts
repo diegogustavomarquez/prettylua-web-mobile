@@ -36,14 +36,12 @@ export class HomePage implements OnInit {
     }
   ];
 
+  
   slideOpts={
     loop:true,
     slidesPerView:1.3,
-    freeMode:true,
-    autoplay: {
-      delay: 500,
-      disableOnInteraction: false,
-      },
+    autoplay:true,
+    speed: 400
   };
   
   constructor() { }

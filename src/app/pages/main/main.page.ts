@@ -15,7 +15,7 @@ export class MainPage implements OnInit {
     { title: 'Mi Cuenta', url: '/main/main/account', icon: 'person' }
   ];
 
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  public labels = ['Veterinarias', 'Tiendas', 'Paseadores', 'Adiestradores'];
 
   usuario: Usuario;
   
