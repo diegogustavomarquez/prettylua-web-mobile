@@ -10,7 +10,7 @@ export interface Usuario {
 }
 
 export interface Mascota {
-  id?:string;
+  _id?:string;
   name?: string;
   gender? : string;
   breed? : string;

@@ -25,7 +25,7 @@ export class PetFormPage implements OnInit {
   genders: string[] = [];
 
  mascota: Mascota = {
-     id:'',
+    _id:'',
     name: '',
     gender : '',
     breed : '',

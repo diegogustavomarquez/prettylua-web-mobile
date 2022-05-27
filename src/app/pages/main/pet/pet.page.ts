@@ -29,7 +29,7 @@ export class PetPage implements OnInit {
   }
 
   delete(mascota: Mascota) {
-    console.log('delete', mascota.id);
+    console.log('delete', mascota._id);
   }
 
 }

@@ -124,3 +124,10 @@ ion-menu ion-content {
   margin-right: auto;
   width: 50%;
 }
+
+.logo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
