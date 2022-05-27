@@ -8,11 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomePage implements OnInit {
 
   slides: { img: string, titulo: string, desc: string }[] = [
-    {
-      img: '/assets/slides/publi4.jpg',
-      titulo: '',
-      desc: ''
-    },
+    
     {
       img: '/assets/slides/slide-publicidad1.jpg',
       titulo: '',
@@ -34,15 +30,20 @@ export class HomePage implements OnInit {
       desc: ''
     },
     {
-      img: '/assets/slides/publi5.png',
+      img: '/assets/slides/publi11.png',
       titulo: '',
       desc: ''
     }
   ];
 
   slideOpts={
+    loop:true,
     slidesPerView:1.3,
-    freeMode:true
+    freeMode:true,
+    autoplay: {
+      delay: 500,
+      disableOnInteraction: false,
+      },
   };
   
   constructor() { }

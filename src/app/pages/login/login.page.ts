@@ -14,13 +14,13 @@ import { UsuarioService } from '../../services/usuario.service';
 export class LoginPage implements OnInit {
 
   loginUser = {
-    email: 'diegomarquez86@gmail.com',
-    password: '123456'
+    email: '',
+    password: ''
   };
 
   constructor(private usuarioService: UsuarioService,
                 private navCtrl: NavController,
-               private uiService: UiServiceService ) { }
+               private uiService: UiServiceService) { }
 
   ngOnInit() {
   }
