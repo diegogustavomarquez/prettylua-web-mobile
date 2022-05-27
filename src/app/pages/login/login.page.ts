@@ -34,7 +34,7 @@ export class LoginPage implements OnInit {
       this.navCtrl.navigateRoot( '/main/main/home', { animated: true } );
     } else {
       // mostrar alerta de usuario y contraseña no correctos
-      this.navCtrl.navigateRoot( '/main/main/home', { animated: true } );
+      this.uiService.alertaInformativa('Usuario y/o contraseña no son correctos.');
     }
 
   }
