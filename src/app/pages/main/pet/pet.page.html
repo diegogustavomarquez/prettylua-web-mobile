@@ -1,4 +1,4 @@
-<ion-header [translucent]="true" no-border>
+<ion-header [translucent]="true" mode="ios" class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -8,17 +8,47 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Mascotas</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong class="capitalize">Mascotas</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-    <ion-button [routerLink]="['pet-form']">Crear mascota</ion-button>
-    <ion-button [routerLink]="['pet-form', id]">Actualizar mascota {{id}}</ion-button>
-  </div>
+<ion-content [fullscreen]="true" mode="ios" class="ion-no-border">
+  <!-- <ion-card> -->
+    <ion-button [routerLink]="['pet-form']" class="btn-sub ion-no-border" color="tertiary" shape="round">Agregar</ion-button>
+    <!-- </ion-card> -->
+    <ion-card>
+      <ion-item>
+        <ion-grid>
+          <ion-row class="divide">
+            <ion-col size="3">
+              Nombre
+            </ion-col>
+            <ion-col size="3">
+              Tipo
+            </ion-col>
+            <ion-col size="3">
+              Raza
+            </ion-col>
+            <ion-col size="2">
+              Action
+            </ion-col>
+          </ion-row>
+          <ion-row *ngFor="let mascota of mascotas">
+            <ion-col size="3">
+              {{mascota.name}}
+            </ion-col>
+            <ion-col size="3">
+              {{mascota.kind}}
+            </ion-col>
+            <ion-col size="3">
+              {{mascota.breed}}
+            </ion-col>
+            <ion-col size="3">
+              <ion-button color="warning" [routerLink]="['pet-form', mascota._id]">
+                <ion-icon name="create-outline"></ion-icon>
+              </ion-button>
+              <ion-button color="danger" (click)="delete(mascota._id)">
+                <ion-icon name="trash-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-card>
 </ion-content>

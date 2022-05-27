@@ -1,8 +1,11 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Mascota } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
+import { UsuarioService } from './usuario.service';
+import { UiServiceService } from './ui-service.service';
+
 
 const URL = environment.url;
 
@@ -11,26 +14,59 @@ const URL = environment.url;
 })
 export class MascotaService {
 
+  nuevaMascota = new EventEmitter<Mascota>();
+
+
   constructor(private http: HttpClient,
-    private navCtrl: NavController) { }
+    private navCtrl: NavController,
+    private usuarioService: UsuarioService,
+    private uiService: UiServiceService) { }
 
   /**
+  * Devuevle una lista de mascotas en base al id del usuario logueado
+  * 
+  * @returns 
+  */
+  getbyUserId(): Promise<Mascota[]> {
+    const headers = new HttpHeaders({
+      'x-token': this.usuarioService.token
+    });
+    let mascotas: Mascota[] = [];
+    return new Promise(resolve => {
+      this.http.get(`${URL}/pet/byUserId?userId=${this.usuarioService.usuario._id}`, { headers })
+        .subscribe(async resp => {
+          if (resp['ok']) {
+            mascotas = resp['data'] as Mascota[];
+            resolve(mascotas);
+          } else {
+            this.uiService.alertaInformativa('No se encontraron mascotas.');
+            resolve(mascotas);
+          }
+        });
+    });
+  }
+
+  /**
+   * Busca una mascota en base a su id
    * 
-   * @param mascota 
    * @returns 
    */
-  registro(mascota: Mascota) {
+  getbyId(id: string): Promise<Mascota> {
+    const headers = new HttpHeaders({
+      'x-token': this.usuarioService.token
+    });
+    let mascota: Mascota;
     return new Promise(resolve => {
-      this.http.post(`${URL}/mascota/create`, mascota)
+      this.http.get(`${URL}/pet/byId?petId=${id}`, { headers })
         .subscribe(async resp => {
-          console.log(resp);
-
           if (resp['ok']) {
-            // await this.guardarToken( resp['token'] );
-            resolve(true);
+            console.log(resp);
+            mascota = resp['data'] as Mascota;
+            resolve(mascota);
           } else {
-            //this.token = null;
-            resolve(false);
+            this.uiService.alertaInformativa('No se encontro la mascota que se desea actualizar');
+            resolve(mascota);
+            this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
           }
         });
     });
@@ -38,31 +74,40 @@ export class MascotaService {
 
   /**
    * 
+   * @param mascota 
    * @returns 
    */
-  getMascota(id: string) : Mascota {
-    //TODO falta implementar el llamado al backend
-    return;
+  save(mascota: Mascota) {
+    const headers = new HttpHeaders({
+      'x-token': this.usuarioService.token
+    });
+    return new Promise(resolve => {
+      this.http.post(`${URL}/pet/createPet`, mascota, { headers })
+        .subscribe(async resp => {
+          if (resp['ok']) {
+            console.log(resp);
+            //this.nuevaMascota.emit(resp['petResult '] as Mascota);
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        });
+    });
   }
 
-  /**
-   * 
-   * @returns 
-   */
-     getMascotas(idUsuario: string) {
-      //TODO falta implementar el llamado al backend
-      return;
-    }
-  
 
   /**
    * 
    * @param mascota 
    * @returns 
    */
-  actualizarMascota(mascota: Mascota) {
+  update(mascota: Mascota) {
+    const headers = new HttpHeaders({
+      'x-token': this.usuarioService.token
+    });
+    console.log(mascota);
     return new Promise(resolve => {
-      this.http.post(`${URL}/mascota/update`, mascota)
+      this.http.put(`${URL}/pet/updatePet`, mascota, {headers})
         .subscribe(resp => {
           if (resp['ok']) {
             resolve(true);

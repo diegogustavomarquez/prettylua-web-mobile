@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { Usuario } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
+import { UsuarioGuard } from '../guards/usuario.guard';
 
 const URL = environment.url;
 
@@ -13,11 +14,11 @@ const URL = environment.url;
 export class UsuarioService {
 
   token: string = null;
-  private usuario: Usuario = {};
+  usuario: Usuario = {};
 
   constructor(private http: HttpClient,
-    private storage: Storage,
-    private navCtrl: NavController) { }
+              private storage: Storage,
+              private navCtrl: NavController) { }
 
 
   /**
@@ -127,7 +128,7 @@ export class UsuarioService {
       this.http.get(`${URL}/user/`, { headers })
         .subscribe(resp => {
           if (resp['ok']) {
-            this.usuario = resp['usuario'];
+            this.usuario = resp['user'][0];
             resolve(true);
           } else {
             this.navCtrl.navigateRoot('/login');
@@ -148,7 +149,7 @@ export class UsuarioService {
       'x-token': this.token
     });
     return new Promise(resolve => {
-      this.http.post(`${URL}/user/update`, usuario, { headers })
+      this.http.put(`${URL}/user/update`, usuario, { headers })
         .subscribe(resp => {
 
           if (resp['ok']) {
