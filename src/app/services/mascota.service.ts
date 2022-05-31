@@ -87,6 +87,7 @@ export class MascotaService {
           if (resp['ok']) {
             console.log(resp);
             //this.nuevaMascota.emit(resp['petResult '] as Mascota);
+            this.getbyUserId();
             resolve(true);
           } else {
             resolve(false);

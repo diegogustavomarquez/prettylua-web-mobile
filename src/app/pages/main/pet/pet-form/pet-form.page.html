@@ -28,18 +28,32 @@
             </ion-item>
             
             <ion-item>
-              <ion-select placeholder="Seleccione la raza" name="breed" [(ngModel)]="mascota.breed" required>
-                <ion-select-option *ngFor="let raza of razas" [value]="raza">{{ raza }}</ion-select-option>
-              </ion-select>
+              <ion-label>Raza : </ion-label>
+              <ion-input name="breed" type="text" [(ngModel)]="mascota.breed" required></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-select placeholder="Seleccione el Sexo" expand="full" name="gender" [(ngModel)]="mascota.gender" required>
+              <ion-select placeholder="Seleccione el Genero" expand="full" name="gender" [(ngModel)]="mascota.gender" required>
                 <ion-select-option *ngFor="let gender of genders" [value]="gender">{{ gender }}</ion-select-option>
               </ion-select>
             </ion-item>
 
-
+            <ion-item>
+              <ion-input [value]="dateValue2"></ion-input>
+              <ion-button fill="clear" id="open-date-input-2">
+                <ion-icon icon="calendar"></ion-icon>
+              </ion-button>
+              <ion-popover trigger="open-date-input-2" show-backdrop="false">
+                <ng-template>
+                  <ion-datetime
+                    #popoverDatetime2
+                    presentation="date"
+                    (ionChange)="dateValue2 = formatDate(popoverDatetime2.value)"
+                  ></ion-datetime>
+                </ng-template>
+              </ion-popover>
+            </ion-item>
+            
             <ion-item>
               <ion-select slot="start" placeholder="Año" name="year" [(ngModel)]="mascota.year">
                 <ion-select-option [value]="item" *ngFor="let item of listaAnio">{{item}}</ion-select-option>
