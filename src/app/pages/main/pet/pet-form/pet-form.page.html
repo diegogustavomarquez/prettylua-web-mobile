@@ -10,6 +10,28 @@
 
 <ion-content [fullscreen]="true" mode="ios" class="ion-no-border">
 
+  <div class="ion-text-center">
+
+    <ion-row class="top-20">
+
+      <ion-col size="6" text-center>
+        <img src="assets/avatars/{{ usuario.avatar }}" class="img-avatar">
+      </ion-col>
+
+    </ion-row>
+    <ion-row class="top-15">
+      <ion-col size="12" text-center>
+        <ion-label>
+          <h1>Actualizar datos</h1>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+
+    <app-avatar-selector (avatarSel)="usuario.avatar = $event" [avatarActual]="usuario.avatar"></app-avatar-selector>
+
+  </div>
+  
   <ion-grid fixed>
 
     <form (ngSubmit)="mascota._id? update(fRegistro): save(fRegistro)" #fRegistro="ngForm">
@@ -40,6 +62,7 @@
             </ion-item>
 
             <ion-item>
+              <ion-label>Fecha nacimiento : </ion-label>
               <ion-input [value]="dateValue2"></ion-input>
               <ion-button fill="clear" id="open-date-input-2">
                 <ion-icon icon="calendar"></ion-icon>
@@ -56,14 +79,15 @@
             </ion-item>
             
             <ion-item>
-              <ion-select slot="start" placeholder="Año" name="year" [(ngModel)]="mascota.year">
+              <ion-label>Aproximacion : </ion-label>
+              <ion-select slot="start" placeholder="Año" name="year" [(ngModel)]="mascota.dateOfBirth">
                 <ion-select-option [value]="item" *ngFor="let item of listaAnio">{{item}}</ion-select-option>
               </ion-select>
             </ion-item>
 
             <ion-item>
 
-              <ion-select slot="start" placeholder="Mes" name="month" [(ngModel)]="mascota.month">
+              <ion-select slot="start" placeholder="Mes" name="month" [(ngModel)]="mascota.dateOfBirthDescription">
                 <ion-select-option [value]="item" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12]">{{item}}
                 </ion-select-option>
               </ion-select>
