@@ -125,7 +125,7 @@ export class UsuarioService {
       const headers = new HttpHeaders({
         'x-token': this.token
       });
-      this.http.get(`${URL}/user/`, { headers })
+      this.http.get(`${URL}/user/userById`, { headers })
         .subscribe(resp => {
           if (resp['ok']) {
             this.usuario = resp['user'][0];
