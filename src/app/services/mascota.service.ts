@@ -2,6 +2,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Mascota } from '../interfaces/interfaces';
+import { Kind } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 import { UsuarioService } from './usuario.service';
 import { UiServiceService } from './ui-service.service';
@@ -118,5 +119,29 @@ export class MascotaService {
         });
     });
   }
+
+    /**
+  * Devuevle una lista de tipo de mascotas.
+  * 
+  * @returns 
+  */
+     getKinds(): Promise<Kind[]> {
+      const headers = new HttpHeaders({
+        'x-token': this.usuarioService.token
+      });
+      let kinds: Kind[] = [];
+      return new Promise(resolve => {
+        this.http.get(`${URL}/pet/kindOf`, { headers })
+          .subscribe(async resp => {
+            if (resp['ok']) {
+              kinds = resp['data'] as Kind[];
+              resolve(kinds);
+            } else {
+              this.uiService.alertaInformativa('No se encontraron datos.');
+              resolve(kinds);
+            }
+          });
+      });
+    }
 
 }

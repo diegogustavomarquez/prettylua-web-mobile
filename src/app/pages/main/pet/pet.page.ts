@@ -26,10 +26,25 @@ export class PetPage implements OnInit {
         this.mascotas.unshift(mascota);
 
       });
+    
   }
 
-  delete(mascota: Mascota) {
+  async delete(mascota: Mascota) {
     console.log('delete', mascota._id);
+    const mascotaDeleted: Mascota = {...mascota, notes : "dado de baja"}
+    const actualizado = await this.mascotaService.update(mascotaDeleted);
+      if (actualizado) {
+        //this.uiService.presentToast('Se actualizaron los datos');
+        this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
+      } else {
+        //this.uiService.presentToast('No se pudo actualizar');
+      }
   }
 
+
+
+
+goHomeCancel() {
+  this.navCtrl.navigateRoot('/main/main/home', { animated: true });
+}
 }

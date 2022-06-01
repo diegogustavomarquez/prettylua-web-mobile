@@ -3,43 +3,54 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Mascotas</ion-title>
+    <ion-title>Mis Mascotas</ion-title>
     <app-logout slot="end"></app-logout>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" mode="ios" class="ion-no-border">
+  
   <!-- <ion-card> -->
-    <ion-button [routerLink]="['pet-form']" class="btn-sub ion-no-border" color="tertiary" shape="round">Agregar</ion-button>
+
     <!-- </ion-card> -->
-    <ion-card>
+    <ion-card (ionRefresh)="doRefresh($event)">
       <ion-item>
         <ion-grid>
           <ion-row class="divide">
             <ion-col size="3">
-              Nombre
             </ion-col>
             <ion-col size="3">
-              Tipo
             </ion-col>
             <ion-col size="3">
-              Raza
             </ion-col>
-            <ion-col size="2">
-              
+            <ion-col size="3">
             </ion-col>
           </ion-row>
           <ion-row *ngFor="let mascota of mascotas">
             <ion-col size="3">
-              {{mascota.name}}
+              <img src="/assets/avatars/uploadPhoto.png">
+              
             </ion-col>
-            <ion-col size="3">
-              {{mascota.kind}}
+            <ion-col size="4">
+              <ion-row class="divide">
+                <h1>{{mascota.name}}</h1>
+              </ion-row>
+              <ion-row class="divide">
+                <label>{{mascota.kind}}</label>
+              </ion-row>
+              <ion-row class="divide">
+                <label>{{mascota.breed}}</label>
+              </ion-row>
+              <ion-row class="divide">
+                <label>{{mascota.dateOfBirth}}</label>
+              </ion-row>
+              <ion-row class="divide">
+                <label>{{mascota.notes}}</label>
+              </ion-row>
             </ion-col>
-            <ion-col size="3">
-              {{mascota.breed}}
-            </ion-col>
-            <ion-col size="3">
+            <ion-col size="3" class="ion-align-self-center">
+              
+              
               <ion-button color="warning" [routerLink]="['pet-form', mascota._id]">
                 <ion-icon name="create-outline"></ion-icon>
               </ion-button>
@@ -51,4 +62,18 @@
         </ion-grid>
       </ion-item>
     </ion-card>
+    <ion-row>
+      <ion-col>
+        <ion-button  [routerLink]="['pet-form']" class="btn-sub ion-no-border" color="tertiary" shape="round"> 
+          Agregar     
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button class="btn-sub ion-no-border" color="tertiary" shape="round" (click)="goHomeCancel()"> 
+          Cancelar     
+        </ion-button>
+      </ion-col>
+    </ion-row>
 </ion-content>

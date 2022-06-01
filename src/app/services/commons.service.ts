@@ -27,5 +27,7 @@ export class CommonsService {
     return  ['Macho', 'Hembra', 'Desconocido'];
   }
 
-
+  getAprox(): string[] {
+    return ['Fecha exacta', 'Fecha Aproximada'];
+  }
 }
