@@ -10,11 +10,8 @@ export class LogoutPage implements OnInit {
 
   constructor(private usuarioService: UsuarioService) { }
 
-  ngOnInit() {
-    this.usuarioService.logout();
+  async ngOnInit() {
+    await this.usuarioService.logout();
   }
   
-  logout() {
-  }
-
 }
