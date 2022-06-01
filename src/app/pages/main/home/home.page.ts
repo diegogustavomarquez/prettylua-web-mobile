@@ -12,12 +12,27 @@ export class HomePage implements OnInit {
     
    
     {
-      img: '/assets/slides/publi20.png',
+      img: '/assets/slides/promo1.png',
       titulo: '',
       desc: ''
     },
     {
-      img: '/assets/slides/publi33.png',
+      img: '/assets/slides/promo2.png',
+      titulo: '',
+      desc: ''
+    },
+    {
+      img: '/assets/slides/promo3.png',
+      titulo: '',
+      desc: ''
+    },
+    {
+      img: '/assets/slides/promo4.png',
+      titulo: '',
+      desc: ''
+    },
+    {
+      img: '/assets/slides/promo5.png',
       titulo: '',
       desc: ''
     }
@@ -26,7 +41,8 @@ export class HomePage implements OnInit {
   
   slideOpts={
     loop:true,
-    slidesPerView:1.3,
+    slidesPerView:1.5,
+    spaceBetween: 35,
     autoplay:true,
     speed: 400
   };

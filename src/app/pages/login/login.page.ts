@@ -27,7 +27,7 @@ export class LoginPage implements OnInit {
 
 
   async login( fLogin: NgForm ) {
-    if ( fLogin.invalid ) { return; }
+    if ( fLogin.invalid ) {  this.uiService.alertaInformativa('Debe completar los datos.');; }
     const valido = await this.usuarioService.login( this.loginUser.email, this.loginUser.password );
     if ( valido ) {
       // navegar al tabs

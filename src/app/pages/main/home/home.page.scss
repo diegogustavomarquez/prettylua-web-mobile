@@ -1,29 +1,14 @@
 .slide-image {
-    width: 250px;
+    max-width: 100%;
     text-align: center;
-
-  
     position: relative;
    
 }
 
-#slide-alto{
-height: 250px;
+ion-row{
+    height: 70px;
 }
 
-ion-content{
-    ion-col{
-        text-align: center;
-        ion-icon{
-            zoom: 2.8;
-            padding: 5px;
-            &:first-child{
-                zoom: 3.8;
-                padding: 5px;
-            }
-        }
-    }
-}
 h1,h2{
     margin-top: 0;
 }
@@ -34,68 +19,42 @@ page-home {
 }
 
 ion-card{
+    
     text-align: center;
    
 }
 
-.col_div{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    height: 150px;
-    box-shadow: 0px 3px 6px rgb(0, 0,0,2);
-    border-top: 5px;
+
+.img-home{
+    max-width: 60%;
+
 
 }
-.animated{
-    --webkit-animation-duration:5s;
-    animation-duration: 5s;
-    --webkit-animation-fill-mode:both;
-    animation-fill-mode: both;
-}
-@-webkit-keyframes bounceInUp{
-    0%{
-        opacity: 0px;
-        -webkit-transform: translateY(2000px);
-    }
-    60%{
-        opacity: 1px;
-        -webkit-transform: translateY(-30px);
-    }
-    80%{
-     
-        -webkit-transform: translateY(10px);
-    } 
 
-    100%{
-        
-        -webkit-transform: translateY(0);
-    } 
-  
-}
-.bounceInUp{
-    -webkit-animation-name: bounceInUp;
-    animation-name: bounceInUp;
-}
-@keyframes bounceInUp{
-    0%{
-        opacity: 0px;
-        -webkit-transform: translateY(2000px);
-    }
-    60%{
-        opacity: 1px;
-        -webkit-transform: translateY(-30px);
-    }
-    80%{
-        
-        -webkit-transform: translateY(10px);
-    } 
+.img-limpieza{
+    max-width: 52%;
 
-    100%{
-      
-        -webkit-transform: translateY(0);
-    } 
-  
+
 }
+
+.img-shop{
+    max-width: 50px;
+    
+    }
+
+.img-limpieza{
+    max-width: 50px;
+    margin-bottom: 14px;
+}
+.img-emergencia{
+ max-width: 50px;
+}
+.img-servicio{
+    max-width: 40px;
+    margin-bottom: 13px;
+    }
+
+.img-title {
+    width: 50px;
+    height: 50px;  
+  }
