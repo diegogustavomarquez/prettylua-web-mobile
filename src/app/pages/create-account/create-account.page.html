@@ -2,6 +2,7 @@
  
   <ion-grid fixed>
     <ion-toolbar>
+      <ion-title >Crear cuenta</ion-title>
       <ion-buttons slot="start">
       <ion-button [routerLink]="['/login']" color="primary"  shape="round">
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
@@ -50,7 +51,7 @@
 
       <ion-row>
         <ion-col>
-          <ion-button  expand="block" [disabled]="fRegistro.invalid" type="submit" color="tertiary" shape="round">
+          <ion-button fill="outline" expand="block" [disabled]="fRegistro.invalid" type="submit"  shape="round">
             Crear usuario
           </ion-button>
                      

@@ -4,7 +4,7 @@
       <ion-row>
         <ion-col>
           <ion-header class="logo">
-          <img src="/assets/avatars/logo.svg">
+          <img src="/assets/avatars/logo.png">
         </ion-header>
         </ion-col>
       </ion-row>
@@ -15,15 +15,20 @@
             <ion-item lines="full">
               <ion-label position="floating">Email</ion-label>
               <ion-input  name="email" type="email" [(ngModel)]="loginUser.email" required [(ngModel)]="loginUser.email"
-                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" #email autocomplete="off"></ion-input> 
+                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" #email autocomplete="off">
+              </ion-input> 
             </ion-item>
-            <div [hidden]="fLogin.controls.email && (fLogin.controls.email.valid||(fLogin.controls.email.pristine ))"
-            class="note danger" >El campo email es requerido</div>
+
+              <div [hidden]="fLogin.controls.email && (fLogin.controls.email.valid||(fLogin.controls.email.pristine ))"
+              class="note danger" >El campo email es requerido</div>
 
             <ion-item lines="full">
               <ion-label position="floating" >Password</ion-label>
-              <ion-input name="password" type="password" [(ngModel)]="loginUser.password" required></ion-input>
+              <ion-input name="password" type="password" [(ngModel)]="loginUser.password" required>
+              </ion-input>
             </ion-item>
+            <div [hidden]="fLogin.controls.password && (fLogin.controls.password.valid||(fLogin.controls.password.pristine ))"
+            class="note danger" >El campo password es requerido</div>
 
           </ion-list>
         </ion-col>
@@ -31,10 +36,10 @@
 
       <ion-row>
         <ion-col>
-          <ion-button class="btn-login" type="submit" expand="block" color="primary" shape="round">
+          <ion-button class="btn-login" type="submit" expand="block" fill="outline"  shape="round">
             Ingresar
           </ion-button>
-          
+          <!--
           <div class="flex-container">
            
             <div id="cont1"><hr style="color :black; border-width:1px;"/></div>
@@ -42,8 +47,8 @@
             <div id="cont3"><hr style="color :black; border-width:1px;"/></div>
           </div>
           
-      
-          <ion-button [routerLink]="['/create-account']" color="tertiary" expand="block" shape="round">Crear Cuenta</ion-button>            
+          -->
+          <ion-button [routerLink]="['/create-account']" fill="outline" expand="block" shape="round" class="btn">Crear Cuenta</ion-button>            
         </ion-col>
       </ion-row>
     </ion-grid>

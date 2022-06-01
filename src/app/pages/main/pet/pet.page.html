@@ -3,8 +3,12 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/main/main/home']" color="primary"  shape="round">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Mascotas</ion-title>
-    <app-logout slot="end"></app-logout>
   </ion-toolbar>
 </ion-header>
 
