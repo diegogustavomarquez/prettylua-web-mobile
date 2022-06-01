@@ -11,12 +11,13 @@ import { LogoutComponent } from 'src/app/components/./logout/logout.component';
 export class MainPage implements OnInit {
 
   public appPages = [
+
     { title: 'Mi Cuenta', url: '/main/main/account', icon: 'person' },
     { title: 'Mis Mascotas', url: '/main/main/pet', icon: 'paw' },
     { title: 'Notificaciones',url:'', icon: 'notifications' },
-    { title: 'Favoritos',url:'', icon: 'star' }
-   
-    
+    { title: 'Favoritos',url:'', icon: 'star' },
+    { title: 'Cerrar Sesión', url: '/main/main/logout', icon: 'log-out' }
+
   ];
 
   public labels = [
@@ -34,5 +35,4 @@ export class MainPage implements OnInit {
     this.usuario = this.usuarioService.usuario;
   }
   
-
 }
