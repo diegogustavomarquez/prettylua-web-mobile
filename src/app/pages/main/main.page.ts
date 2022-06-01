@@ -16,14 +16,13 @@ export class MainPage implements OnInit {
     { title: 'Mis Mascotas', url: '/main/main/pet', icon: 'paw' },
     { title: 'Notificaciones',url:'', icon: 'notifications' },
     { title: 'Favoritos',url:'', icon: 'star' },
-    { title: 'Cerrar Sesión', url: '/main/main/logout', icon: 'log-out' }
 
   ];
 
   public labels = [
    { title:'Eventos', url:'',icon:'calendar'},
    { title:'Mascotas en adopcion',url:'',icon:'heart'},
-   { title:'Cerrar Sesion',url:'/logout',icon:'log-out'}
+   { title: 'Cerrar Sesión', url: '/main/main/logout', icon: 'log-out' }
   ]
     ;
 
