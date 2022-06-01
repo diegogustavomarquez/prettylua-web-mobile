@@ -12,7 +12,8 @@ export class MainPage implements OnInit {
   public appPages = [
     { title: 'Principal', url: '/main/main/home', icon: 'home' },
     { title: 'Mascotas', url: '/main/main/pet', icon: 'paw' },
-    { title: 'Mi Cuenta', url: '/main/main/account', icon: 'person' }
+    { title: 'Mi Cuenta', url: '/main/main/account', icon: 'person' },
+    { title: 'Cerrar Sesión', url: '/main/main/logout', icon: 'log-out' }
   ];
 
   public labels = ['Veterinarias', 'Tiendas', 'Paseadores', 'Adiestradores'];
@@ -25,5 +26,4 @@ export class MainPage implements OnInit {
     this.usuario = this.usuarioService.usuario;
   }
   
-
 }
