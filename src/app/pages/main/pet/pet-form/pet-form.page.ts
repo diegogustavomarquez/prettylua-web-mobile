@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { AlertController, NavController } from '@ionic/angular';
-import { Mascota, Usuario } from 'src/app/interfaces/interfaces';
+import { AlertController, IonDatetime, NavController } from '@ionic/angular';
+import { Mascota,Kind, Usuario } from 'src/app/interfaces/interfaces';
 import { MascotaService } from 'src/app/services/mascota.service';
 import { UsuarioService } from '../../../../services/usuario.service';
 import { UiServiceService } from 'src/app/services/ui-service.service';
@@ -13,8 +13,9 @@ import { CommonsService } from '../../../../services/commons.service';
   templateUrl: './pet-form.page.html',
   styleUrls: ['./pet-form.page.scss'],
 })
-export class PetFormPage implements OnInit {
 
+export class PetFormPage implements OnInit {
+  @ViewChild(IonDatetime, { static: true }) datetime: IonDatetime;
   titulo: string = '';
   isNew: boolean = false;
 
@@ -45,12 +46,14 @@ export class PetFormPage implements OnInit {
               private alertCtrl: AlertController,
               private uiService: UiServiceService,
               private usuarioService: UsuarioService,
-              private commonsService: CommonsService) { }
+              private commonsService: CommonsService
+              ) { }
 
   async ngOnInit() {
     this.listaAnio = this.commonsService.getYears();
     this.razas = this.commonsService.getBreed();
     this.kinds = this.commonsService.getKind();
+   // this.kinds.push ( await this.mascotaService.getKinds());
     this.genders = this.commonsService.getGender();
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     if (!this.id) {
@@ -98,14 +101,11 @@ export class PetFormPage implements OnInit {
   onCancel() {
     this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
   }
-  
-  doRefresh(event) {
-    console.log('Begin async operation');
-    this.mascotaService.getbyId(this.id);
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      event.target.complete();
-    }, 2000);
-    this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
+
+  formatDate(value: string) {
+    let date = new Date(value);
+    return date.toLocaleDateString();
   }
+
 }
+

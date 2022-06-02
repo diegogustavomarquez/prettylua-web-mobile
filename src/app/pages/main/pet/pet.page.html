@@ -59,7 +59,7 @@
               <ion-button color="warning" [routerLink]="['pet-form', mascota._id]">
                 <ion-icon name="create-outline"></ion-icon>
               </ion-button>
-              <ion-button  color="danger" (click)="presentAlertConfirm(mascota)">
+              <ion-button  color="danger" (click)="presentAlertConfirm(mascota._id)">
                 <ion-icon name="trash-outline"></ion-icon>
               </ion-button>
             </ion-col>

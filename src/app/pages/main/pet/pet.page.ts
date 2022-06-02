@@ -4,6 +4,7 @@ import { Mascota } from 'src/app/interfaces/interfaces';
 import { MascotaService } from 'src/app/services/mascota.service';
 import { IonList, NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { UiServiceService } from '../../../services/ui-service.service';
 
 @Component({
   selector: 'app-pet',
@@ -16,7 +17,8 @@ export class PetPage implements OnInit {
 
   constructor(private mascotaService: MascotaService,
     private navCtrl: NavController,
-    public alertController: AlertController) { }
+    public alertController: AlertController,
+    private uiService: UiServiceService) { }
 
   async ngOnInit() {
     await this.mascotaService.getbyUserId().then(p => this.mascotas = p);
@@ -31,19 +33,7 @@ export class PetPage implements OnInit {
     
   }
 
-  async delete(mascota: Mascota) {
-    
-    const mascotaDeleted: Mascota = {...mascota, notes : "dado de baja"}
-    const actualizado = await this.mascotaService.update(mascotaDeleted);
-      if (actualizado) {
-        //this.uiService.presentToast('Se actualizaron los datos');
-        this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
-      } else {
-        //this.uiService.presentToast('No se pudo actualizar');
-      }
-  }
-
-  async presentAlertConfirm(mascota: Mascota) {
+  async presentAlertConfirm(id: string) {
     const alert = await this.alertController.create({
       cssClass: 'alert-head sc-ion-alert-ios',
       header: '¿Esta seguro que desea eliminar?',
@@ -62,13 +52,12 @@ export class PetPage implements OnInit {
           cssClass: 'rojo',
           id: 'confirm-button',
           handler: () => {
-            const mascotaDeleted: Mascota = {...mascota, notes : "dado de baja"}
-            const actualizado = this.mascotaService.update(mascotaDeleted);
+            const actualizado = this.mascotaService.delete(id);
               if (actualizado) {
-                //this.uiService.presentToast('Se actualizaron los datos');
+                this.uiService.presentToast('Se elimino la mascota');
                 this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
               } else {
-                //this.uiService.presentToast('No se pudo actualizar');
+                this.uiService.presentToast('No se pudo eliminar');
               }
             console.log('Confirm Okay');
           }

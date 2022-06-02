@@ -69,7 +69,7 @@
             </ion-item>
 			<ion-item>
               <ion-select slot="start" placeholder="Aproximacion" name="month" [(ngModel)]="mascota.dateOfBirthDescription">
-                <ion-select-option [value]="item" *ngFor="let item of ['aproximado','exacto']">{{item}}
+                <ion-select-option [value]="item" *ngFor="let item of ['Aproximado','Exacto']">{{item}}
                 </ion-select-option>
               </ion-select>
             </ion-item>
@@ -85,16 +85,14 @@
       <ion-row>
         <ion-col>
           <ion-button [disabled]="fRegistro.invalid" type="submit" style="margin-top: 20px;" 
-          class="ion-no-border" fill="outline" expand="block" shape="round"
-          (ionRefresh)="doRefresh(refresher)">
+          class="ion-no-border" fill="outline" expand="block" shape="round">
             {{ mascota._id? 'ACTUALIZAR': 'AGREGAR MASCOTA' }}
           </ion-button>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" 
-          expand="block" shape="round" (ionRefresh)="doRefresh(refresher)"
+          <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round" 
           (click)="onCancel()">
             CANCELAR
           </ion-button>
