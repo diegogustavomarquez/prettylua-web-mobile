@@ -87,7 +87,7 @@ export class MascotaService {
         .subscribe(async resp => {
           if (resp['ok']) {
             console.log(resp);
-            //this.nuevaMascota.emit(resp['petResult '] as Mascota);
+            this.nuevaMascota.emit(resp['petResult'] as Mascota);
             this.getbyUserId();
             resolve(true);
           } else {
@@ -112,6 +112,7 @@ export class MascotaService {
       this.http.put(`${URL}/pet/updatePet`, mascota, {headers})
         .subscribe(resp => {
           if (resp['ok']) {
+            this.nuevaMascota.emit(resp['petResult'] as Mascota);
             resolve(true);
           } else {
             resolve(false);
@@ -120,7 +121,7 @@ export class MascotaService {
     });
   }
 
-    /**
+  /**
   * Devuevle una lista de tipo de mascotas.
   * 
   * @returns 
