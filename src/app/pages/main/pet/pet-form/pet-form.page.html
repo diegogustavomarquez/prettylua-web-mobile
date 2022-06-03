@@ -70,19 +70,19 @@
               <ion-label>Raza : </ion-label>
               <ion-input name="breed" type="text" [(ngModel)]="mascota.breed" required></ion-input>
             </ion-item>
-
-
             <ion-item>
               <ion-label>Fecha nacimiento : </ion-label>
-              <ion-input></ion-input>
-
+              <ion-input [value]="dateValue2"></ion-input>
               <ion-button fill="clear" id="open-date-input-2">
                 <ion-icon icon="calendar"></ion-icon>
               </ion-button>
               <ion-popover trigger="open-date-input-2" show-backdrop="false">
                 <ng-template>
-                  <ion-datetime #popoverDatetime2 presentation="date">
-                  </ion-datetime>
+                  <ion-datetime
+                    #popoverDatetime2
+                    presentation="date"
+                    (ionChange)="dateValue2 = formatDate(popoverDatetime2.value)"
+                  ></ion-datetime>
                 </ng-template>
               </ion-popover>
             </ion-item>
