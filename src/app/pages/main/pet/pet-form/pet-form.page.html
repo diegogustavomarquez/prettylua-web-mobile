@@ -72,7 +72,7 @@
             </ion-item>
             <ion-item>
               <ion-label>Fecha nacimiento : </ion-label>
-              <ion-input [value]="dateValue2"></ion-input>
+              <ion-input [value]="mascota.dateOfBirth"></ion-input>
               <ion-button fill="clear" id="open-date-input-2">
                 <ion-icon icon="calendar"></ion-icon>
               </ion-button>
@@ -81,7 +81,7 @@
                   <ion-datetime
                     #popoverDatetime2
                     presentation="date"
-                    (ionChange)="dateValue2 = formatDate(popoverDatetime2.value)"
+                    (ionChange)="mascota.dateOfBirth = formatDate(popoverDatetime2.value)"
                   ></ion-datetime>
                 </ng-template>
               </ion-popover>
