@@ -149,7 +149,7 @@ export class UsuarioService {
       'x-token': this.token
     });
     return new Promise(resolve => {
-      this.http.post(`${URL}/user/update`, usuario, { headers })
+      this.http.put(`${URL}/user/update`, usuario, { headers })
         .subscribe(resp => {
 
           if (resp['ok']) {
