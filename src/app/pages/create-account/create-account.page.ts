@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { IonSlides, NavController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { Usuario } from 'src/app/interfaces/interfaces';
 import { UiServiceService } from 'src/app/services/ui-service.service';
 import { UsuarioService } from '../../services/usuario.service';
@@ -12,8 +12,8 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class CreateAccountPage implements OnInit {
 
+  imagen: any = '/assets/avatars/icon.png';
 
-  imagen: any = '/assets/avatars/av-1.png';
   isPhotoPresent: boolean = false;
 
   registerUser: Usuario = {
@@ -37,7 +37,7 @@ export class CreateAccountPage implements OnInit {
     if (fRegistro.invalid) { return; }
 
     if (!this.isPhotoPresent) { this.registerUser.avatar = null; }
-    console.log(this.registerUser);
+
     const valido = await this.usuarioService.registro(this.registerUser);
 
     if (valido) {
@@ -81,3 +81,4 @@ export class CreateAccountPage implements OnInit {
   }
 
 }
+

@@ -19,7 +19,7 @@
       <ion-row>
         <ion-col>
           <ion-header class="logo">
-            <img src="/assets/avatars/{{ usuario.avatar }}">
+            <img class="foto-generica" src="{{usuario.avatar? usuario.avatar : '/assets/avatars/icon.png'}}">
             <label>
               <b>{{usuario.nombre}} {{usuario.apellido}}</b>
             </label>

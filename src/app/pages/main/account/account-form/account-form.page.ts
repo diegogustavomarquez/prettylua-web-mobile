@@ -12,6 +12,10 @@ import { AlertController, NavController } from '@ionic/angular';
 })
 export class AccountFormPage implements OnInit {
 
+  imagen: any = '/assets/avatars/icon.png';
+  imageTemporal: any;
+  isPhotoPresent: boolean = false;
+
   usuario: Usuario = {};
 
   constructor( private usuarioService: UsuarioService,
@@ -21,12 +25,20 @@ export class AccountFormPage implements OnInit {
 
   ngOnInit() {
     this.usuario = this.usuarioService.getUsuario();
-    console.log(this.usuario);
+    if(this.usuario.avatar){
+      this.isPhotoPresent = true;
+      this.imageTemporal = this.usuario.avatar;
+    } else {
+      this.imageTemporal = this.imagen;
+    }
   }
 
 
   async actualizar( fActualizar: NgForm ) {
     if ( fActualizar.invalid ) { return; }
+    if(this.isPhotoPresent){
+      this.usuario.avatar = this.imageTemporal;
+    }
     const actualizado = await this.usuarioService.actualizarUsuario( this.usuario );
     if ( actualizado ) {
       // toast con el mensaje de actualizado
@@ -50,5 +62,35 @@ export class AccountFormPage implements OnInit {
     });
     await alert.present();
   }
+
+    /**
+   * carga la imagen elegida por el usuario
+   * 
+   * @param event 
+   */
+     async loadImagen(event: any) {
+      let archivos = event.target.files[0];
+      let sizeFile: number = archivos.size;
+      if (sizeFile > 100000) {
+        this.uiService.alertaInformativa('La imagen que intenta guardar tiene mucha resolución.');
+        return;
+      }
+      let reader = new FileReader();
+      reader.readAsDataURL(archivos);
+      reader.onloadend = () => {
+        this.imageTemporal = reader.result as string;
+        this.isPhotoPresent = true;
+      }
+    }
+  
+    /**
+     * Saca la foto seleccionada
+     * 
+     * @param event 
+     */
+    async kickImagen() {
+      this.imageTemporal = this.imagen;
+      this.isPhotoPresent = false;
+    }
 
 }
