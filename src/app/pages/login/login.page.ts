@@ -39,4 +39,7 @@ export class LoginPage implements OnInit {
 
   }
 
+  onCrear() {
+    this.navCtrl.navigateRoot('/create-account', { animated: true });
+  }
 }

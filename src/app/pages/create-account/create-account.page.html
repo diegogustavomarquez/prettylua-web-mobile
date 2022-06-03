@@ -1,60 +1,88 @@
 <ion-content>
- 
+
   <ion-grid fixed>
     <ion-toolbar>
-      <ion-title >Crear cuenta</ion-title>
       <ion-buttons slot="start">
-      <ion-button [routerLink]="['/login']" color="primary"  shape="round">
-        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+        <ion-button [routerLink]="['/login']" color="primary" shape="round">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Crear Cuenta</ion-title>
     </ion-toolbar>
-    <!-- Avatar Selector -->
-    <app-avatar-selector (avatarSel)="registerUser.avatar = $event"></app-avatar-selector>
     <form (ngSubmit)="registro(fRegistro)" #fRegistro="ngForm">
       <ion-row>
         <ion-col>
-          <ion-list>
+          <div style="text-align: center;">
+            <img class="foto-generica" src="{{registerUser.avatar? registerUser.avatar : '/assets/avatars/icon.png'}}">
+            <a style="margin-left:30px;" (click)="kickImagen()">Quitar imagen</a>
+            <div style="text-align: center;">
+              <input type="file" accept=".png, .jpg,.jpeg" (change)="loadImagen($event)" id="inputFile">
+              <img class="subir-foto" src="/assets/icon/subir-foto.png" alt="upload file">
+            </div>
+            <div>
 
+            </div>
+          </div>
+
+          <ion-list>
+            <ion-col>
+              <div id="cont1">
+                <hr style="color :black; border-width:1px;" />
+              </div>
+              <div class="ion-text-center"><b>INFORMACION BASICA</b></div>
+              <div id="cont1">
+                <hr style="color :black; border-width:1px;" />
+              </div>
+            </ion-col>
             <ion-item lines="full">
               <ion-label position="floating">Nombre :</ion-label>
               <ion-input name="nombre" placeholder="nombre" type="text" [(ngModel)]="registerUser.nombre" required>
               </ion-input>
             </ion-item>
-            <ion-item lines="full" >
+            <ion-item lines="full">
               <ion-label position="floating">Apellido : </ion-label>
               <ion-input name="apellido" placeholder="apellido" type="text" [(ngModel)]="registerUser.apellido"
                 required></ion-input>
-            </ion-item >
+            </ion-item>
             <ion-item lines="full">
               <ion-label position="floating">Telefono : </ion-label>
-              <ion-input name="telefono" placeholder="telefono" type="tel" [(ngModel)]="registerUser.telefono" required>
+              <ion-input name="telefono" placeholder="telefono" type="number" [(ngModel)]="registerUser.telefono" required>
               </ion-input>
-            </ion-item >
+            </ion-item>
+            <ion-col>
+              <div id="cont1">
+                <hr style="color :black; border-width:1px;" />
+              </div>
+              <div class="ion-text-center"><b>DATOS DE LA CUENTA</b></div>
+              <div id="cont1">
+                <hr style="color :black; border-width:1px;" />
+              </div>
+            </ion-col>
             <ion-item lines="full">
               <ion-label position="floating">Email :</ion-label>
               <ion-input name="email" type="email" placeholder="email"
                 pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [(ngModel)]="registerUser.email"
                 required></ion-input>
-            </ion-item >
+            </ion-item>
 
             <ion-item lines="full">
               <ion-label position="floating">Password: </ion-label>
               <ion-input name="password" type="password" placeholder="password" [(ngModel)]="registerUser.password"
                 required></ion-input>
             </ion-item>
-            <ion-input name="perfil" type="hidden" placeholder="perfil" [(ngModel)]="registerUser.perfil"
-              required></ion-input>
+            <ion-input name="perfil" type="hidden" placeholder="perfil" [(ngModel)]="registerUser.perfil" required>
+            </ion-input>
           </ion-list>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col>
-          <ion-button fill="outline" expand="block" [disabled]="fRegistro.invalid" type="submit"  shape="round">
+          <ion-button class= "btn-crear" expand="block" [disabled]="fRegistro.invalid" type="submit" 
+                      shape="round"  fill="outline">
             Crear usuario
           </ion-button>
-                     
+
         </ion-col>
       </ion-row>
 

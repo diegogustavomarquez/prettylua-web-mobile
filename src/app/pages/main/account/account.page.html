@@ -3,9 +3,9 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Mi cuenta</ion-title>
+    <ion-title class="ion-text-center">Mi cuenta</ion-title>
     <ion-buttons slot="end">
-      <ion-button [routerLink]="['/main/main/home']" color="primary"  shape="round">
+      <ion-button [routerLink]="['/main/main/home']" color="primary" shape="round">
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -13,45 +13,71 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
- 
+
   <div id="container">
     <div>
       <ion-row>
         <ion-col>
           <ion-header class="logo">
-          <img src="/assets/avatars/{{ usuario.avatar }}">
-        </ion-header>
+            <img src="/assets/avatars/{{ usuario.avatar }}">
+            <label>
+              <b>{{usuario.nombre}} {{usuario.apellido}}</b>
+            </label>
+          </ion-header>
         </ion-col>
       </ion-row>
     </div>
+    <ion-col>
+      <div id="cont1">
+        <hr style="color :black; border-width:1px;" />
+      </div>
+      <div class="ion-text-center"><b>DATOS PERSONALES</b></div>
+      <div id="cont1">
+        <hr style="color :black; border-width:1px;" />
+      </div>
+    </ion-col>
+
     <ion-item>
       <ion-label>Nombre: {{usuario.nombre}}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>Apellido:</ion-label>
-      <ion-label>{{usuario.apellido}}</ion-label>
+      <ion-label> Apellido : {{usuario.apellido}}</ion-label>
     </ion-item>
     <ion-item>
       <ion-label>Telefono: {{usuario.telefono}}</ion-label>
     </ion-item>
+    <ion-col>
+      <div id="cont1">
+        <hr style="color :black; border-width:1px;" />
+      </div>
+      <div class="ion-text-center"><b>DATOS DE LA CUENTA</b></div>
+      <div id="cont1">
+        <hr style="color :black; border-width:1px;" />
+      </div>
+    </ion-col>
+
     <ion-item>
       <ion-label>Email: {{usuario.email}}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>Perfil:</ion-label>
-      <ion-label>{{usuario.perfil}}</ion-label>
+      <ion-label> Perfil: {{usuario.perfil}}</ion-label>
     </ion-item>
 
     <div>
-      <ion-button style="margin-bottom: 30px; margin-top: 20px;" [routerLink]="['account-form']" class="ion-no-border" fill="outline" expand="block" shape="round">Actualizar datos</ion-button>
-      
+      <ion-button style="margin-bottom: 30px; margin-top: 20px;" [routerLink]="['account-form']" class="ion-no-border"
+        fill="outline" expand="block" shape="round">Actualizar datos</ion-button>
     </div>
   </div>
-  <div id="cont1"><hr style="color :black; border-width:1px;"/></div>
+  <div id="cont1">
+    <hr style="color :black; border-width:1px;" />
+  </div>
 
   <div style="text-align: center;">
-    <div><h6>¿Queres promocionar tu negocio?</h6></div>
+    <div>
+      <h6>¿Queres promocionar tu negocio?</h6>
+    </div>
     <div>¡Forma parte de la mayor red de servicios y productos para mascotas!</div>
-    <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round">Registrate</ion-button>
-</div>
+    <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round">Registrate
+    </ion-button>
+  </div>
 </ion-content>

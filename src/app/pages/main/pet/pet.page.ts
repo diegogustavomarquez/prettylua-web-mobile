@@ -6,6 +6,8 @@ import { IonList, NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { UiServiceService } from '../../../services/ui-service.service';
 
+
+
 @Component({
   selector: 'app-pet',
   templateUrl: './pet.page.html',
@@ -22,16 +24,12 @@ export class PetPage implements OnInit {
 
   async ngOnInit() {
     await this.mascotaService.getbyUserId().then(p => this.mascotas = p);
-
     //evento que se queda escuchando cuando se agrega una nueva mascota
     this.mascotaService.nuevaMascota
       .subscribe(mascota => {
-
         this.mascotas.unshift(mascota);
-
       });
-    
-  }
+    }
 
   async presentAlertConfirm(id: string) {
     const alert = await this.alertController.create({
@@ -53,24 +51,28 @@ export class PetPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             const actualizado = this.mascotaService.delete(id);
-              if (actualizado) {
-                this.uiService.presentToast('Se elimino la mascota');
-                this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
-              } else {
-                this.uiService.presentToast('No se pudo eliminar');
-              }
+            if (actualizado) {
+              this.uiService.presentToast('Se elimino la mascota');
+              this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
+            } else {
+              this.uiService.presentToast('No se pudo eliminar');
+            }
             console.log('Confirm Okay');
           }
         }
       ]
     });
 
-    await alert.present();
   }
 
 
+  goPetForm() {
+    //[routerLink]="['pet-form']" 
+    this.navCtrl.navigateRoot('/main/main/pet/pet-form', { animated: true });
+  }
 
-goHomeCancel() {
-  this.navCtrl.navigateRoot('/main/main/home', { animated: true });
-}
-}
+  goHomeCancel() {
+    this.navCtrl.navigateRoot('/main/main/home', { animated: true });
+  }
+  }
+
