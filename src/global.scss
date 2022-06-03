@@ -34,5 +34,10 @@ ion-button{
 
 .toolbar-background {
  
-  --background: #eea949 !important;
+  --background: blue; //#eea949 !important;
+}
+ion-toolbar {
+ 
+  --background: #f79c34 !important;
+  color : #fff;
 }

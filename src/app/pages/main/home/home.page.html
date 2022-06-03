@@ -3,34 +3,32 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title><img class="img-title" src="/assets/avatars/logo.png"></ion-title>
+  <ion-title class="ion-text-center">BIENVENIDOS</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  
   <ion-slides id="slide-alto" [options]="slideOpts">
-
-    <ion-slide *ngFor="let slide of slides">
-
+   <ion-slide *ngFor="let slide of slides">
       <img [src]="slide.img" class="slide-image">
-
     </ion-slide>
     <!-- <ion-slide><ion-tab-button (click)="onClick()" expand="block"></ion-tab-button>Volver</ion-slide> -->
   </ion-slides>
 
   
-  <ion-grid>
+  <ion-grid  fixed>
     <ion-row>
-      <ion-col  class="col-card" size="6">
-          <ion-card class="c">
-            <img class="img-emergencia" src="/assets/icon/emergencia.png">
+      <ion-col  size="6" >
+          <ion-card>
+            <img title="Veterinario" class="img-chequeo" src="/assets/icon/chequeo.png" >
+           <p>Veterinario</p>
           </ion-card>
       </ion-col>
+   
       <ion-col size="6">
-       
          <ion-card>
-            <img class="img-servicio" src="/assets/icon/servicio.png">
+            <img   class="img-petShop" src="/assets/icon/pet-shop.png">
+            <p>Pet Shop</p>
           </ion-card>
       </ion-col>  
     </ion-row>
@@ -38,16 +36,19 @@
     <ion-row>
       <ion-col size="6">
         <ion-card>
-          <img class="img-limpieza" src="/assets/icon/limpieza.png">
+          <img  class="img-jeringa" src="/assets/icon/jeringuilla.png">
+          <p>Vacunacion</p>
         </ion-card>
       </ion-col>
 
       <ion-col size="6">
         <ion-card>
-          <img class="img-shop" src="/assets/icon/pet-shop.png">
+          <img  class="img-peine" src="/assets/icon/peine.png">
+          <p>Peluqueria</p>
         </ion-card>
       </ion-col>
     </ion-row>
+
 
   </ion-grid>
 

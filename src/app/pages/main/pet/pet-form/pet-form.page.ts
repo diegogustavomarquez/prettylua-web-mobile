@@ -30,14 +30,11 @@ export class PetFormPage implements OnInit {
     gender : '',
     breed : '',
     kind : '',
-    color : 'Marron', //este campo debe agregarse a los input pero no deberia ser obligatorio
-    year: null,
-    month : null,
+    dateOfBirth: '',
+    dateOfBirthDescription: '',
+    notes: '',
     pics: [],
     vets:[],
-    isAlive:true, 
-    castrated:false,
-    status:true,
     userId : ''
 
   };
@@ -98,4 +95,17 @@ export class PetFormPage implements OnInit {
     }
   }
 
+  onCancel() {
+    this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
+  }
+  
+  doRefresh(event) {
+    console.log('Begin async operation');
+    this.mascotaService.getbyId(this.id);
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+    this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
+  }
 }

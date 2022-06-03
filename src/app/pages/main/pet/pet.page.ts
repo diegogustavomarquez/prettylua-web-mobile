@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Mascota } from 'src/app/interfaces/interfaces';
 import { MascotaService } from 'src/app/services/mascota.service';
 import { IonList, NavController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pet',
@@ -14,7 +15,8 @@ export class PetPage implements OnInit {
   public mascotas: Mascota[] = [];
 
   constructor(private mascotaService: MascotaService,
-    private navCtrl: NavController) { }
+    private navCtrl: NavController,
+    public alertController: AlertController) { }
 
   async ngOnInit() {
     await this.mascotaService.getbyUserId().then(p => this.mascotas = p);
@@ -26,10 +28,68 @@ export class PetPage implements OnInit {
         this.mascotas.unshift(mascota);
 
       });
+
+  }
+/**
+ * 
+ * @param mascota 
+ */
+  async delete(mascota: Mascota) {
+
+    const mascotaDeleted: Mascota = { ...mascota, notes: "dado de baja" }
+    const actualizado = await this.mascotaService.update(mascotaDeleted);
+    if (actualizado) {
+      this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
+    } else {
+    }
+  }
+/**
+ * 
+ * @param mascota 
+ */
+  async presentAlertConfirm(mascota: Mascota) {
+    const alert = await this.alertController.create({
+      cssClass: 'alert-head sc-ion-alert-ios',
+      header: '¿Esta seguro que desea eliminar?',
+      message: "",
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'rojo',
+          id: 'cancel-button',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Si',
+          cssClass: 'rojo',
+          id: 'confirm-button',
+          handler: () => {
+            const mascotaDeleted: Mascota = { ...mascota, notes: "dado de baja" }
+            const actualizado = this.mascotaService.update(mascotaDeleted);
+            if (actualizado) {
+              //this.uiService.presentToast('Se actualizaron los datos');
+              this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
+            } else {
+              //this.uiService.presentToast('No se pudo actualizar');
+            }
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
-  delete(mascota: Mascota) {
-    console.log('delete', mascota._id);
+
+  goPetForm() {
+    //[routerLink]="['pet-form']" 
+    this.navCtrl.navigateRoot('/main/main/pet/pet-form', { animated: true });
   }
 
+  goHomeCancel() {
+    this.navCtrl.navigateRoot('/main/main/home', { animated: true });
+  }
 }

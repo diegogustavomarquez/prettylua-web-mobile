@@ -15,14 +15,15 @@ export interface Mascota {
   gender? : string;
   breed? : string;
   kind? : string;
-  color? : string;
-  year?: Number;
-  month? : Number;
+  dateOfBirth? : string;
+  dateOfBirthDescription?: string;
   pics?: string[];
   vets?: string[];
-  isAlive?: Boolean;
-  castrated?: Boolean;
-  status?: Boolean;
-  userId ?: String;
+  notes?: string;
+  userId ?: string;
 }
 
+export interface Kind {
+  _id?:string;
+  description?: string;
+}
