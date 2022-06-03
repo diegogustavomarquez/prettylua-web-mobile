@@ -18,8 +18,19 @@
 
 
 <ion-content [fullscreen]="true">
+  
   <div class="ion-text-center">
-   <app-avatar-selector (avatarSel)="usuario.avatar = $event" [avatarActual]="usuario.avatar"></app-avatar-selector>
+    <img class="foto-generica" src="{{imageTemporal}}">
+    <a style="margin-left:30px;" (click)="kickImagen()">Quitar imagen</a>
+    <div style="text-align: center;">
+      <input type="file" accept=".png, .jpg,.jpeg" (change)="loadImagen($event)" id="inputFile">
+      <label for="inputFile" class="labelInputFile">
+        <img class="subir-foto" src="/assets/icon/subir-foto.png" alt="upload file">
+      </label>
+    </div>
+    <div>
+
+    </div>
   </div>
   <form (ngSubmit)="actualizar( fActualizar )" #fActualizar="ngForm">
     <ion-col>

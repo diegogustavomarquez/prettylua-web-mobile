@@ -2,12 +2,12 @@
 
   <ion-grid fixed>
     <ion-toolbar>
+      <ion-title>Crear cuenta</ion-title>
       <ion-buttons slot="start">
         <ion-button [routerLink]="['/login']" color="primary" shape="round">
           <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
         </ion-button>
       </ion-buttons>
-      <ion-title>Crear Cuenta</ion-title>
     </ion-toolbar>
     <form (ngSubmit)="registro(fRegistro)" #fRegistro="ngForm">
       <ion-row>
@@ -17,13 +17,14 @@
             <a style="margin-left:30px;" (click)="kickImagen()">Quitar imagen</a>
             <div style="text-align: center;">
               <input type="file" accept=".png, .jpg,.jpeg" (change)="loadImagen($event)" id="inputFile">
-              <img class="subir-foto" src="/assets/icon/subir-foto.png" alt="upload file">
+              <label for="inputFile" class="labelInputFile">
+                <img class="subir-foto" src="/assets/icon/subir-foto.png" alt="upload file">
+              </label>
             </div>
             <div>
 
             </div>
           </div>
-
           <ion-list>
             <ion-col>
               <div id="cont1">
@@ -46,7 +47,8 @@
             </ion-item>
             <ion-item lines="full">
               <ion-label position="floating">Telefono : </ion-label>
-              <ion-input name="telefono" placeholder="telefono" type="number" [(ngModel)]="registerUser.telefono" required>
+              <ion-input name="telefono" placeholder="telefono" type="number" [(ngModel)]="registerUser.telefono"
+                required>
               </ion-input>
             </ion-item>
             <ion-col>
@@ -78,8 +80,8 @@
 
       <ion-row>
         <ion-col>
-          <ion-button class= "btn-crear" expand="block" [disabled]="fRegistro.invalid" type="submit" 
-                      shape="round"  fill="outline">
+          <ion-button class="btn-crear" expand="block" [disabled]="fRegistro.invalid" type="submit" shape="round"
+            fill="outline">
             Crear usuario
           </ion-button>
 
