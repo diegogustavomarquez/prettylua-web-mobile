@@ -39,16 +39,8 @@
           <ion-button class="btn-login" type="submit" expand="block" fill="outline"  shape="round">
             Ingresar
           </ion-button>
-          <!--
-          <div class="flex-container">
-           
-            <div id="cont1"><hr style="color :black; border-width:1px;"/></div>
-            <div id="cont2">  </div>
-            <div id="cont3"><hr style="color :black; border-width:1px;"/></div>
-          </div>
-          
-          -->
-          <ion-button [routerLink]="['/create-account']" fill="outline" expand="block" shape="round" class="btn">Crear Cuenta</ion-button>            
+       
+          <ion-button  (click)="onCrear()" fill="outline" expand="block" shape="round" class="btn">Crear Cuenta</ion-button>            
         </ion-col>
       </ion-row>
     </ion-grid>

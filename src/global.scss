@@ -32,26 +32,13 @@ ion-button{
       --background-activated:#fff;
 }
 
-.toolbar-background {
- 
-  --background: #eea949 !important;
-}
-
 ion-toolbar {
- 
   --background: #eea949 !important;
   color : #fff;
 }
 
-.rojo{
-  background-position: #eea949;
-  border: 1px solid;
-  margin: 10px 0px;
-  padding:15px 10px 15px 50px;
-  background-repeat: no-repeat;
-  background-position: 10px center;
-  font-family:Arial, Helvetica, sans-serif;
-  font-size:13px;
-  text-align:center;
-  width:auto;
+ion-toolbar {
+  --background: #f79c34 !important;
+  color : #fff;
 }
+

@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>{{ titulo }}</ion-title>
+    <ion-title class="ion-text-center">{{ titulo }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,13 +15,23 @@
 
   </div>
 
+
   <ion-grid fixed>
 
     <form (ngSubmit)="mascota._id? update(fRegistro): save(fRegistro)" #fRegistro="ngForm">
-      <ion-toolbar>
-        <ion-title>DATOS DE MI MASCOTA</ion-title>
-      </ion-toolbar>
-    
+
+
+      <ion-col>
+        <div id="cont1">
+          <hr style="color :black; border-width:1px;" />
+        </div>
+        <div class="ion-text-center"><b>DATOS DE MI MASCOTA</b></div>
+        <div id="cont1">
+          <hr style="color :black; border-width:1px;" />
+        </div>
+      </ion-col>
+
+
       <ion-row>
         <ion-col>
           <ion-list>
@@ -37,7 +47,10 @@
               </ion-select>
             </ion-item>
             <ion-item>
-              <ion-select placeholder="Seleccione el Genero" expand="full" name="gender" [(ngModel)]="mascota.gender" required>
+
+              <ion-select placeholder="Seleccione el Genero" expand="full" name="gender" [(ngModel)]="mascota.gender"
+                required>
+
                 <ion-select-option *ngFor="let gender of genders" [value]="gender">{{ gender }}</ion-select-option>
               </ion-select>
             </ion-item>
@@ -46,31 +59,40 @@
               <ion-title>INFORMACION BASICA</ion-title>
             </ion-toolbar>
 
+            <ion-col>
+              <div id="cont1">
+                <hr style="color :black; border-width:1px;" />
+              </div>
+              <div class="ion-text-center"><b>INFORMACION BASICA</b></div>
+              <div id="cont1">
+                <hr style="color :black; border-width:1px;" />
+              </div>
+            </ion-col>
             <ion-item>
               <ion-label>Raza : </ion-label>
               <ion-input name="breed" type="text" [(ngModel)]="mascota.breed" required></ion-input>
             </ion-item>
 
-			<ion-item>
+
+            <ion-item>
               <ion-label>Fecha nacimiento : </ion-label>
-              <ion-input [value]="dateValue2"></ion-input>
+              <ion-input></ion-input>
+
               <ion-button fill="clear" id="open-date-input-2">
                 <ion-icon icon="calendar"></ion-icon>
               </ion-button>
               <ion-popover trigger="open-date-input-2" show-backdrop="false">
                 <ng-template>
-                  <ion-datetime
-                    #popoverDatetime2
-                    presentation="date"
-                    (ionChange)="dateValue2 = formatDate(popoverDatetime2.value)"
-                  ></ion-datetime>
+                  <ion-datetime #popoverDatetime2 presentation="date">
+                  </ion-datetime>
                 </ng-template>
               </ion-popover>
             </ion-item>
-			<ion-item>
-              <ion-select slot="start" placeholder="Aproximacion" name="month" [(ngModel)]="mascota.dateOfBirthDescription">
-                <ion-select-option [value]="item" *ngFor="let item of ['Aproximado','Exacto']">{{item}}
-                </ion-select-option>
+            <ion-item>
+              <ion-select slot="start" placeholder="Aproximacion" name="month"
+                [(ngModel)]="mascota.dateOfBirthDescription">
+                <ion-select-option [value]="item" *ngFor="let item of ['aproximado','exacto']">{{item}}
+       </ion-select-option>
               </ion-select>
             </ion-item>
             <ion-item>
@@ -84,16 +106,19 @@
 
       <ion-row>
         <ion-col>
-          <ion-button [disabled]="fRegistro.invalid" type="submit" style="margin-top: 20px;" 
-          class="ion-no-border" fill="outline" expand="block" shape="round">
+
+          <ion-button [disabled]="fRegistro.invalid" type="submit" style="margin-top: 20px;" class="ion-no-border"
+            fill="outline" expand="block" shape="round">
             {{ mascota._id? 'ACTUALIZAR': 'AGREGAR MASCOTA' }}
           </ion-button>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round" 
-          (click)="onCancel()">
+
+          <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round"
+            (click)="onCancel()">
+
             CANCELAR
           </ion-button>
         </ion-col>

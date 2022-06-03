@@ -109,11 +109,11 @@ export class MascotaService {
     });
     console.log(mascota);
     return new Promise(resolve => {
-      this.http.put(`${URL}/pet/updatePet`, mascota, {headers})
+      this.http.put(`${URL}/pet/updatePet`, mascota, { headers })
         .subscribe(resp => {
           if (resp['ok']) {
             this.nuevaMascota.emit(resp['petResult'] as Mascota);
-            this.getbyUserId();
+            // this.getbyUserId();
             resolve(true);
           } else {
             resolve(false);
@@ -122,18 +122,19 @@ export class MascotaService {
     });
   }
 
-  
+
+
   /**
    * 
    * @param mascota 
    * @returns 
    */
-   delete(id: String) {
+  delete(id: String) {
     const headers = new HttpHeaders({
       'x-token': this.usuarioService.token
     });
     return new Promise(resolve => {
-      this.http.delete(`${URL}/pet/delete?petId=${id}`, {headers})
+      this.http.delete(`${URL}/pet/delete?petId=${id}`, { headers })
         .subscribe(resp => {
           if (resp['ok']) {
             this.nuevaMascota.emit(this.getbyUserId() as Mascota);
@@ -152,24 +153,26 @@ export class MascotaService {
   * 
   * @returns 
   */
-     getKinds(): Promise<string> {
-      const headers = new HttpHeaders({
-        'x-token': this.usuarioService.token
-      });
-      let kinds: Kind[] = [];
-      return new Promise(resolve => {
-        this.http.get(`${URL}/pet/kindOf`, { headers })
-          .subscribe(async resp => {
-            if (resp['ok']) {
-             return kinds = resp['data.description'] as Kind[];
-              //resolve(kinds);
-            } else {
-              this.uiService.alertaInformativa('No se encontraron datos.');
-              return '';
-              //resolve(kinds);
-            }
-          });
-      });
-    }
+  getKinds(): Promise<Kind[]> {
+    const headers = new HttpHeaders({
+      'x-token': this.usuarioService.token
+    });
+    let kinds: Kind[] = [];
+    return new Promise(resolve => {
+      this.http.get(`${URL}/pet/kindOf`, { headers })
+        .subscribe(async resp => {
+          if (resp['ok']) {
+            return kinds = resp['data.description'] as Kind[];
+            //resolve(kinds);
+          } else {
+            this.uiService.alertaInformativa('No se encontraron datos.');
+            return '';
+            //resolve(kinds);
+
+          }
+        });
+    });
+  }
 
 }
+

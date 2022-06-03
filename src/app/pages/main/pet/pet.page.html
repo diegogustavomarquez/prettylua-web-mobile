@@ -4,81 +4,86 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button [routerLink]="['/main/main/home']" color="primary"  shape="round">
+      <ion-button (click)="goHomeCancel()" color="primary" shape="round">
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Mascotas</ion-title>
-
+    <ion-title>Mi Mascotas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" mode="ios" class="ion-no-border">
-  
-  <!-- <ion-card> -->
 
-    <!-- </ion-card> -->
-    <ion-card (ionRefresh)="doRefresh($event)">
-      <ion-item>
-        <ion-grid>
-          <ion-row class="divide">
-            <ion-col size="3">
-            </ion-col>
-            <ion-col size="3">
-            </ion-col>
-            <ion-col size="3">
-            </ion-col>
-            <ion-col size="3">
-            </ion-col>
-          </ion-row>
-          <ion-row *ngFor="let mascota of mascotas">
-            <ion-col size="3">
-              <img src="/assets/photo.png">
-              
-            </ion-col>
-            <ion-col size="4">
-              <ion-row class="divide">
-                <h2><b>{{mascota.name}}</b></h2>
-              </ion-row>
-              <ion-row class="divide">
-                <label>{{mascota.kind}}</label>
-              </ion-row>
-              <ion-row class="divide">
-                <label>{{mascota.breed}}</label>
-              </ion-row>
-              <ion-row class="divide">
-                <label>{{mascota.dateOfBirth}}</label>
-              </ion-row>
-              <ion-row class="divide">
-                <label>{{mascota.notes}}</label>
-              </ion-row>
-            </ion-col>
-            <ion-col size="3" class="ion-align-self-center">
-              
-              
-              <ion-button color="warning" [routerLink]="['pet-form', mascota._id]">
-                <ion-icon name="create-outline"></ion-icon>
-              </ion-button>
-              <ion-button  color="danger" (click)="presentAlertConfirm(mascota._id)">
-                <ion-icon name="trash-outline"></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-    </ion-card>
-    <ion-row>
-      <ion-col>
-        <ion-button  [routerLink]="['pet-form']" style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round"> 
-          AGREGAR     
-        </ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round" (click)="goHomeCancel()"> 
-          CANCELAR    
-        </ion-button>
-      </ion-col>
-    </ion-row>
+
+  <ion-card>
+
+    <ion-item>
+      <ion-grid>
+        <ion-row class="divide">
+          <ion-col size="3">
+          </ion-col>
+          <ion-col size="3">
+          </ion-col>
+          <ion-col size="3">
+          </ion-col>
+          <ion-col size="3">
+          </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let mascota of mascotas">
+          <ion-col size="3">
+
+            <img src="/assets/avatars/uploadPhoto.png">
+
+          </ion-col>
+          <ion-col size="4">
+            <ion-row class="divide">
+              <h2><b>{{mascota.name}}</b></h2>
+            </ion-row>
+            <ion-row class="divide">
+              <label>{{mascota.kind}}</label>
+            </ion-row>
+            <ion-row class="divide">
+              <label>{{mascota.breed}}</label>
+            </ion-row>
+            <ion-row class="divide">
+              <label>{{mascota.dateOfBirth}}</label>
+            </ion-row>
+            <ion-row class="divide">
+              <label>{{mascota.notes}}</label>
+            </ion-row>
+          </ion-col>
+          <ion-col size="3" class="ion-align-self-center">
+
+
+            <ion-button color="warning" [routerLink]="['pet-form', mascota._id]">
+              <ion-icon name="create-outline"></ion-icon>
+            </ion-button>
+
+            <ion-button color="danger" (click)="presentAlertConfirm(mascota._id)">
+
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-card>
+  <ion-row>
+    <ion-col>
+
+      <ion-button (click)="goPetForm()" style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block"
+        shape="round">
+
+        AGREGAR
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round"
+        (click)="goHomeCancel()">
+        CANCELAR
+      </ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>
