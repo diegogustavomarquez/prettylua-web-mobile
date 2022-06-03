@@ -36,8 +36,8 @@ export class CreateAccountPage implements OnInit {
 
     if (fRegistro.invalid) { return; }
 
-    if (!this.isPhotoPresent) { this.registerUser.avatar = null; }
-
+    if (!this.isPhotoPresent) { this.registerUser.avatar = ''; }
+    console.log(this.registerUser);
     const valido = await this.usuarioService.registro(this.registerUser);
 
     if (valido) {
