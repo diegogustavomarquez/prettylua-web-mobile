@@ -102,7 +102,6 @@ export class PetFormPage implements OnInit {
     this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
   }
 
-
   formatDate(value: string) {
     let date = new Date(value);
     return date.toLocaleDateString();

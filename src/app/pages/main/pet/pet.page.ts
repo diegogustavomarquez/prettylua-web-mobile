@@ -7,6 +7,7 @@ import { AlertController } from '@ionic/angular';
 import { UiServiceService } from '../../../services/ui-service.service';
 
 
+
 @Component({
   selector: 'app-pet',
   templateUrl: './pet.page.html',
@@ -21,22 +22,14 @@ export class PetPage implements OnInit {
     public alertController: AlertController,
     private uiService: UiServiceService) { }
 
-
   async ngOnInit() {
     await this.mascotaService.getbyUserId().then(p => this.mascotas = p);
-
     //evento que se queda escuchando cuando se agrega una nueva mascota
     this.mascotaService.nuevaMascota
       .subscribe(mascota => {
-
         this.mascotas.unshift(mascota);
-
       });
-
-
-  }
-
-
+    }
 
   async presentAlertConfirm(id: string) {
     const alert = await this.alertController.create({
@@ -70,9 +63,8 @@ export class PetPage implements OnInit {
       ]
     });
 
-
-    await alert.present();
   }
+
 
   goPetForm() {
     //[routerLink]="['pet-form']" 
@@ -82,5 +74,5 @@ export class PetPage implements OnInit {
   goHomeCancel() {
     this.navCtrl.navigateRoot('/main/main/home', { animated: true });
   }
-}
+  }
 

@@ -148,11 +148,13 @@ export class MascotaService {
   }
 
 
+
   /**
   * Devuevle una lista de tipo de mascotas.
   * 
   * @returns 
   */
+
   getKinds(): Promise<Kind[]> {
     const headers = new HttpHeaders({
       'x-token': this.usuarioService.token
@@ -176,3 +178,4 @@ export class MascotaService {
 
 }
 
+    
