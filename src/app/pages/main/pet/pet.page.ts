@@ -32,6 +32,7 @@ export class PetPage implements OnInit {
     }
 
   async presentAlertConfirm(id: string) {
+    console.log('llega delete');
     const alert = await this.alertController.create({
       cssClass: 'alert-head sc-ion-alert-ios',
       header: '¿Esta seguro que desea eliminar?',

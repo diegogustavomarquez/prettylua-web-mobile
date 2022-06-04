@@ -112,8 +112,7 @@ export class MascotaService {
       this.http.put(`${URL}/pet/updatePet`, mascota, { headers })
         .subscribe(resp => {
           if (resp['ok']) {
-            this.nuevaMascota.emit(resp['petResult'] as Mascota);
-            // this.getbyUserId();
+            this.nuevaMascota.emit(resp['data'] as Mascota);
             resolve(true);
           } else {
             resolve(false);
@@ -132,13 +131,12 @@ export class MascotaService {
   delete(id: String) {
     const headers = new HttpHeaders({
       'x-token': this.usuarioService.token
-    });
+    }); console.log("entra por delete service")
     return new Promise(resolve => {
-      this.http.delete(`${URL}/pet/delete?petId=${id}`, { headers })
+      this.http.delete(`${URL}/pet/delete?petId=${id}`, {headers})
         .subscribe(resp => {
           if (resp['ok']) {
-            this.nuevaMascota.emit(this.getbyUserId() as Mascota);
-            //this.getbyUserId();
+           // this.nuevaMascota.emit(resp['message'] as Mascota);
             resolve(true);
           } else {
             resolve(false);
