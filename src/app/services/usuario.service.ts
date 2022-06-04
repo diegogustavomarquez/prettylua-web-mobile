@@ -41,7 +41,7 @@ export class UsuarioService {
             this.storage.clear();
             resolve(false);
           }
-        });
+        }, error => resolve(false));
     });
   }
 
