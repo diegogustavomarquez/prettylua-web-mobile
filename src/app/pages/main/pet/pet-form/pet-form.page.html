@@ -71,7 +71,14 @@
               <ion-input name="breed" type="text" [(ngModel)]="mascota.breed" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label>Fecha nacimiento : </ion-label>
+              <ion-select slot="start" placeholder="Fecha de Nacimiento" name="month"
+                [(ngModel)]="mascota.dateOfBirthDescription">
+                <ion-select-option [value]="item" *ngFor="let item of ['Exacta','Aproximada']">{{item}}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>Fecha : </ion-label>
               <ion-input [value]="mascota.dateOfBirth"></ion-input>
               <ion-button fill="clear" id="open-date-input-2">
                 <ion-icon icon="calendar"></ion-icon>
@@ -85,13 +92,6 @@
                   ></ion-datetime>
                 </ng-template>
               </ion-popover>
-            </ion-item>
-            <ion-item>
-              <ion-select slot="start" placeholder="Aproximacion" name="month"
-                [(ngModel)]="mascota.dateOfBirthDescription">
-                <ion-select-option [value]="item" *ngFor="let item of ['aproximado','exacto']">{{item}}
-                </ion-select-option>
-              </ion-select>
             </ion-item>
             <ion-item>
               <ion-label>Notas :</ion-label>
