@@ -29,6 +29,12 @@ export class PetPage implements OnInit {
       .subscribe(mascota => {
         this.mascotas.unshift(mascota);
       });
+
+/*    TODO realizar la busquea y el reemplazo del elemento en el array.   
+      this.mascotaService.actualizarMascota
+      .subscribe(mascota => {
+        this.mascotas.unshift(mascota);
+      }); */
     }
 
   async presentAlertConfirm(id: string) {

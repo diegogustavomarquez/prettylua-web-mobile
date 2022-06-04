@@ -16,6 +16,7 @@ const URL = environment.url;
 export class MascotaService {
 
   nuevaMascota = new EventEmitter<Mascota>();
+  actualizarMascota = new EventEmitter<Mascota>();
 
 
   constructor(private http: HttpClient,
@@ -112,7 +113,7 @@ export class MascotaService {
       this.http.put(`${URL}/pet/updatePet`, mascota, { headers })
         .subscribe(resp => {
           if (resp['ok']) {
-            this.nuevaMascota.emit(resp['data'] as Mascota);
+            this.actualizarMascota.emit(resp['data'] as Mascota);
             resolve(true);
           } else {
             resolve(false);
