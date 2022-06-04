@@ -10,12 +10,14 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class AccountPage implements OnInit {
 
   usuario: Usuario;
-  
+
   constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit() {
     this.usuario = this.usuarioService.usuario;
-    console.log(this.usuario);
+    this.usuarioService.getUpdateUserObservable().subscribe((data) => {
+      this.usuario = data;
+    });
   }
 
 }

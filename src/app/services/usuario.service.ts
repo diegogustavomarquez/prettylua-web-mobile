@@ -5,6 +5,7 @@ import { Usuario } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { UsuarioGuard } from '../guards/usuario.guard';
+import {Subject} from 'rxjs';
 
 const URL = environment.url;
 
@@ -15,6 +16,7 @@ export class UsuarioService {
 
   token: string = null;
   usuario: Usuario = {};
+  private updateUserObserver = new Subject<any>();
 
   constructor(private http: HttpClient,
               private storage: Storage,
@@ -151,15 +153,19 @@ export class UsuarioService {
     return new Promise(resolve => {
       this.http.put(`${URL}/user/update`, usuario, { headers })
         .subscribe(resp => {
-
           if (resp['ok']) {
             this.guardarToken(resp['token']);
+            this.updateUserObserver.next(usuario);
             resolve(true);
           } else {
             resolve(false);
           }
         });
     });
+  }
+
+  getUpdateUserObservable(): Subject<any> {
+    return this.updateUserObserver;
   }
 
 }
