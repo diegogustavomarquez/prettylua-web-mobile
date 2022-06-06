@@ -38,12 +38,13 @@ export class AccountFormPage implements OnInit {
     if ( fActualizar.invalid ) { return; }
     if(this.isPhotoPresent){
       this.usuario.avatar = this.imageTemporal;
+    } else {
+      this.usuario.avatar = '';
     }
     const actualizado = await this.usuarioService.actualizarUsuario( this.usuario );
     if ( actualizado ) {
       // toast con el mensaje de actualizado
-      //this.uiService.presentToast( 'Registro actualizado' );
-      this.presentAlert();
+      this.uiService.presentToast( 'Registro actualizado' );
       //que vuelva al inicio
       this.navCtrl.navigateRoot( '/main/main/account', { animated: true } );
     } else {
@@ -52,18 +53,7 @@ export class AccountFormPage implements OnInit {
     }
   }
 
-  async presentAlert() {
-    const alert = await this.alertCtrl.create({
-     // cssClass: 'my-custom-class',//para classe personalizada
-     backdropDismiss:false,
-      header: 'Alert',
-      message: 'Registro Actualizado',
-      buttons: ['OK']
-    });
-    await alert.present();
-  }
-
-    /**
+  /**
    * carga la imagen elegida por el usuario
    * 
    * @param event 

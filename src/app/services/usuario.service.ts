@@ -68,7 +68,6 @@ export class UsuarioService {
     return new Promise(resolve => {
       this.http.post(`${URL}/user/create`, usuario)
         .subscribe(async resp => {
-          console.log(resp);
           if (resp['ok']) {
             await this.guardarToken(resp['token']);
             resolve(true);
