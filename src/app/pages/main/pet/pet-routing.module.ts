@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: 'pet-form/:id',
     loadChildren: () => import('./pet-form/pet-form.module').then( m => m.PetFormPageModule)
+  },
+  {
+    path: 'pet-view/:id',
+    loadChildren: () => import('./pet-view/pet-view.module').then( m => m.PetViewPageModule)
   }
 ];
 

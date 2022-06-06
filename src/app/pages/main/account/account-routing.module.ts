@@ -11,10 +11,6 @@ const routes: Routes = [
   {
     path: 'account-form',
     loadChildren: () => import('./account-form/account-form.module').then( m => m.AccountFormPageModule)
-  },
-  {
-    path: 'change-bussines',
-    loadChildren: () => import('./change-bussines/change-bussines.module').then( m => m.ChangeBussinesPageModule)
   }
 ];
 
