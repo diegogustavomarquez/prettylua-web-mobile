@@ -18,7 +18,6 @@ export class MascotaService {
   nuevaMascota = new EventEmitter<Mascota>();
   actualizarMascota = new EventEmitter<Mascota>();
 
-
   constructor(private http: HttpClient,
     private navCtrl: NavController,
     private usuarioService: UsuarioService,
@@ -126,13 +125,13 @@ export class MascotaService {
 
   /**
    * 
-   * @param mascota 
+   * @param id mascota 
    * @returns 
    */
   delete(id: String) {
     const headers = new HttpHeaders({
       'x-token': this.usuarioService.token
-    }); console.log("entra por delete service")
+    }); 
     return new Promise(resolve => {
       this.http.delete(`${URL}/pet/delete?petId=${id}`, {headers})
         .subscribe(resp => {
