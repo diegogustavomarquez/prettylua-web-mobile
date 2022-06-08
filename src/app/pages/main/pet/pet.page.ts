@@ -16,6 +16,7 @@ import { UiServiceService } from '../../../services/ui-service.service';
 export class PetPage implements OnInit {
 
   public mascotas: Mascota[] = [];
+  public actualizadas: Mascota[] = [];
 
   constructor(private mascotaService: MascotaService,
     private navCtrl: NavController,
@@ -30,15 +31,14 @@ export class PetPage implements OnInit {
         this.mascotas.unshift(mascota);
       });
 
-/*    TODO realizar la busquea y el reemplazo del elemento en el array.   
-      this.mascotaService.actualizarMascota
+         // TODO realizar la busquea y el reemplazo del elemento en el array.   
+    /*  this.mascotaService.actualizarMascota
       .subscribe(mascota => {
-        this.mascotas.unshift(mascota);
+        this.actualizadas.unshift(mascota);
       }); */
     }
 
   async presentAlertConfirm(id: string) {
-    console.log('llega delete');
     const alert = await this.alertController.create({
       cssClass: 'alert-head sc-ion-alert-ios',
       header: '¿Esta seguro que desea eliminar?',
@@ -64,12 +64,11 @@ export class PetPage implements OnInit {
             } else {
               this.uiService.presentToast('No se pudo eliminar');
             }
-            console.log('Confirm Okay');
           }
         }
       ]
     });
-
+    await alert.present();
   }
 
 
