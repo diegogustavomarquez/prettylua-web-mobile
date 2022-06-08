@@ -1,0 +1,48 @@
+<ion-header [translucent]="true" no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Subscripción</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/main/main/home']" color="primary" shape="round">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form (ngSubmit)="crearCuenta( fCuenta )" #fCuenta="ngForm">
+    <ion-col>
+      <div id="cont1">
+        <hr style="color :black; border-width:1px;" />
+      </div>
+      <div class="ion-text-center"><b>DATOS DEL COMERCIO</b></div>
+      <div id="cont1">
+        <hr style="color :black; border-width:1px;" />
+      </div>
+    </ion-col>
+
+    <ion-row>
+      <ion-col>
+
+        <ion-list>
+          <ion-item>
+            <ion-label>Nombre o Razón Social: </ion-label>
+            <ion-input name="nombre" type="text" [(ngModel)]="subscription.nombre" required></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col text-center>
+        <ion-button type="submit" fill="outline" shape="round" expand="block">
+          Subscribir
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+</ion-content>

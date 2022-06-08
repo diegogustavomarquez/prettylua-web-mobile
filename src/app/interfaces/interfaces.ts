@@ -27,3 +27,10 @@ export interface Kind {
   _id?:string;
   description?: string;
 }
+
+
+export interface UserSubscription {
+  _id?:string;
+  nombre?: string;
+  userId ?: string;
+}
