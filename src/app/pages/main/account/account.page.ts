@@ -20,4 +20,8 @@ export class AccountPage implements OnInit {
     });
   }
 
+  anularSubscripcion(){
+    console.log("TO DO!!")
+  }
+
 }

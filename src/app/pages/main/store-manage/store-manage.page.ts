@@ -15,14 +15,8 @@ export class StoreManagePage implements OnInit {
 
   async ngOnInit() {
     await this.userSubscriptionService.getbyUserId().then(p => {
-      console.log(p);
       this.userSubscription = p;
-      console.log(this.userSubscription);
     }); 
-  }
-
-  anularSubscripcion(){
-    console.log("TO DO!!")
   }
 
 }
