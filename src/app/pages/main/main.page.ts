@@ -41,18 +41,19 @@ export class MainPage implements OnInit {
     this.appPages.push( { title: 'Mis Mascotas', url: '/main/main/pet', icon: 'paw' });
     this.appPages.push( { title: 'Notificaciones',url:'', icon: 'notifications' });
     this.appPages.push(  { title: 'Favoritos',url:'', icon: 'star' });
-    if(this.usuario.perfil === 'Propietario'){
-      this.appPages.push( { title: 'Subscribirse', url:'/main/main/user-subscription', icon:'business-outline'});
-    }
-    if(this.usuario.perfil === 'Empresa'){
-      this.appPages.push( { title: 'Administrar Negocio', url:'/main/main/store-manage', icon:'storefront-outline'});
-    }
+    this.appPages.push({ title:'Eventos', url:'',icon:'calendar'});
+    this.appPages.push({ title:'Mascotas en adopcion',url:'',icon:'heart'});
+
   }
 
   createMenuDown(){
     this.labels = [];
-    this.labels.push({ title:'Eventos', url:'',icon:'calendar'});
-    this.labels.push({ title:'Mascotas en adopcion',url:'',icon:'heart'});
+    if(this.usuario.perfil === 'Propietario'){
+      this.labels.push( { title: 'Subscribirse como empresa', url:'/main/main/user-subscription', icon:'create'});
+    }
+    if(this.usuario.perfil === 'Empresa'){
+      this.labels.push( { title: 'Administrar Negocio', url:'/main/main/store-manage', icon:'storefront'});
+    }
     this.labels.push({ title: 'Cerrar Sesión', url: '/main/main/logout', icon: 'log-out' });
   }
 

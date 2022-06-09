@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserSubscription } from 'src/app/interfaces/interfaces';
+import { UserSubscriptionService } from 'src/app/services/user-subscription.service';
 
 @Component({
   selector: 'app-store-manage',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoreManagePage implements OnInit {
 
-  constructor() { }
+  public userSubscription : UserSubscription = {};
 
-  ngOnInit() {
+  constructor(private userSubscriptionService: UserSubscriptionService) { }
+
+  async ngOnInit() {
+    await this.userSubscriptionService.getbyUserId().then(p => {
+      console.log(p);
+      this.userSubscription = p;
+      console.log(this.userSubscription);
+    }); 
+  }
+
+  anularSubscripcion(){
+    console.log("TO DO!!")
   }
 
 }

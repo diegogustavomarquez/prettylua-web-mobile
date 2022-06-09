@@ -29,6 +29,10 @@ const routes: Routes = [
         loadChildren: () => import('./store-manage/store-manage.module').then( m => m.StoreManagePageModule)
       },
       {
+        path: 'terms-and-conditions',
+        loadChildren: () => import('./terms-and-conditions/terms-and-conditions.module').then( m => m.TermsAndConditionsPageModule)
+      },
+      {
         path: 'logout',
         loadChildren: () => import('./logout/logout.module').then( m => m.LogoutPageModule)
       },
