@@ -2,13 +2,19 @@
   <ion-menu contentId="main-content" type="overlay">
     <ion-content>
       <ion-list id="inbox-list">
-        <div class="menu-header"></div>
+        <div class="menu-header">
         <div class="header-content">
           <img src="/assets/avatars/logo.png">
+          <div class="div-label">
           <ion-label>
             <ion-list-header class="list-header">{{usuario.nombre}}</ion-list-header>
             <ion-note >{{usuario.email}}</ion-note>
           </ion-label>
+        </div>
+        </div>
+       
+
+       
         </div>
         <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
           <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false">
