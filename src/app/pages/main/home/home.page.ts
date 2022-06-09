@@ -41,7 +41,7 @@ export class HomePage implements OnInit {
   
   slideOpts={
     loop:true,
-    slidesPerView:1.5,
+    
     spaceBetween: 35,
     autoplay:true,
     speed: 400

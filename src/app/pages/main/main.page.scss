@@ -133,16 +133,15 @@ ion-menu ion-content {
 }
 .header-content{
 position: absolute;
-top: 30px;
+top: 0px;
 left: 15px;
-display: flex;
+
 align-items: center;
 }
 img {
   width: 90px;
   height: 90px;
-  
-  margin-right: 10px;
+  margin-left: 85px;
 
 }
 
@@ -161,4 +160,10 @@ img {
 }
 .list-header{
   font-weight: 300;
+  font-size: 17px;
+}
+.div-label{
+  position: absolute;
+  margin-left: 85px;
+  margin-top: -15px;
 }
