@@ -1,0 +1,122 @@
+<ion-header [translucent]="true" no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Subscripción</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/main/main/home']" color="primary" shape="round">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form (ngSubmit)="crearCuenta( fCuenta )" #fCuenta="ngForm">
+    <ion-col>
+      <div id="cont1">
+        <hr style="color :black; border-width:1px;" />
+      </div>
+      <div class="ion-text-center"><b>DATOS DEL COMERCIO</b></div>
+      <div id="cont1">
+        <hr style="color :black; border-width:1px;" />
+      </div>
+    </ion-col>
+
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>Nombre o Razón Social: </ion-label>
+            <ion-input name="nombre" type="text" [(ngModel)]="subscription.nombre" size="50" max="50" maxlength="50" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>CUIT/CUIL: </ion-label>
+            <ion-input name="cuilPrefijo" type="text" [(ngModel)]="cuilPrefijo" min="2" minlength="2" size="2" max="2" maxlength="2" required></ion-input>
+            <ion-input readonly value="-"></ion-input>
+            <ion-input name="cuil" type="text" [(ngModel)]="cuil" min="8" minlength="8" size="8" max="8" maxlength="8" required></ion-input>
+            <ion-input readonly value="-"></ion-input>
+            <ion-input name="cuilSufijo" type="text" [(ngModel)]="cuilSufijo" min="1" minlength="1" size="1" max="1" maxlength="1" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Fecha inicio de actividad: </ion-label>
+            <ion-input [value]="subscription.fechaInicio" required></ion-input>
+            <ion-button fill="clear" id="open-date-input">
+              <ion-icon icon="calendar"></ion-icon>
+            </ion-button>
+            <ion-popover trigger="open-date-input" show-backdrop="false">
+              <ng-template>
+                <ion-datetime
+                  #popoverDatetime2
+                  presentation="date"
+                  (ionChange)="subscription.fechaInicio = formatDate(popoverDatetime2.value)"
+                ></ion-datetime>
+              </ng-template>
+            </ion-popover>
+          </ion-item>
+          <ion-item>
+            <ion-label>Responsable a cargo: </ion-label>
+            <ion-input name="responsable" type="text" [(ngModel)]="subscription.responsable" size="50" max="50" maxlength="50" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Dirección física: </ion-label>
+            <ion-input name="direccionFisica" type="text" [(ngModel)]="subscription.direccionFisica"size="100" max="100" maxlength="100" required></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-col>
+      <div class="ion-text-left"><b>Plan de Servicio: Profesional $1400,00</b></div>
+    </ion-col>
+
+
+    <ion-col>
+      <div id="cont1">
+        <hr style="color :black; border-width:1px;" />
+      </div>
+      <div class="ion-text-center"><b>Tarjeta de Crédito / Débito</b></div>
+      <div id="cont1">
+        <hr style="color :black; border-width:1px;" />
+      </div>
+    </ion-col>
+
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>Titular de la tarjeta: </ion-label>
+            <ion-input name="titularTarjeta" type="text" [(ngModel)]="subscription.titularTarjeta" size="50" max="50" maxlength="50" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Número de tarjeta: </ion-label>
+            <ion-input name="numeroTarjeta" type="text" [(ngModel)]="numeroTarjeta" min="14" minlength="14" size="19" max="19" maxlength="19"required></ion-input>
+          </ion-item>      
+          <ion-item>
+            <ion-label>Caducidad (YYMMM): </ion-label>
+            <ion-input name="caducidad" type="text" [(ngModel)]="subscription.caducidad" min="6" minlength="6" size="6" max="6" maxlength="6" required></ion-input>
+            <ion-label>CVC/CVV: </ion-label>
+            <ion-input name="cvc" type="text" [(ngModel)]="subscription.cvc" min="3" minlength="3" size="3" max="3" maxlength="3" required></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    
+
+    <ion-list>
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-checkbox name="acceptTermAndCondition" slot="start" checked="false" [(ngModel)]="acceptTermAndCondition"></ion-checkbox>
+        <a [routerLink]="['/main/main/terms-and-conditions']">Acepto términos y condiciones de Pretty Lua</a>
+      </ion-item>
+    </ion-list>
+    <ion-row>
+      <ion-col text-center>
+        <ion-button type="submit" fill="outline" shape="round" expand="block">
+          Subscribir
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>
