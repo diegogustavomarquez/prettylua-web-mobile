@@ -27,3 +27,18 @@ export interface Kind {
   _id?:string;
   description?: string;
 }
+
+export interface UserSubscription {
+  _id?:string;
+  nombre?: string;
+  cuitcuil?: string;
+  fechaInicio?: string;
+  responsable?: string;
+  direccionFisica?: string;
+  titularTarjeta?: string;
+  prefijo?: string;
+  subfijo?: string;
+  caducidad?: string;
+  cvc?: string;
+  userId?: string;
+}

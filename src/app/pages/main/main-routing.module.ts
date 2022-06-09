@@ -21,6 +21,18 @@ const routes: Routes = [
         loadChildren: () => import('./account/account.module').then( m => m.AccountPageModule)
       },
       {
+        path: 'user-subscription',
+        loadChildren: () => import('./user-subscription/user-subscription.module').then( m => m.UserSubscriptionPageModule)
+      },
+      {
+        path: 'store-manage',
+        loadChildren: () => import('./store-manage/store-manage.module').then( m => m.StoreManagePageModule)
+      },
+      {
+        path: 'terms-and-conditions',
+        loadChildren: () => import('./terms-and-conditions/terms-and-conditions.module').then( m => m.TermsAndConditionsPageModule)
+      },
+      {
         path: 'logout',
         loadChildren: () => import('./logout/logout.module').then( m => m.LogoutPageModule)
       },

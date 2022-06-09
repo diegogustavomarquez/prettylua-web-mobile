@@ -72,12 +72,17 @@
     <hr style="color :black; border-width:1px;" />
   </div>
 
-  <div style="text-align: center;">
+  <div style="text-align: center;" *ngIf="usuario.perfil==='Propietario'">
     <div>
       <h6>¿Queres promocionar tu negocio?</h6>
     </div>
     <div>¡Forma parte de la mayor red de servicios y productos para mascotas!</div>
-    <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round">Registrate
+    <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round" [routerLink]="['/main/main/user-subscription']">Subscribite como empresa
+    </ion-button>
+  </div>
+
+  <div style="text-align: center;" *ngIf="usuario.perfil==='Empresa'">
+    <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round" [routerLink]="anularSubscripcion()">Anular subscripción como empresa
     </ion-button>
   </div>
 </ion-content>
