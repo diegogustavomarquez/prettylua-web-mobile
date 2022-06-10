@@ -18,7 +18,9 @@ export class PetFormPage implements OnInit {
   @ViewChild(IonDatetime, { static: true }) datetime: IonDatetime;
   titulo: string = '';
   isNew: boolean = false;
+  imagen: any = '/assets/avatars/icon.png';
 
+  isPhotoPresent: boolean = false;
   public id: string;
   listaAnio: number[] = [];
   razas :string[]=[];
@@ -34,7 +36,7 @@ export class PetFormPage implements OnInit {
     dateOfBirth: '',
     dateOfBirthDescription: '',
     notes: '',
-    pics: [],
+    pics: null,
     vets:[],
     userId : ''
 
@@ -53,16 +55,15 @@ export class PetFormPage implements OnInit {
     this.listaAnio = this.commonsService.getYears();
     this.razas = this.commonsService.getBreed();
     this.kinds = this.commonsService.getKind();
-   // this.kinds.push ( await this.mascotaService.getKinds());
     this.genders = this.commonsService.getGender();
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     if (!this.id) {
       this.mascota.userId = this.usuarioService.usuario._id;
-      this.titulo = 'Alta de mascota';
+      this.titulo = 'Alta de Mascota';
     } else {
       this.isNew = false;
       this.mascota = await this.mascotaService.getbyId(this.id);
-      this.titulo = 'Actualizar datos de la mascota';
+      this.titulo = 'Actualizar Mascota';
     }
   }
 
@@ -106,6 +107,37 @@ export class PetFormPage implements OnInit {
     let date = new Date(value);
     return date.toLocaleDateString();
   }
+    /**
+   * carga la imagen elegida por el usuario
+   * 
+   * @param event 
+   */
+     async loadImagen(event: any) {
+      let archivos = event.target.files[0];
+      let sizeFile: number = archivos.size;
+      if (sizeFile > 100000) {
+        this.uiService.alertaInformativa('Por favor. Guardar una foto con menos a 100kb.');
+        return;
+      }
+      let reader = new FileReader();
+      reader.readAsDataURL(archivos);
+      reader.onloadend = () => {
+        this.mascota.pics = reader.result as string;
+        this.isPhotoPresent = true;
+      }
+    }
+  
+    /**
+     * Saca la foto seleccionada
+     * 
+     * @param event 
+     */
+    async kickImagen() {
+      this.mascota.pics  = this.imagen;
+      this.isPhotoPresent = false;
+    }
+  
+  
 
 }
 

@@ -1,6 +1,19 @@
-img{
+imga{
     width:60%;
     height:70%;
     text-align: center;
     display:flex
+}
+ion-fab-button {
+    --background: #f79c34 !important;
+    color: #fff;
+  }
+img{
+    max-width: 100%;
+}
+ion-avatar{
+    zoom: 2.0;
+}
+.texto{
+    text-transform: uppercase;
 }
