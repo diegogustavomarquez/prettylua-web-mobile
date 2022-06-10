@@ -39,13 +39,11 @@ export class PetFormPage implements OnInit {
     pics: null,
     vets:[],
     userId : ''
-
   };
 
   constructor(private activatedRoute: ActivatedRoute,
               private mascotaService: MascotaService,
               private navCtrl: NavController,
-              private alertCtrl: AlertController,
               private uiService: UiServiceService,
               private usuarioService: UsuarioService,
               private commonsService: CommonsService

@@ -17,6 +17,7 @@ export class PetPage implements OnInit {
 
   public mascotas: Mascota[] = [];
   public actualizadas: Mascota[] = [];
+  public eliminadas: Mascota[] = [];
 
   constructor(private mascotaService: MascotaService,
     private navCtrl: NavController,
@@ -31,30 +32,47 @@ export class PetPage implements OnInit {
         this.mascotas.unshift(mascota);
       });
 
-         // TODO realizar la busquea y el reemplazo del elemento en el array.   
-    /*  this.mascotaService.actualizarMascota
-      .subscribe(mascota => {
-        this.actualizadas.unshift(mascota);
-      }); */
+      await this.mascotaService.getbyUserId().then(p => this.actualizadas = p);
+      this.mascotaService.actualizarMascota
+      .subscribe(pet => {
+        this.mascotas.splice(this.mascotas
+          .findIndex(index => index._id === pet._id), 1, pet);
+      });
+
+      await this.mascotaService.getbyUserId().then(p => this.eliminadas = p);
+      this.mascotaService.borrarMascota
+      .subscribe(pet => {
+        this.mascotas.splice(this.mascotas
+          .findIndex(index => index._id === pet._id), 1);
+      });
+
     }
+
+  /*public CalculateAge(dateOfBirth:string): void {
+      let age;
+      if(dateOfBirth){
+         var timeDiff = Math.abs(Date.now() - new Date(dateOfBirth).getDate());
+         //Used Math.floor instead of Math.ceil
+         //so 26 years and 140 days would be considered as 26, not 27.
+         age = Math.floor((timeDiff / (1000 * 3600 * 24))/365) +"edad";
+     }
+     return age;
+  }*/
 
   async presentAlertConfirm(id: string) {
     const alert = await this.alertController.create({
-      cssClass: 'alert-head sc-ion-alert-ios',
-      header: '¿Esta seguro que desea eliminar?',
-      message: "",
+      header: '',
+      message: "¿Esta seguro que desea eliminar?",
       buttons: [
         {
           text: 'No',
           role: 'cancel',
-          cssClass: 'rojo',
           id: 'cancel-button',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Si',
-          cssClass: 'rojo',
           id: 'confirm-button',
           handler: () => {
             const actualizado = this.mascotaService.delete(id);
