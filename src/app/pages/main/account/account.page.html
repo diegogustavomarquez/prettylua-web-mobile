@@ -81,7 +81,7 @@
     </ion-button>
   </div>
   <div style="text-align: center;" *ngIf="usuario.perfil==='Empresa'">
-    <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round" [routerLink]="anularSubscripcion()">Anular subscripción como empresa
+    <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round" (click)="anularSubscripcion()">Anular subscripción como empresa
     </ion-button>
   </div>
 </ion-content>
