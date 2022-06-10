@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title class="ion-text-center">Subscripción</ion-title>
+    <ion-title class="ion-text-center">Suscripción</ion-title>
     <ion-buttons slot="end">
       <ion-button [routerLink]="['/main/main/home']" color="primary" shape="round">
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
@@ -33,11 +33,17 @@
           </ion-item>
           <ion-item>
             <ion-label>CUIT/CUIL: </ion-label>
-            <ion-input name="cuilPrefijo" type="text" [(ngModel)]="cuilPrefijo" min="2" minlength="2" size="2" max="2" maxlength="2" required></ion-input>
-            <ion-input readonly value="-"></ion-input>
+            <div class="cuil-prefijo">
+            <ion-input name="cuilPrefijo" type="text" [(ngModel)]="cuilPrefijo" min="2" minlength="2" size="1" max="2" maxlength="2" required></ion-input>
+            </div>
+            <p>-</p>
+            <div class="cuil">
             <ion-input name="cuil" type="text" [(ngModel)]="cuil" min="8" minlength="8" size="8" max="8" maxlength="8" required></ion-input>
-            <ion-input readonly value="-"></ion-input>
+            </div>
+           <p>-</p>
+           <div class="cuil-sufijo">
             <ion-input name="cuilSufijo" type="text" [(ngModel)]="cuilSufijo" min="1" minlength="1" size="1" max="1" maxlength="1" required></ion-input>
+          </div>
           </ion-item>
           <ion-item>
             <ion-label>Fecha inicio de actividad: </ion-label>
@@ -106,7 +112,7 @@
 
     <ion-list>
       <ion-item>
-        <ion-label></ion-label>
+    
         <ion-checkbox name="acceptTermAndCondition" slot="start" checked="false" [(ngModel)]="acceptTermAndCondition"></ion-checkbox>
         <a [routerLink]="['/main/main/terms-and-conditions']">Acepto términos y condiciones de Pretty Lua</a>
       </ion-item>
@@ -114,7 +120,7 @@
     <ion-row>
       <ion-col text-center>
         <ion-button type="submit" fill="outline" shape="round" expand="block">
-          Subscribir
+          Suscribir
         </ion-button>
       </ion-col>
     </ion-row>
