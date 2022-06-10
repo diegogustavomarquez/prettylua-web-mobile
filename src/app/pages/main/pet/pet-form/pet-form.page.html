@@ -15,26 +15,22 @@
 <ion-content [fullscreen]="true" mode="ios" class="ion-no-border">
   <ion-grid fixed>
     <form (ngSubmit)="mascota._id? update(fRegistro): save(fRegistro)" #fRegistro="ngForm">
-      <ion-col>
-
-        <ion-card-content class="ion-text-center">
+  
+      <ion-card-content class="ion-text-center">
           <img class="foto-generica" src="{{mascota.pics? mascota.pics  : '/assets/avatars/icon.png'}}">
-        </ion-card-content>
+       
 
         <ion-item>
           <input type="file" accept=".png, .jpg,.jpeg" (change)="loadImagen($event)" id="inputFile">
           <label for="inputFile" class="labelInputFile">
-           <ion-icon size="large" name="camera" slot="center" class="icono1">
+           <ion-icon size="large" name="camera"  class="icono1">
             </ion-icon>
-           
           </label>
-
           <ion-button  icon-only shape="round" color="danger" (click)="kickImagen()"class="icono" slot="end">
             <ion-icon name="trash-outline"></ion-icon>
           </ion-button>
-
         </ion-item>
-
+      </ion-card-content>
         <div id="cont1">
           <hr style="color :black; border-width:1px;" />
         </div>
@@ -42,7 +38,7 @@
         <div id="cont1">
           <hr style="color :black; border-width:1px;" />
         </div>
-      </ion-col>
+
       <ion-row>
         <ion-col>
           <ion-list>
