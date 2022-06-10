@@ -17,6 +17,7 @@ export class MascotaService {
 
   nuevaMascota = new EventEmitter<Mascota>();
   actualizarMascota = new EventEmitter<Mascota>();
+  borrarMascota = new EventEmitter<Mascota>();
 
   constructor(private http: HttpClient,
     private navCtrl: NavController,
@@ -72,6 +73,7 @@ export class MascotaService {
         });
     });
   }
+  
 
   /**
    * 
@@ -136,7 +138,7 @@ export class MascotaService {
       this.http.delete(`${URL}/pet/delete?petId=${id}`, {headers})
         .subscribe(resp => {
           if (resp['ok']) {
-           // this.nuevaMascota.emit(resp['message'] as Mascota);
+            this.borrarMascota.emit(resp['message'] as Mascota);
             resolve(true);
           } else {
             resolve(false);

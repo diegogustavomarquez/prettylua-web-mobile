@@ -33,12 +33,10 @@ export class CreateAccountPage implements OnInit {
   }
 
   async registro(fRegistro: NgForm) {
-
     if (fRegistro.invalid) { return; }
 
     if (!this.isPhotoPresent) { this.registerUser.avatar = ''; }
     const valido = await this.usuarioService.registro(this.registerUser);
-
     if (valido) {
       // navegar al tabs
       this.navCtrl.navigateRoot('/main/main/home', { animated: true });

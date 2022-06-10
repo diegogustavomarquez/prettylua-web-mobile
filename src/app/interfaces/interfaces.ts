@@ -17,7 +17,7 @@ export interface Mascota {
   kind? : string;
   dateOfBirth? : string;
   dateOfBirthDescription?: string;
-  pics?: string[];
+  pics?: string;
   vets?: string[];
   notes?: string;
   userId ?: string;
