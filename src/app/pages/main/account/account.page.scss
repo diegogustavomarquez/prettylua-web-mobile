@@ -1,23 +1,36 @@
-.logo{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-  }
-  #cont1{
-    margin-left: 10%;
-    width: 80%;
-  
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
-.foto-generica{
+#cont1 {
+  margin-left: 10%;
+  width: 80%;
+
+}
+
+.foto-generica {
   max-width: 130px;
   margin-bottom: 10px;
+}
+
+.btnRg {
+  margin-top: 20px;
+  --border-color: #eea949;
+  color: #eea949;
+  margin-bottom: 20px;
+  --background-activated: #fff;
+}
+ion-fab-button {
+  --background: #f79c34 !important;
+  color: #fff;
 }

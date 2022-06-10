@@ -2,25 +2,33 @@ ion-title{
     text-align: center;
 }
 
-.btn-crear {
-    margin-top: 20px;
-    --border-color: #eea949;
-    color: #eea949;
-    margin-bottom: 20px;
-    --background-activated: #fff;
+ion-button{
+    --background: #f79c34 !important;
+    color : #fff;
 }
 
 #inputFile {
     display: none;
+    margin-top: 30px;
 }
 
 .subir-foto{
     max-width: 40px;
     margin-bottom: 10px;
-    margin-right:150px;
+   margin-right:150px;
+  // margin-top: 130px;
+  // margin-left: 300px;
 }
 
 .foto-generica{
     max-width: 130px;
     margin-bottom: 10px;
+}
+
+#header {
+    background-image: url('/assets/avatars/user.png')!important;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 25vh;
 }

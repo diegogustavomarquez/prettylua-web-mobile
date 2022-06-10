@@ -1,9 +1,60 @@
-<ion-header>
+<ion-header [translucent]="true" mode="ios" class="ion-no-border">
   <ion-toolbar>
-    <ion-title>pet-view</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancel()" color="primary" shape="round">
+        <ion-icon name="chevron-back-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>PERFIL DE MI MASCOTA</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true" mode="ios" class="ion-no-border">
+  <ion-grid fixed>
 
+    <form (ngSubmit)="mascota._id">
+
+      <ion-item class="ion-text-center">
+        <img src="{{ mascota.pics }}">
+        <ion-label class="texto">
+          <h2><b>{{mascota.name}}</b></h2>
+        </ion-label>
+      </ion-item>
+<!-- 
+   <div id="cont1">
+        <hr style="color :black; border-width:1px;" />
+      </div>
+      <div class="ion-text-center"><b>INFORMACION BASICA</b></div>
+      <div id="cont1">
+        <hr style="color :black; border-width:1px;" />
+      </div>
+
+-->
+
+   <ion-card-header class="ion-text-center">
+    <ion-card-subtitle>INFORMACION BASICA </ion-card-subtitle>
+   </ion-card-header>
+
+
+        <ion-item>
+          <ion-label>Tipo : {{mascota.kind}} </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Raza : {{mascota.breed}} </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Fecha Nacimiento : {{mascota.dateOfBirth}} </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label> Nota: {{mascota.notes}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Propietario : {{usuario.nombre}} </ion-label>
+        </ion-item>
+
+    </form>
+  </ion-grid>
 </ion-content>

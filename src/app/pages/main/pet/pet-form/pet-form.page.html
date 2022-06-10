@@ -3,26 +3,38 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancel()" color="primary" shape="round">
+        <ion-icon name="chevron-back-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title class="ion-text-center">{{ titulo }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" mode="ios" class="ion-no-border">
-
-  <div class="ion-text-center">
-
-    <img src="/assets/avatars/uploadPhoto.png">
-
-  </div>
-
-
-
   <ion-grid fixed>
-
     <form (ngSubmit)="mascota._id? update(fRegistro): save(fRegistro)" #fRegistro="ngForm">
-
-
       <ion-col>
+
+        <ion-card-content class="ion-text-center">
+          <img class="foto-generica" src="{{mascota.pics? mascota.pics  : '/assets/avatars/icon.png'}}">
+        </ion-card-content>
+
+        <ion-item>
+          <input type="file" accept=".png, .jpg,.jpeg" (change)="loadImagen($event)" id="inputFile">
+          <label for="inputFile" class="labelInputFile">
+           <ion-icon size="large" name="camera" slot="center" class="icono1">
+            </ion-icon>
+           
+          </label>
+
+          <ion-button  icon-only shape="round" color="danger" (click)="kickImagen()"class="icono" slot="end">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+
+        </ion-item>
+
         <div id="cont1">
           <hr style="color :black; border-width:1px;" />
         </div>
@@ -31,32 +43,24 @@
           <hr style="color :black; border-width:1px;" />
         </div>
       </ion-col>
-
-
       <ion-row>
         <ion-col>
           <ion-list>
-
             <ion-item>
               <ion-label>Nombre : </ion-label>
               <ion-input name="name" type="text" [(ngModel)]="mascota.name" required></ion-input>
             </ion-item>
-
             <ion-item>
               <ion-select placeholder="Seleccione mascota" name="kind" [(ngModel)]="mascota.kind" required>
                 <ion-select-option *ngFor="let kind of kinds" [value]="kind">{{ kind }}</ion-select-option>
               </ion-select>
             </ion-item>
             <ion-item>
-
               <ion-select placeholder="Seleccione el Genero" expand="full" name="gender" [(ngModel)]="mascota.gender"
                 required>
-
                 <ion-select-option *ngFor="let gender of genders" [value]="gender">{{ gender }}</ion-select-option>
               </ion-select>
             </ion-item>
-
-
             <ion-col>
               <div id="cont1">
                 <hr style="color :black; border-width:1px;" />
@@ -85,11 +89,8 @@
               </ion-button>
               <ion-popover trigger="open-date-input-2" show-backdrop="false">
                 <ng-template>
-                  <ion-datetime
-                    #popoverDatetime2
-                    presentation="date"
-                    (ionChange)="mascota.dateOfBirth = formatDate(popoverDatetime2.value)"
-                  ></ion-datetime>
+                  <ion-datetime #popoverDatetime2 presentation="date"
+                    (ionChange)="mascota.dateOfBirth = formatDate(popoverDatetime2.value)"></ion-datetime>
                 </ng-template>
               </ion-popover>
             </ion-item>
@@ -100,25 +101,36 @@
           </ion-list>
         </ion-col>
       </ion-row>
-    <ion-row>
-        <ion-col>
 
-          <ion-button [disabled]="fRegistro.invalid" type="submit" style="margin-top: 20px;" class="ion-no-border"
-            fill="outline" expand="block" shape="round">
-            {{ mascota._id? 'ACTUALIZAR': 'AGREGAR MASCOTA' }}
-          </ion-button>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
+      <ion-fab horizontal="end" slot="fixed">
+        <ion-button class="classFab" [disabled]="fRegistro.invalid" type="submit">
+          <ion-icon name="checkmark-outline"></ion-icon>
+        </ion-button>
+      </ion-fab>
 
-          <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round"
-            (click)="onCancel()">
-
-            CANCELAR
-          </ion-button>
-        </ion-col>
-      </ion-row>
     </form>
   </ion-grid>
 </ion-content>
+<!-- 
+
+
+   <div class="icono">
+          <img class="foto-generica" src="{{mascota.pics? mascota.pics  : '/assets/avatars/icon.png'}}">
+         
+ <a style="margin-left:30px;" (click)="kickImagen()">Quitar imagen</a>
+      
+          <ion-button icon-only shape="round" color="danger" (click)="kickImagen()">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+          <div style="text-align: center;">
+            <input type="file" accept=".png, .jpg,.jpeg" (change)="loadImagen($event)" id="inputFile">
+            <label for="inputFile" class="labelInputFile">
+              <img class="subir-foto" src="/assets/icon/subir-foto.png" alt="upload file">
+            </label>
+          </div>
+          <div>
+          </div>
+        </div>
+
+        
+-->

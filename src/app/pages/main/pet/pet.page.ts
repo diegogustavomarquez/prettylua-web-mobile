@@ -73,7 +73,7 @@ export class PetPage implements OnInit {
 
 
   goPetForm() {
-    //[routerLink]="['pet-form']" 
+
     this.navCtrl.navigateRoot('/main/main/pet/pet-form', { animated: true });
   }
 
