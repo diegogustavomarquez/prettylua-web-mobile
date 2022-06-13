@@ -25,6 +25,10 @@ const routes: Routes = [
         loadChildren: () => import('./user-subscription/user-subscription.module').then( m => m.UserSubscriptionPageModule)
       },
       {
+        path: 'stores',
+        loadChildren: () => import('./stores/stores.module').then( m => m.StoresPageModule)
+      },
+      {
         path: 'store-manage',
         loadChildren: () => import('./store-manage/store-manage.module').then( m => m.StoreManagePageModule)
       },
