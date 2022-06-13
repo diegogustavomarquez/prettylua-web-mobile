@@ -30,4 +30,8 @@ export class CommonsService {
   getAprox(): string[] {
     return ['Fecha exacta', 'Fecha Aproximada'];
   }
+
+  getTipoHistoriaClinica(): string[] {
+    return ['Vacuna', 'Antiparasitario', 'Control', 'Enfermedad', 'Estudios Medicos'];
+  }
 }
