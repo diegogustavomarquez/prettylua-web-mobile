@@ -42,6 +42,7 @@ export class MainPage implements OnInit {
     this.appPages.push( { title: 'Notificaciones',url:'', icon: 'notifications' });
     this.appPages.push(  { title: 'Favoritos',url:'', icon: 'star' });
     this.appPages.push({ title:'Eventos', url:'',icon:'calendar'});
+    this.appPages.push({ title:'Buscador de servicios',url:'/main/main/stores',icon:'search-circle'});
     this.appPages.push({ title:'Mascotas en adopcion',url:'',icon:'heart'});
 
   }

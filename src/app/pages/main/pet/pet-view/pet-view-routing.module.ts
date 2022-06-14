@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: PetViewPage
+  },
+  {
+    path: 'history-form/:id',
+    loadChildren: () => import('./history-form/history-form.module').then( m => m.HistoryFormPageModule)
   }
 ];
 
