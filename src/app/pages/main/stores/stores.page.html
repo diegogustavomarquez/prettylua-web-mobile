@@ -1,11 +1,53 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>stores</ion-title>
+    <ion-title>Buscador de servicio</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  nombre 
+  <ion-item>
+    <ion-label>nombre :  </ion-label>
+    <ion-input name="name" type="text" [(ngModel)]="filter.nombre"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>localidad :  </ion-label>
+    <ion-input name="localidad" type="text" [(ngModel)]="filter.localidad"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>codigo Postal :  </ion-label>
+    <ion-input name="codigo-postal" type="number" [(ngModel)]="filter.codigo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-select slot="start" placeholder="Servicios" name="month"
+    [(ngModel)]="filter.servicio" >
+      <ion-select-option [value]="item" *ngFor="let item of ['Veterinaria','Paseadores','Petshop','Adiestradores','Peluqueria']">{{item}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-button class="btn-login" type="submit" (click)="busqueda()" expand="block" fill="outline"  shape="round">
+    Buscar
+  </ion-button>
+  <ion-card class="ios hydrated">
+    <ion-list>
+        <ion-item *ngFor="let store of stores">
+          
+          <ion-label> 
+            <p> Nombre: {{store.name}}</p> 
+            <p> Localidad: {{store.localidad}}</p>
+            <p> Servicio: {{store.servicios}}</p> 
+            <p>Codigo Postal: {{store.codigo}}</p> 
+            <ion-button icon-only shape="round" color="primary" slot="end">
+              <ion-icon name="eye-outline"></ion-icon>
+            </ion-button>
+          </ion-label>
+       
+      
+        </ion-item>
+        
+      </ion-list>
+    </ion-card>
+   
+<!--   nombre 
   localidad 
   codigoPostal
   servicio obligatorio(veterinaria, paseadores, petshop, adiestradores, ... etc) (combo unica eleccion)
@@ -18,6 +60,7 @@
   servicios: [];
   dias: [];
   es24hs: boolean;
-  ojito (ver)
+  ojito (ver) -->
+
 
 </ion-content>
