@@ -6,7 +6,7 @@ import { UsuarioService } from '../../../../services/usuario.service';
 import { Mascota } from 'src/app/interfaces/interfaces';
 import { CommonsService } from '../../../../services/commons.service';
 import { UiServiceService } from 'src/app/services/ui-service.service';
-import { Usuario } from 'src/app/interfaces/interfaces';
+import { Usuario, HistoriaClinica } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-pet-view',
@@ -14,7 +14,49 @@ import { Usuario } from 'src/app/interfaces/interfaces';
   styleUrls: ['./pet-view.page.scss'],
 })
 export class PetViewPage implements OnInit {
+  historiaClinica : HistoriaClinica[] = [
+     {
+      "codigo": "68ce5cb5-8980-452f-adc3-ec5dba374dcb",
+      "petId": "6296b7bf913be20e53d45b5e",
+      "tipos": [],
+      "descripcion": "descripcion",
+      "adjuntos": [],
+      "comentarios": "",
+      "fecha": new Date("2022-06-14T21:32:58.940Z"),
+      "_id": "62a8fe8a0c6cedbe4ff9507f"
 
+  },      {
+    "codigo": "68ce5cb5-8980-452f-adc3-ec5dba374dcb",
+    "petId": "6296b7bf913be20e53d45b5e",
+    "tipos": [],
+    "descripcion": "descripcion",
+    "adjuntos": [],
+    "comentarios": "",
+    "fecha": new Date("2022-06-14T21:32:58.940Z"),
+    "_id": "62a8fe8a0c6cedbe4ff9507f"
+
+},      {
+  "codigo": "68ce5cb5-8980-452f-adc3-ec5dba374dcb",
+  "petId": "6296b7bf913be20e53d45b5e",
+  "tipos": [],
+  "descripcion": "descripcion",
+  "adjuntos": [],
+  "comentarios": "",
+  "fecha": new Date("2022-06-14T21:32:58.940Z"),
+  "_id": "62a8fe8a0c6cedbe4ff9507f"
+
+},      {
+  "codigo": "68ce5cb5-8980-452f-adc3-ec5dba374dcb",
+  "petId": "6296b7bf913be20e53d45b5e",
+  "tipos": [],
+  "descripcion": "descripcion",
+  "adjuntos": [],
+  "comentarios": "",
+  "fecha": new Date("2022-06-14T21:32:58.940Z"),
+  "_id": "62a8fe8a0c6cedbe4ff9507f"
+
+}
+  ];
 
   public id: string;
   listaAnio: number[] = [];
