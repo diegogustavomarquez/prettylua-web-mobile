@@ -1,9 +1,53 @@
-<ion-header>
+<ion-header [translucent]="true" mode="ios" class="ion-no-border">
   <ion-toolbar>
-    <ion-title>history-form</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancel()" color="primary" shape="round">
+        <ion-icon name="chevron-back-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Historia Clinica</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true" mode="ios" class="ion-no-border">
+  <ion-col>
+
+    <div class="ion-text-center"><b>Listado de atenciones</b></div>
+
+  </ion-col>
+  <ion-card>
+    <ion-list>
+      <ion-item *ngFor="let mascota of mascotas">
+        <ion-avatar slot="start">
+          <img src="{{ mascota.pics }}">
+        </ion-avatar>
+        <ion-label>
+          <h2><b class="texto">{{mascota.name}}</b></h2>
+          <p>{{mascota.kind}}</p>
+          <p>{{mascota.breed}}</p>
+          <p>{{mascota.dateOfBirth}}</p>
+        </ion-label>
+        <ion-button icon-only shape="round" color="primary" [routerLink]="['pet-view', mascota._id]">
+          <ion-icon name="eye-outline"></ion-icon>
+        </ion-button>
+        <ion-button icon-only shape="round" color="warning" [routerLink]="['pet-form', mascota._id]">
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+        <ion-button icon-only shape="round" color="danger" (click)="presentAlertConfirm(mascota._id)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="goPetForm()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>
