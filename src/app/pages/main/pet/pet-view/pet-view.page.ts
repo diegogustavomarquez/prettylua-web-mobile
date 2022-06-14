@@ -67,5 +67,9 @@ export class PetViewPage implements OnInit {
   onCancel() {
     this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
   }
+  goPetForm() {
+
+    this.navCtrl.navigateRoot('/main/main/pet/pet-view/history-form', { animated: true });
+  }
 
 }

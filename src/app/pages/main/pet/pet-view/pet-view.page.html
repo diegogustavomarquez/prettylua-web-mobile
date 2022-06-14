@@ -23,22 +23,10 @@
           <h2><b>{{mascota.name}}</b></h2>
         </ion-label>
       </ion-item>
-<!-- 
-   <div id="cont1">
-        <hr style="color :black; border-width:1px;" />
-      </div>
-      <div class="ion-text-center"><b>INFORMACION BASICA</b></div>
-      <div id="cont1">
-        <hr style="color :black; border-width:1px;" />
-      </div>
-
--->
 
    <ion-card-header class="ion-text-center">
     <ion-card-subtitle>INFORMACION BASICA </ion-card-subtitle>
    </ion-card-header>
-
-
         <ion-item>
           <ion-label>Tipo : {{mascota.kind}} </ion-label>
         </ion-item>
@@ -58,6 +46,37 @@
     </form>
   </ion-grid>
 
+
+
+ <ion-col>
+
+  <div class="ion-text-center"><b>Mi Historia Clinica</b></div>
+
+</ion-col>
+<ion-card>
+  <ion-list>
+    <ion-item *ngFor="let mascota of mascotas">
+      <ion-label>
+        <h2><b class="texto">{{mascota.name}}</b></h2>
+        <p>{{mascota.kind}}</p>
+        <p>{{mascota.breed}}</p>
+        <p>{{mascota.dateOfBirth}}</p>
+      </ion-label>
+      <ion-button icon-only shape="round" color="primary" [routerLink]="['pet-view', mascota._id]">
+        <ion-icon name="eye-outline"></ion-icon>
+      </ion-button>
+      <ion-button icon-only shape="round" color="warning" [routerLink]="['pet-form', mascota._id]">
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
+     </ion-item>
+  </ion-list>
+</ion-card>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="goPetForm()">
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
   <div style="text-align: center;">
     <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round" [routerLink]="['history-form', mascota._id]">Agregar historia clinica
     </ion-button>
