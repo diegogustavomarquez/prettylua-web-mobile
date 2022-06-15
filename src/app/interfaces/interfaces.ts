@@ -50,7 +50,7 @@ export interface Store {
   codigoPostal?: string;
   localidad?: string;
   provincia?: string;
-  servicios?: [];
+  servicios?: string[];
   dias?: [];
   esDeCorrido?: Boolean;
   horarioDesde?: string;

@@ -35,11 +35,13 @@ export class StoreFormPage implements OnInit {
     this.servicios = this.commonsService.getRolesByEmpresa();
     this.dias = this.commonsService.getDias();
     this.usuario = this.usuarioService.usuario;
-    this.storeService.findByUserId(this.usuario._id).then(p => p ? this.store = p : p = {});
-    if (this.store && this.store.promocionFoto) {
-      this.isPhotoPresent = true;
-      this.imageTemporal = this.store.promocionFoto;
-    }
+    this.storeService.findByUserId(this.usuario._id).then(p => {
+      if (p) {
+        this.store = p;
+        this.isPhotoPresent = true;
+        this.imageTemporal = this.store.promocionFoto;
+      }
+    });
   }
 
   async crearStore(fStore: NgForm) {
@@ -49,15 +51,15 @@ export class StoreFormPage implements OnInit {
 
     this.store.promocionFoto = this.imageTemporal;
 
-    let resultado : boolean = false;
-    if(this.store._id){
+    let resultado: boolean = false;
+    if (this.store._id) {
       resultado = await this.storeService.update(this.store);
     } else {
       this.store.userId = this.usuario._id;
       resultado = await this.storeService.save(this.store);
     }
 
-    if(resultado){
+    if (resultado) {
       this.uiServiceService.alertaInformativa("Se configuro correctamente");
       this.navCtrl.navigateRoot('/main/main/store-manage', { animated: true });
     } else {

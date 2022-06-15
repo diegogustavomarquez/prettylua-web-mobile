@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from 'src/app/interfaces/interfaces';
+import { Store, Usuario } from 'src/app/interfaces/interfaces';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { LogoutComponent } from 'src/app/components/./logout/logout.component';
-import { UserSubscriptionService } from 'src/app/services/user-subscription.service';
+import { StoreService } from 'src/app/services/store.service';
 
 @Component({
   selector: 'app-main',
@@ -16,12 +15,18 @@ export class MainPage implements OnInit {
   public labels = [];
 
   usuario: Usuario;
-  
-  constructor(private usuarioService: UsuarioService,
-              private userSubscriptionService: UserSubscriptionService) { }
+  store: Store;
 
-  ngOnInit() {
+  constructor(private usuarioService: UsuarioService,
+              private storeService: StoreService) { }
+
+  async ngOnInit() {
     this.usuario = this.usuarioService.usuario;
+
+    if(this.usuario.perfil === 'Empresa'){
+      await this.storeService.findByUserId(this.usuario._id).then(p => this.store = p);
+    }
+
     this.createMenuTop();
     this.createMenuDown();
 
@@ -32,7 +37,11 @@ export class MainPage implements OnInit {
       this.createMenuDown();
     });
 
-
+    this.storeService.getStoreObservable().subscribe((data) => {
+      this.store = data;
+      this.createMenuTop();
+      this.createMenuDown();
+    });
   }
 
   createMenuTop(){
@@ -54,6 +63,9 @@ export class MainPage implements OnInit {
     }
     if(this.usuario.perfil === 'Empresa'){
       this.labels.push( { title: 'Administrar Negocio', url:'/main/main/store-manage', icon:'storefront'});
+      if(this.store && (this.store.servicios.includes('Veterinario') || this.store.servicios.includes('Clinico'))){
+        this.labels.push( { title: 'Pacientes', url:'/main/main/store-manage', icon:'bandage'});
+      }
     }
     this.labels.push({ title: 'Cerrar Sesión', url: '/main/main/logout', icon: 'log-out' });
   }
