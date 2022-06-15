@@ -31,7 +31,6 @@ export class UserSubscriptionService {
       this.http.post(`${URL}/user-subscription`, userSubscription, { headers })
         .subscribe(async resp => {
           if (resp['ok']) {
-            console.log(resp);
             //le cambio el perfil al usuario
             const usuario: Usuario = this.usuarioService.usuario;
             usuario.perfil = 'Empresa';
@@ -58,7 +57,6 @@ export class UserSubscriptionService {
         .subscribe(async resp => {
           if (resp['ok']) {
             let userSubscription: UserSubscription = resp['user'] as UserSubscription;
-            console.log("aca")
             resolve(userSubscription);
           } else {
             this.uiService.alertaInformativa('No se una subscripcion.');
