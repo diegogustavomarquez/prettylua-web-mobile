@@ -27,7 +27,7 @@ export class StoreService {
    * @param store 
    * @returns 
    */
-  save(store: Store) {
+  save(store: Store) : Promise<boolean>  {
     const headers = new HttpHeaders({
       'x-token': this.usuarioService.token
     });
@@ -45,7 +45,7 @@ export class StoreService {
     });
   }
 
-  update(store: Store) {
+  update(store: Store) : Promise<boolean> {
     const headers = new HttpHeaders({
       'x-token': this.usuarioService.token
     });
@@ -97,7 +97,6 @@ export class StoreService {
     return new Promise(resolve => {
       this.http.get(`${URL}/store/findByUserId?userId=${id}`, { headers })
         .subscribe(async resp => {
-          console.log("resp:",resp);
           if (resp['ok']) {
             this.store = resp['data'] as Store;
             resolve(this.store);

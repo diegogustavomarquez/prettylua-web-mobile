@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { NavController } from '@ionic/angular';
 import { Store, Usuario } from 'src/app/interfaces/interfaces';
 import { CommonsService } from 'src/app/services/commons.service';
 import { UiServiceService } from 'src/app/services/ui-service.service';
@@ -25,7 +26,9 @@ export class StoreFormPage implements OnInit {
   constructor(private commonsService: CommonsService,
     private usuarioService: UsuarioService,
     private storeService: StoreService,
-    private uiService: UiServiceService) { }
+    private uiService: UiServiceService,
+    private navCtrl: NavController,
+    private uiServiceService: UiServiceService) { }
 
   ngOnInit() {
     this.provincias = this.commonsService.getProvincias();
@@ -40,6 +43,26 @@ export class StoreFormPage implements OnInit {
   }
 
   async crearStore(fStore: NgForm) {
+    if (fStore.invalid) {
+      return;
+    }
+
+    this.store.promocionFoto = this.imageTemporal;
+
+    let resultado : boolean = false;
+    if(this.store._id){
+      resultado = await this.storeService.update(this.store);
+    } else {
+      this.store.userId = this.usuario._id;
+      resultado = await this.storeService.save(this.store);
+    }
+
+    if(resultado){
+      this.uiServiceService.alertaInformativa("Se configuro correctamente");
+      this.navCtrl.navigateRoot('/main/main/store-manage', { animated: true });
+    } else {
+      this.uiServiceService.alertaInformativa("Error al subscribirse");
+    }
   }
 
 
@@ -51,7 +74,6 @@ export class StoreFormPage implements OnInit {
   async loadImagen(event: any) {
     let archivos = event.target.files[0];
     let sizeFile: number = archivos.size;
-    console.log(sizeFile);
     /**
     if (sizeFile > 100000) {
       this.uiService.alertaInformativa('La imagen que intenta guardar tiene mucha resolución.');

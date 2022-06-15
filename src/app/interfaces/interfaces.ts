@@ -60,7 +60,11 @@ export interface Store {
   es24hs?: Boolean;
   descripcion?: string;
   promocion?: string;
-  promocionFoto?: string
+  promocionFoto?: string;
+  instagram?: string;
+  facebook?: string;
+  twitter?: string;
+  email?:string;
   telefono?: number;
   userId?: string;
 }
