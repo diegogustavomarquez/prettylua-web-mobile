@@ -42,3 +42,25 @@ export interface UserSubscription {
   cvc?: string;
   userId?: string;
 }
+
+export interface Store {
+  _id?:string;
+  nombre?: string;
+  direccion?: string;
+  codigoPostal?: string;
+  localidad?: string;
+  provincia?: string;
+  servicios?: [];
+  dias?: [];
+  esDeCorrido?: Boolean;
+  horarioDesde?: string;
+  horarioHasta?: string;
+  horarioTardeDesde?: string;
+  horarioTardeHasta?: string;
+  es24hs?: Boolean;
+  descripcion?: string;
+  promocion?: string;
+  promocionFoto?: string
+  telefono?: number;
+  userId?: string;
+}
