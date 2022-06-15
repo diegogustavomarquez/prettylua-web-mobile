@@ -1,63 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-const STORE_LIST:{name:string;localidad:string;codigo:string;servicios:any}[]=
-[
-  { name: 'Arias', localidad : 'Paso de los libres', codigo : '3230', servicios:['Veterinaria','Peluqueria'] },
-  { name: 'Internacional', localidad : 'CABA', codigo : '1089', servicios:['Petshop'] }
-]
+import { CommonsService } from 'src/app/services/commons.service';
+import { StoreService } from 'src/app/services/store.service';
+import { UiServiceService } from 'src/app/services/ui-service.service';
+import { Store } from '../../../interfaces/interfaces';
+
 @Component({
   selector: 'app-stores',
   templateUrl: './stores.page.html',
   styleUrls: ['./stores.page.scss'],
 })
 export class StoresPage implements OnInit {
+
+  servicios :string[]=[];
   
- 
-  constructor() { }
-  stores = []
-  filter= {
-    nombre:'',
-    localidad:'',
-    codigo:'',
-    servicio:''
+  filter = {
+    nombre: '',
+    localidad: '',
+    codigo: '',
+    servicio: ''
   }
-  busqueda(){
-    this.stores=[]
-   STORE_LIST.forEach(element => {
-    //clausula de guarda
-    let valid:boolean=true
-    if(this.filter.codigo!==""){
-      if(element.codigo!==this.filter.codigo   ){
-        valid=false;
-      }
-    }
-    if(this.filter.localidad!==""){
-      if(element.localidad!==this.filter.localidad   ){
-        valid=false;
-      }
-    }
-    
-    if(this.filter.nombre!==""){
-      if(element.name!==this.filter.nombre  ){
-        valid=false;
-      }
-    }
 
-    if(this.filter.servicio!==""){
-      if(element.servicios.indexOf(this.filter.servicio)==-1 ){
-        valid=false;
-      }
-    }
-    
-    if(valid){
-      this.stores.push(element)
+  stores : Store[] = [];
 
-    }
-   
+  constructor(private storeService: StoreService,
+              private uiServiceService: UiServiceService,
+              private commonsService: CommonsService) { }
 
-   });
-      
-    }
   ngOnInit() {
+    this.servicios = this.commonsService.getRolesByEmpresa();
+  }
+
+  async busqueda() {
+    if (!this.filter.servicio || this.filter.servicio == "") {
+      this.uiServiceService.alertaInformativa("El campo servicio es obligatorio.");
+      return;
+    }
+    await this.storeService.find(this.filter).then(p => this.stores = p);
   }
 
 }
