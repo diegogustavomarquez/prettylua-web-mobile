@@ -14,7 +14,8 @@
 
 <ion-content>
   <ion-item>
-    <ion-select slot="start" placeholder="Servicio" name="month"
+    <ion-label slot="start">Servicio: </ion-label>
+    <ion-select name="servicio"
     [(ngModel)]="filter.servicio">
       <ion-select-option [value]="item" *ngFor="let item of servicios">{{item}}
       </ion-select-option>
