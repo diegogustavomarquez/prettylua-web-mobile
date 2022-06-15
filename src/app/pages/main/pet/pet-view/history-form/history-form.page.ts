@@ -5,6 +5,10 @@ import { UsuarioService } from '../../../../../services/usuario.service';
 import { ActivatedRoute } from '@angular/router';
 import { Mascota } from 'src/app/interfaces/interfaces';
 import { HistoriaClinica } from 'src/app/interfaces/interfaces';
+import { CommonsService } from '../../../../../services/commons.service';
+import { HcService } from 'src/app/services/hc.service';
+import { NgForm } from '@angular/forms';
+import { MascotaService } from '../../../../../services/mascota.service';
 
 @Component({
   selector: 'app-history-form',
@@ -14,34 +18,91 @@ import { HistoriaClinica } from 'src/app/interfaces/interfaces';
 export class HistoryFormPage implements OnInit {
 
 
-  public mascotas: Mascota[] = [];
-  historiaClinica : HistoriaClinica = 
-    {
-     "codigo": "68ce5cb5-8980-452f-adc3-ec5dba374dcb",
-     "petId": "6296b7bf913be20e53d45b5e",
-     "tipos": [],
-     "descripcion": "descripcion",
-     "adjuntos": [],
-     "comentarios": "",
-     "fecha": new Date("2022-06-14T21:32:58.940Z"),
-     "_id": "62a8fe8a0c6cedbe4ff9507f"
- }     
- ;
+  mascotas: Mascota = {};
 
-
+  tipos :string[]=[];
+  isNew: boolean = false;
+ // imagen: any = '/assets/avatars/icon.png';
+  isPhotoPresent: boolean = false;
+  public id: string;
+  historiaClinica : HistoriaClinica = {
+        codigo:'', //Lo agrega BA
+        petId:'',
+        tipos:[],
+    descripcion:'',
+    adjuntos:null,
+    comentarios:'',
+    fecha:null,//lo agrega ell BA
+    _id:'',
+  };
+ 
   constructor(private navCtrl: NavController,
     private uiService: UiServiceService,
     private usuarioService: UsuarioService,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private commonsService: CommonsService,
+    private hc: HcService,
+    private mascotaService: MascotaService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+     this.tipos = this.commonsService.getTipoHistoriaClinica();
+      this.id = this.activatedRoute.snapshot.paramMap.get('id');
+      this.historiaClinica.petId = this.mascotaService.mascota._id;
+      this.historiaClinica = await this.hc.getbyId(this.id);
+    }
+  
+
+  /**
+   * 
+   * @param historiaClinica 
+   * @returns 
+   */
+  async save(historiaClinica: NgForm) {
+    if (historiaClinica.invalid) { return; }
+    const valido = await this.hc.save(this.historiaClinica);
+    if (valido) {
+      this.uiService.presentToast('La historia Clinica se guardo correctamente');
+      this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
+    } else {
+      this.uiService.alertaInformativa('Error al Guardar');
+    }
   }
+  
+  /**
+   * 
+   * @param historiaClinica 
+   */
+  async update(historiaClinica: NgForm) {}
 
+  
   onCancel() {
-    this.navCtrl.navigateRoot('/main/main/pet/pet-view', { animated: true });
+    this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
   }
-  goPetForm() {
-//aca para nose
-    this.navCtrl.navigateRoot('/main/main/pet/pet-form', { animated: true });
+
+
+  async loadImagen(event: any) {
+    let archivos = event.target.files[0];
+    let sizeFile: number = archivos.size;
+    if (sizeFile > 100000) {
+      this.uiService.alertaInformativa('Por favor. Adjunte archivo menos a 100kb.');
+      return;
+    }
+    let reader = new FileReader();
+    reader.readAsDataURL(archivos);
+    reader.onloadend = () => {
+      this.historiaClinica.adjuntos = reader.result as string;
+      this.isPhotoPresent = true;
+    }
   }
+
+  /**
+   * Saca la foto seleccionada
+   * 
+   * @param event 
+   */
+  async kickImagen() {
+   // this.historiaClinica.adjuntos = this.imagen;
+    this.isPhotoPresent = false;
+  }
+
 }

@@ -7,6 +7,7 @@ import { Mascota } from 'src/app/interfaces/interfaces';
 import { CommonsService } from '../../../../services/commons.service';
 import { UiServiceService } from 'src/app/services/ui-service.service';
 import { Usuario, HistoriaClinica } from 'src/app/interfaces/interfaces';
+import { HcService } from '../../../../services/hc.service';
 
 @Component({
   selector: 'app-pet-view',
@@ -14,49 +15,30 @@ import { Usuario, HistoriaClinica } from 'src/app/interfaces/interfaces';
   styleUrls: ['./pet-view.page.scss'],
 })
 export class PetViewPage implements OnInit {
-  historiaClinica : HistoriaClinica[] = [
+  
+  /*historiaClinica : HistoriaClinica[] = [
      {
-      "codigo": "68ce5cb5-8980-452f-adc3-ec5dba374dcb",
-      "petId": "6296b7bf913be20e53d45b5e",
-      "tipos": [],
+      "codigo": "010",
       "descripcion": "descripcion",
-      "adjuntos": [],
-      "comentarios": "",
-      "fecha": new Date("2022-06-14T21:32:58.940Z"),
-      "_id": "62a8fe8a0c6cedbe4ff9507f"
-
+      "fecha": new Date("2022-06-14"),
+ 
   },      {
-    "codigo": "68ce5cb5-8980-452f-adc3-ec5dba374dcb",
-    "petId": "6296b7bf913be20e53d45b5e",
-    "tipos": [],
+    "codigo": "011",
     "descripcion": "descripcion",
-    "adjuntos": [],
-    "comentarios": "",
-    "fecha": new Date("2022-06-14T21:32:58.940Z"),
-    "_id": "62a8fe8a0c6cedbe4ff9507f"
-
+    "fecha": new Date("2022-06-14"),
+ 
 },      {
-  "codigo": "68ce5cb5-8980-452f-adc3-ec5dba374dcb",
-  "petId": "6296b7bf913be20e53d45b5e",
-  "tipos": [],
+  "codigo": "012",
   "descripcion": "descripcion",
-  "adjuntos": [],
-  "comentarios": "",
-  "fecha": new Date("2022-06-14T21:32:58.940Z"),
-  "_id": "62a8fe8a0c6cedbe4ff9507f"
-
+  "fecha": new Date("2022-06-14"),
+ 
 },      {
-  "codigo": "68ce5cb5-8980-452f-adc3-ec5dba374dcb",
-  "petId": "6296b7bf913be20e53d45b5e",
-  "tipos": [],
+  "codigo": "013",
   "descripcion": "descripcion",
-  "adjuntos": [],
-  "comentarios": "",
-  "fecha": new Date("2022-06-14T21:32:58.940Z"),
-  "_id": "62a8fe8a0c6cedbe4ff9507f"
-
+  "fecha": new Date("2022-06-14"),
+  
 }
-  ];
+  ];*/
 
   public id: string;
   listaAnio: number[] = [];
@@ -65,7 +47,7 @@ export class PetViewPage implements OnInit {
   genders: string[] = [];
   titulo: string = '';
   isNew: boolean = false;
-
+  
   mascota: Mascota = {
     _id: '',
     name: '',
@@ -83,13 +65,15 @@ export class PetViewPage implements OnInit {
 
   usuario: Usuario = {};
   public mascotas: Mascota[] = [];
+  public historiaClinica: HistoriaClinica [] =[];
 
   constructor(private navCtrl: NavController,
     private commonsService: CommonsService,
     private mascotaService: MascotaService,
     private uiService: UiServiceService,
     private usuarioService: UsuarioService,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private hc: HcService) { }
 
   async ngOnInit() {
     this.listaAnio = this.commonsService.getYears();
@@ -101,17 +85,49 @@ export class PetViewPage implements OnInit {
     if (this.id) {
       this.isNew = false;
       this.mascota = await this.mascotaService.getbyId(this.id);
-
-
     }
+     //this.historiaClinica = await this.hc.getbyId(this.id);
   }
 
   onCancel() {
     this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
   }
   goPetForm() {
-
-    this.navCtrl.navigateRoot('/main/main/pet/pet-view/history-form', { animated: true });
+    this.navCtrl.navigateRoot('/main/main/pet/pet-view/history-form/history-form', { animated: true });
   }
 
+  
+ 
+  /*async presentAlertConfirm(id: string) {
+    //nose de donde sale
+    const alert = await this.navCtrl.create({
+      header: '',
+      message: "¿Esta seguro que desea eliminar?",
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          id: 'cancel-button',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Si',
+          id: 'confirm-button',
+          handler: () => {
+            const actualizado = this.hc.delete(id);
+            if (actualizado) {
+              this.uiService.presentToast('Se elimino la historia Clinica');
+              this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
+            } else {
+              this.uiService.presentToast('No se pudo eliminar');
+            }
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }*/
+  async presentAlertConfirm(id: string) {
+  }
 }

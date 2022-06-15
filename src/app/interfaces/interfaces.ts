@@ -49,7 +49,7 @@ export interface HistoriaClinica {
   petId?: string; //es obligatorio
   tipos?: []; //vacuna, antiparasitario, enfermedad, control, estudios medicos, es obligatorio al menos uno
   descripcion?: string; //es obligatorio
-  adjuntos?: [];
+  adjuntos?: string;
   comentarios?: string;//500
   fecha?: Date;//fecha de creacion; // lo agrega el backend
 }

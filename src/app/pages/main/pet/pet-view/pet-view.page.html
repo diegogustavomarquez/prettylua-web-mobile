@@ -27,62 +27,60 @@
    <ion-card-header class="ion-text-center">
     <ion-card-subtitle>INFORMACION BASICA </ion-card-subtitle>
    </ion-card-header>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>Tipo : {{mascota.kind}} </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>Raza : {{mascota.breed}} </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>Fecha Nacimiento : {{mascota.dateOfBirth}} </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label> Nota: {{mascota.notes}}</ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>Propietario : {{usuario.nombre}} </ion-label>
         </ion-item>
 
     </form>
   </ion-grid>
 
-
-
  <ion-col>
 
-  <div class="ion-text-center"><b>Mi Historia Clinica</b></div>
+  <div class="ion-text-center"><b>Listado de Historia Clinica</b></div>
 
 </ion-col>
 <ion-card>
   <ion-list>
-    <ion-item *ngFor="let mascota of mascotas">
+    <ion-item  *ngFor="let hc of historiaClinica" >
       <ion-label>
-        <h2><b class="texto">{{mascota.name}}</b></h2>
-        <p>{{mascota.kind}}</p>
-        <p>{{mascota.breed}}</p>
-        <p>{{mascota.dateOfBirth}}</p>
+        <p>{{hc.fecha}}</p>
+        <p>{{hc.codigo}}</p>
+        <p>{{hc.tipos}}</p>
+        <p>{{hc.descripcion}}</p>
       </ion-label>
-      <ion-button icon-only shape="round" color="primary" [routerLink]="['pet-view', mascota._id]">
+      <ion-button icon-only shape="round" color="primary" [routerLink]="['history-form', mascota._id]">
         <ion-icon name="eye-outline"></ion-icon>
       </ion-button>
-      <ion-button icon-only shape="round" color="warning" [routerLink]="['pet-form', mascota._id]">
-        <ion-icon name="create-outline"></ion-icon>
+      <ion-button icon-only shape="round" color="danger" (click)="presentAlertConfirm(mascota._id)">
+        <ion-icon name="trash-outline"></ion-icon>
       </ion-button>
      </ion-item>
   </ion-list>
 </ion-card>
 
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button (click)="goPetForm()">
+  <ion-button class="classFab" [routerLink]="['history-form', mascota._id]" >
     <ion-icon name="add-outline"></ion-icon>
-  </ion-fab-button>
+  </ion-button>
 </ion-fab>
+<!-- 
   <div style="text-align: center;">
-    <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round" [routerLink]="['history-form', mascota._id]">Agregar historia clinica
+    <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round" 
+    [routerLink]="['history-form', mascota._id]">Agregar historia clinica
     </ion-button>
   </div>
-  lista de elementos:[opcion de ver, eliminar]
-codigo
-descripcion
-fecha
+
+-->
 </ion-content>
