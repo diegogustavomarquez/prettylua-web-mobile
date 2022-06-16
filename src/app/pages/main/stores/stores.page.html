@@ -1,23 +1,54 @@
-<ion-header>
+<ion-header [translucent]="true" no-border>
   <ion-toolbar>
-    <ion-title>stores</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Buscador de servicios</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/main/main/home']" color="primary" shape="round">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  nombre 
-  localidad 
-  codigoPostal
-  servicio obligatorio(veterinaria, paseadores, petshop, adiestradores, ... etc) (combo unica eleccion)
-
-
-  resultados =>
-  nombre: string;
-  localidad: string;
-  provincia: string;
-  servicios: [];
-  dias: [];
-  es24hs: boolean;
-  ojito (ver)
-
+  <ion-item>
+    <ion-label slot="start">Servicio: </ion-label>
+    <ion-select name="servicio"
+    [(ngModel)]="filter.servicio">
+      <ion-select-option [value]="item" *ngFor="let item of servicios">{{item}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Nombre :  </ion-label>
+    <ion-input name="name" type="text" [(ngModel)]="filter.nombre"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Localidad :  </ion-label>
+    <ion-input name="localidad" type="text" [(ngModel)]="filter.localidad"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Codigo Postal :  </ion-label>
+    <ion-input name="codigo-postal" type="number" [(ngModel)]="filter.codigo"></ion-input>
+  </ion-item>
+  <ion-button class="btn-login" type="submit" (click)="busqueda()" expand="block" fill="outline"  shape="round">
+    Buscar
+  </ion-button>
+  <ion-card class="ios hydrated">
+    <ion-list>
+        <ion-item *ngFor="let store of stores">
+          <ion-label> 
+            <p> Nombre: {{store.nombre}}</p> 
+            <p> Localidad: {{store.localidad}}</p>
+            <p> Servicios: {{store.servicios}}</p> 
+            <p>Codigo Postal: {{store.codigoPostal}}</p> 
+            <ion-button icon-only shape="round" color="primary" slot="end" [routerLink]="['stores-view', store._id]">
+              <ion-icon name="eye-outline"></ion-icon>
+            </ion-button>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
 </ion-content>
