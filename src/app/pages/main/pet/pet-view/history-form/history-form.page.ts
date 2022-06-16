@@ -26,9 +26,9 @@ export class HistoryFormPage implements OnInit {
   isPhotoPresent: boolean = false;
   public id: string;
   historiaClinica : HistoriaClinica = {
-        codigo:'', //Lo agrega BA
-        petId:'',
-        tipos:[],
+    codigo:'', //Lo agrega BA
+    petId:'',
+    tipos:[],
     descripcion:'',
     adjuntos:null,
     comentarios:'',
@@ -41,14 +41,14 @@ export class HistoryFormPage implements OnInit {
     private usuarioService: UsuarioService,
     private activatedRoute: ActivatedRoute,
     private commonsService: CommonsService,
-    private hc: HcService,
+    private hcService: HcService,
     private mascotaService: MascotaService) { }
 
   async ngOnInit() {
      this.tipos = this.commonsService.getTipoHistoriaClinica();
       this.id = this.activatedRoute.snapshot.paramMap.get('id');
       this.historiaClinica.petId = this.mascotaService.mascota._id;
-      this.historiaClinica = await this.hc.getbyId(this.id);
+      this.historiaClinica = await this.hcService.getbyId(this.id);
     }
   
 
@@ -59,10 +59,10 @@ export class HistoryFormPage implements OnInit {
    */
   async save(historiaClinica: NgForm) {
     if (historiaClinica.invalid) { return; }
-    const valido = await this.hc.save(this.historiaClinica);
+    const valido = await this.hcService.save(this.historiaClinica);
     if (valido) {
       this.uiService.presentToast('La historia Clinica se guardo correctamente');
-      this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
+      this.navCtrl.navigateRoot('/main/main/pet-view', { animated: true });
     } else {
       this.uiService.alertaInformativa('Error al Guardar');
     }

@@ -32,23 +32,48 @@ export class HcService {
     const headers = new HttpHeaders({
       'x-token': this.usuarioService.token
     });
-    let hc: HistoriaClinica;
+    let historiaClinica: HistoriaClinica;
     return new Promise(resolve => {
-      this.http.get(`${URL}/clinic/byId?petId=${id}`, { headers })
+      this.http.get(`${URL}/clinic/byId?id=${id}`, { headers })
         .subscribe(async resp => {
           if (resp['ok']) {
             console.log(resp);
-            hc = resp['data'] as HistoriaClinica;
-            resolve(hc);
+            historiaClinica = resp['data'] as HistoriaClinica;
+            resolve(historiaClinica);
           } else {
             this.uiService.alertaInformativa('No se encontro la Historia Clinica');
-            resolve(hc);
-            this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
+            resolve(historiaClinica);
+            this.navCtrl.navigateRoot('/main/main/pet-view', { animated: true });
           }
         });
     });
   }
   
+/**
+   * Busca las atenciones en base a un id de mascota
+   * 
+   * @returns 
+   */
+ getbyPetId(id: string): Promise<HistoriaClinica[]> {
+  const headers = new HttpHeaders({
+    'x-token': this.usuarioService.token
+  });
+  let hc: HistoriaClinica[];
+  return new Promise(resolve => {
+    this.http.get(`${URL}/clinic/byPetId?petId=${id}`, { headers })
+      .subscribe(async resp => {
+        if (resp['ok']) {
+          console.log(resp);
+          hc = resp['data'] as HistoriaClinica[];
+          resolve(hc);
+        } else {
+          this.uiService.alertaInformativa('No se encontro la Historia Clinica');
+          resolve(hc);
+          this.navCtrl.navigateRoot('/main/main/pet-view', { animated: true });
+        }
+      });
+  });
+}
 
   /**
    * 
