@@ -59,10 +59,11 @@ export class HistoryFormPage implements OnInit {
    */
   async save(historiaClinica: NgForm) {
     if (historiaClinica.invalid) { return; }
+    console.log(this.historiaClinica);
     const valido = await this.hcService.save(this.historiaClinica);
     if (valido) {
       this.uiService.presentToast('La historia Clinica se guardo correctamente');
-      this.navCtrl.navigateRoot('/main/main/pet-view', { animated: true });
+      this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
     } else {
       this.uiService.alertaInformativa('Error al Guardar');
     }
@@ -76,7 +77,7 @@ export class HistoryFormPage implements OnInit {
 
   
   onCancel() {
-    this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
+    this.navCtrl.navigateRoot('/main/main/pet/pet-view', { animated: true });
   }
 
 

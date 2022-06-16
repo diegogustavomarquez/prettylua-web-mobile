@@ -90,7 +90,7 @@ export class HcService {
           if (resp['ok']) {
             console.log(resp);
             this.nuevaAtencion.emit(resp['data'] as HistoriaClinica);
-            this.getbyId(hc._id);
+            //this.getbyId(hc._id);
             resolve(true);
           } else {
             resolve(false);
