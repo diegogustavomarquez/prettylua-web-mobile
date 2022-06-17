@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable , EventEmitter} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Usuario } from '../interfaces/interfaces';
@@ -17,6 +17,8 @@ export class UsuarioService {
   token: string = null;
   usuario: Usuario = {};
   private updateUserObserver = new Subject<any>();
+  actualizarUser= new EventEmitter<Usuario>();
+ 
 
   constructor(private http: HttpClient,
               private storage: Storage,
@@ -149,11 +151,13 @@ export class UsuarioService {
     const headers = new HttpHeaders({
       'x-token': this.token
     });
+    console.log(usuario);
     return new Promise(resolve => {
       this.http.put(`${URL}/user/update`, usuario, { headers })
         .subscribe(resp => {
           if (resp['ok']) {
             this.guardarToken(resp['token']);
+            this.actualizarUser.emit(resp['data'] as Usuario);
             this.updateUserObserver.next(usuario);
             resolve(true);
           } else {
