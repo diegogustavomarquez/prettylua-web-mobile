@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { UiServiceService } from '../../../../../services/ui-service.service';
 import { UsuarioService } from '../../../../../services/usuario.service';
 import { ActivatedRoute } from '@angular/router';
@@ -38,6 +38,7 @@ export class HistoryFormPage implements OnInit {
  
   constructor(private navCtrl: NavController,
     private uiService: UiServiceService,
+    public alertController: AlertController,
     private usuarioService: UsuarioService,
     private activatedRoute: ActivatedRoute,
     private commonsService: CommonsService,
@@ -59,6 +60,7 @@ export class HistoryFormPage implements OnInit {
    */
   async save(historiaClinica: NgForm) {
     if (historiaClinica.invalid) { return; }
+   // this.historiaClinica.petId = this.mascotaService.mascota._id;
     console.log(this.historiaClinica);
     const valido = await this.hcService.save(this.historiaClinica);
     if (valido) {
@@ -77,7 +79,7 @@ export class HistoryFormPage implements OnInit {
 
   
   onCancel() {
-    this.navCtrl.navigateRoot('/main/main/pet/pet-view', { animated: true });
+    this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
   }
 
 
@@ -106,4 +108,33 @@ export class HistoryFormPage implements OnInit {
     this.isPhotoPresent = false;
   }
 
+  async presentAlertConfirm(id: string) {
+    const alert = await this.alertController.create({
+      header: '',
+      message: "¿Esta seguro que desea eliminar?",
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          id: 'cancel-button',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Si',
+          id: 'confirm-button',
+          handler: () => {
+            const actualizado = this.hcService.delete(id);
+            if (actualizado) {
+              this.uiService.presentToast('Se elimino la historia Clinica');
+              this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
+            } else {
+              this.uiService.presentToast('No se pudo eliminar');
+            }
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 }
