@@ -43,6 +43,7 @@ export interface UserSubscription {
   userId?: string;
 }
 
+
 export interface HistoriaClinica {
   _id?:  string;
   codigo?: string; // lo agrega el backend
@@ -52,4 +53,30 @@ export interface HistoriaClinica {
   adjuntos?: string;
   comentarios?: string;//500
   fecha?: Date;//fecha de creacion; // lo agrega el backend
+
+export interface Store {
+  _id?:string;
+  nombre?: string;
+  direccion?: string;
+  codigoPostal?: string;
+  localidad?: string;
+  provincia?: string;
+  servicios?: string[];
+  dias?: [];
+  esDeCorrido?: Boolean;
+  horarioDesde?: string;
+  horarioHasta?: string;
+  horarioTardeDesde?: string;
+  horarioTardeHasta?: string;
+  es24hs?: Boolean;
+  descripcion?: string;
+  promocion?: string;
+  promocionFoto?: string;
+  instagram?: string;
+  facebook?: string;
+  twitter?: string;
+  email?:string;
+  telefono?: number;
+  userId?: string;
+
 }

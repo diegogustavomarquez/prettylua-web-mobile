@@ -24,7 +24,7 @@ export class CommonsService {
   }
 
   getGender(): string[] {
-    return  ['Macho', 'Hembra', 'Desconocido'];
+    return ['Macho', 'Hembra', 'Desconocido'];
   }
 
   getAprox(): string[] {
@@ -33,5 +33,43 @@ export class CommonsService {
 
   getTipoHistoriaClinica(): string[] {
     return ['Vacuna', 'Antiparasitario', 'Control', 'Enfermedad', 'Estudios Medicos'];
+  }
+
+  getRolesByEmpresa(): string[] {
+    return ['Veterinario', 'Clinico', 'Peluqueria', 'Adiestrador', 'Paseador', 'PetShop', 'Refugio de adopcion'];
+  }
+
+  getProvincias(): string[] {
+    return ['Buenos Aires',
+      'Ciudad Autónoma de Buenos Aires',
+      'Catamarca',
+      'Chaco',
+      'Chubut',
+      'Córdoba',
+      'Corrientes',
+      'Entre Ríos',
+      'Formosa',
+      'Jujuy',
+      'La Pampa',
+      'La Rioja',
+      'Mendoza',
+      'Misiones',
+      'Neuquén',
+      'Río Negro',
+      'Salta',
+      'San Juan',
+      'San Luis',
+      'Santa Cruz',
+      'Santa Fe',
+      'Santiago del Estero',
+      'Tierra del Fuego',
+      'Tucumán'];
+  }
+
+  getDias(): string[] {
+    return ['Lunes a viernes',
+      'Sabado',
+      'Domingo',
+      'Feriados'];
   }
 }

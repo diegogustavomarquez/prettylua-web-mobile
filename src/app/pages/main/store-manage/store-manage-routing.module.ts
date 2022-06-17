@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: StoreManagePage
+  },
+  {
+    path: 'store-form',
+    loadChildren: () => import('./store-form/store-form.module').then( m => m.StoreFormPageModule)
   }
 ];
 
