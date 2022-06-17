@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, IonDatetime, NavController } from '@ionic/angular';
 import { MascotaService } from 'src/app/services/mascota.service';
 import { UsuarioService } from '../../../../services/usuario.service';
 import { Mascota } from 'src/app/interfaces/interfaces';
@@ -15,8 +15,30 @@ import { HcService } from '../../../../services/hc.service';
   styleUrls: ['./pet-view.page.scss'],
 })
 export class PetViewPage implements OnInit {
-  public nuevas: Mascota[] = [];
-  public eliminadas: Mascota[] = [];
+  
+  /*historiaClinica : HistoriaClinica[] = [
+     {
+      "codigo": "010",
+      "descripcion": "descripcion",
+      "fecha": new Date("2022-06-14"),
+ 
+  },      {
+    "codigo": "011",
+    "descripcion": "descripcion",
+    "fecha": new Date("2022-06-14"),
+ 
+},      {
+  "codigo": "012",
+  "descripcion": "descripcion",
+  "fecha": new Date("2022-06-14"),
+ 
+},      {
+  "codigo": "013",
+  "descripcion": "descripcion",
+  "fecha": new Date("2022-06-14"),
+  
+}
+  ];*/
 
   public id: string;
   listaAnio: number[] = [];
@@ -46,13 +68,12 @@ export class PetViewPage implements OnInit {
   public historiaClinica: HistoriaClinica [] =[];
 
   constructor(private navCtrl: NavController,
-    private alertController: AlertController,
     private commonsService: CommonsService,
     private mascotaService: MascotaService,
     private uiService: UiServiceService,
     private usuarioService: UsuarioService,
     private activatedRoute: ActivatedRoute,
-    private hcService: HcService) { }
+    private hc: HcService) { }
 
   async ngOnInit() {
     this.listaAnio = this.commonsService.getYears();
@@ -65,25 +86,8 @@ export class PetViewPage implements OnInit {
       this.isNew = false;
       this.mascota = await this.mascotaService.getbyId(this.id);
     }
-     this.historiaClinica = await this.hcService.getbyPetId(this.id);
-
-       await this.hcService.getbyPetId(this.id).then(at => this.historiaClinica = at);
-       //evento que se queda escuchando cuando se agrega una nueva mascota
-       this.hcService.nuevaAtencion
-         .subscribe(atencion => {
-           this.historiaClinica.unshift(atencion);
-         });
-   
-   
-         await this.hcService.getbyPetId(this.id).then(p => this.historiaClinica = p);
-         this.hcService.borrarAtencion
-         .subscribe(hc => {
-           this.historiaClinica.splice(this.historiaClinica
-             .findIndex(index => index._id === hc._id), 1);
-         });
-   
-       }
-  
+     //this.historiaClinica = await this.hc.getbyId(this.id);
+  }
 
   onCancel() {
     this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
@@ -91,8 +95,12 @@ export class PetViewPage implements OnInit {
   goPetForm() {
     this.navCtrl.navigateRoot('/main/main/pet/pet-view/history-form/history-form', { animated: true });
   }
-  async presentAlertConfirm(id: string) {
-    const alert = await this.alertController.create({
+
+  
+ 
+  /*async presentAlertConfirm(id: string) {
+    //nose de donde sale
+    const alert = await this.navCtrl.create({
       header: '',
       message: "¿Esta seguro que desea eliminar?",
       buttons: [
@@ -107,7 +115,7 @@ export class PetViewPage implements OnInit {
           text: 'Si',
           id: 'confirm-button',
           handler: () => {
-            const actualizado = this.hcService.delete(id);
+            const actualizado = this.hc.delete(id);
             if (actualizado) {
               this.uiService.presentToast('Se elimino la historia Clinica');
               this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
@@ -119,6 +127,7 @@ export class PetViewPage implements OnInit {
       ]
     });
     await alert.present();
+  }*/
+  async presentAlertConfirm(id: string) {
   }
-
 }

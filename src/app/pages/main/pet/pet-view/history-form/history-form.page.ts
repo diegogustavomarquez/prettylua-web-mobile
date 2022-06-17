@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, AlertController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { UiServiceService } from '../../../../../services/ui-service.service';
 import { UsuarioService } from '../../../../../services/usuario.service';
 import { ActivatedRoute } from '@angular/router';
@@ -26,9 +26,9 @@ export class HistoryFormPage implements OnInit {
   isPhotoPresent: boolean = false;
   public id: string;
   historiaClinica : HistoriaClinica = {
-    codigo:'', //Lo agrega BA
-    petId:'',
-    tipos:[],
+        codigo:'', //Lo agrega BA
+        petId:'',
+        tipos:[],
     descripcion:'',
     adjuntos:null,
     comentarios:'',
@@ -38,19 +38,17 @@ export class HistoryFormPage implements OnInit {
  
   constructor(private navCtrl: NavController,
     private uiService: UiServiceService,
-    public alertController: AlertController,
     private usuarioService: UsuarioService,
     private activatedRoute: ActivatedRoute,
     private commonsService: CommonsService,
-    private hcService: HcService,
+    private hc: HcService,
     private mascotaService: MascotaService) { }
 
-   ngOnInit() {
+  async ngOnInit() {
      this.tipos = this.commonsService.getTipoHistoriaClinica();
       this.id = this.activatedRoute.snapshot.paramMap.get('id');
-      this.historiaClinica.petId = this.id;
-      //this.mascotas = await this.mascotaService.getbyId(this.id);
-      this.mascotaService.getbyId(this.id).then(p => this.mascotas = p);
+      this.historiaClinica.petId = this.mascotaService.mascota._id;
+      this.historiaClinica = await this.hc.getbyId(this.id);
     }
   
 
@@ -61,9 +59,7 @@ export class HistoryFormPage implements OnInit {
    */
   async save(historiaClinica: NgForm) {
     if (historiaClinica.invalid) { return; }
-   // this.historiaClinica.petId = this.mascotaService.mascota._id;
-    console.log(this.historiaClinica);
-    const valido = await this.hcService.save(this.historiaClinica);
+    const valido = await this.hc.save(this.historiaClinica);
     if (valido) {
       this.uiService.presentToast('La historia Clinica se guardo correctamente');
       this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
@@ -108,6 +104,5 @@ export class HistoryFormPage implements OnInit {
    // this.historiaClinica.adjuntos = this.imagen;
     this.isPhotoPresent = false;
   }
-
 
 }

@@ -60,10 +60,10 @@
         <p>{{hc.tipos}}</p>
         <p>{{hc.descripcion}}</p>
       </ion-label>
-      <ion-button icon-only shape="round" color="primary" [routerLink]="['history-view', hc._id]">
+      <ion-button icon-only shape="round" color="primary" [routerLink]="['history-form', mascota._id]">
         <ion-icon name="eye-outline"></ion-icon>
       </ion-button>
-      <ion-button icon-only shape="round" color="danger" (click)="presentAlertConfirm(hc._id)">
+      <ion-button icon-only shape="round" color="danger" (click)="presentAlertConfirm(mascota._id)">
         <ion-icon name="trash-outline"></ion-icon>
       </ion-button>
      </ion-item>
@@ -75,4 +75,12 @@
     <ion-icon name="add-outline"></ion-icon>
   </ion-button>
 </ion-fab>
+<!-- 
+  <div style="text-align: center;">
+    <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round" 
+    [routerLink]="['history-form', mascota._id]">Agregar historia clinica
+    </ion-button>
+  </div>
+
+-->
 </ion-content>

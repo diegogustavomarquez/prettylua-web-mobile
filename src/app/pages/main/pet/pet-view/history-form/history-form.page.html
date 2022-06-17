@@ -28,7 +28,8 @@
          
             <ion-item lines="none">
               <ion-label>Mascota : </ion-label>
-              <ion-label>{{mascotas.name}} </ion-label>
+              <ion-input  name="name" type="text" [(ngModel)]="mascotas.name" required>
+              </ion-input>
             </ion-item>
 
             <ion-item lines="none">
