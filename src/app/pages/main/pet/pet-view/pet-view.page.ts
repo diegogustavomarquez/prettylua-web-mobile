@@ -46,6 +46,7 @@ export class PetViewPage implements OnInit {
   public historiaClinica: HistoriaClinica [] =[];
 
   constructor(private navCtrl: NavController,
+    private alertController: AlertController,
     private commonsService: CommonsService,
     private mascotaService: MascotaService,
     private uiService: UiServiceService,
@@ -89,6 +90,35 @@ export class PetViewPage implements OnInit {
   }
   goPetForm() {
     this.navCtrl.navigateRoot('/main/main/pet/pet-view/history-form/history-form', { animated: true });
+  }
+  async presentAlertConfirm(id: string) {
+    const alert = await this.alertController.create({
+      header: '',
+      message: "¿Esta seguro que desea eliminar?",
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          id: 'cancel-button',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Si',
+          id: 'confirm-button',
+          handler: () => {
+            const actualizado = this.hcService.delete(id);
+            if (actualizado) {
+              this.uiService.presentToast('Se elimino la historia Clinica');
+              this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
+            } else {
+              this.uiService.presentToast('No se pudo eliminar');
+            }
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
 }

@@ -1,9 +1,56 @@
-<ion-header>
+<ion-header [translucent]="true" mode="ios" class="ion-no-border">
   <ion-toolbar>
-    <ion-title>history-view</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancel()" color="primary" shape="round">
+        <ion-icon name="chevron-back-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Historia Clinica</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+
+  <div id="container">
+    <ion-col>
+      <div id="cont1">
+        <hr style="color :black; border-width:1px;" />
+      </div>
+      <div class="ion-text-center"><b>HISTORIA CLINICA</b></div>
+      <div id="cont1">
+        <hr style="color :black; border-width:1px;" />
+      </div>
+    </ion-col>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>Mascota: </ion-label>
+            <ion-label>{{mascotas.nombre}} </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Tipo: </ion-label>
+            <ion-label>{{historiaClinica.tipos}} </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Descripcion: </ion-label>
+            <ion-label>{{historiaClinica.descripcion}} </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Comentarios: </ion-label>
+            <ion-label>{{historiaClinica.comentarios}} </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Adjuntos: </ion-label>
+            <ion-label>{{historiaClinica.adjuntos}} </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+  </div>
 
 </ion-content>

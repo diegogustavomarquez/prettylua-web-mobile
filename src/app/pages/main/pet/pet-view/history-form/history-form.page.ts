@@ -45,11 +45,12 @@ export class HistoryFormPage implements OnInit {
     private hcService: HcService,
     private mascotaService: MascotaService) { }
 
-  async ngOnInit() {
+   ngOnInit() {
      this.tipos = this.commonsService.getTipoHistoriaClinica();
       this.id = this.activatedRoute.snapshot.paramMap.get('id');
-      this.historiaClinica.petId = this.mascotaService.mascota._id;
-      this.historiaClinica = await this.hcService.getbyId(this.id);
+      this.historiaClinica.petId = this.id;
+      //this.mascotas = await this.mascotaService.getbyId(this.id);
+      this.mascotaService.getbyId(this.id).then(p => this.mascotas = p);
     }
   
 
@@ -108,33 +109,5 @@ export class HistoryFormPage implements OnInit {
     this.isPhotoPresent = false;
   }
 
-  async presentAlertConfirm(id: string) {
-    const alert = await this.alertController.create({
-      header: '',
-      message: "¿Esta seguro que desea eliminar?",
-      buttons: [
-        {
-          text: 'No',
-          role: 'cancel',
-          id: 'cancel-button',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Si',
-          id: 'confirm-button',
-          handler: () => {
-            const actualizado = this.hcService.delete(id);
-            if (actualizado) {
-              this.uiService.presentToast('Se elimino la historia Clinica');
-              this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
-            } else {
-              this.uiService.presentToast('No se pudo eliminar');
-            }
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
+
 }
