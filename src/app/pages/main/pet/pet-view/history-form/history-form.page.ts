@@ -62,7 +62,7 @@ export class HistoryFormPage implements OnInit {
     const valido = await this.hc.save(this.historiaClinica);
     if (valido) {
       this.uiService.presentToast('La historia Clinica se guardo correctamente');
-      this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
+      this.navCtrl.navigateRoot(`/main/main/pet/pet-view/${this.id}`, { animated: true });
     } else {
       this.uiService.alertaInformativa('Error al Guardar');
     }

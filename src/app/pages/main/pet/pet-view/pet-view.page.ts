@@ -87,6 +87,7 @@ export class PetViewPage implements OnInit {
       this.mascota = await this.mascotaService.getbyId(this.id);
     }
     this.historiaClinica = await this.hc.getbyPetId(this.id);
+    //TODO agrega evento => nuevaAtencion
   }
 
   onCancel() {

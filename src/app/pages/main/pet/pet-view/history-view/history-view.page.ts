@@ -45,7 +45,7 @@ export class HistoryViewPage implements OnInit {
     }
   
   onCancel() {
-    this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
+    this.navCtrl.navigateRoot(`/main/main/pet/pet-view/${this.mascotas._id}`, { animated: true });
   }
 
 }
