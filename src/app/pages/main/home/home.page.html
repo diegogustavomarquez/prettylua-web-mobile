@@ -11,7 +11,10 @@
 <ion-content [fullscreen]="true">
   <ion-slides id="slide-alto" [options]="slideOpts">
    <ion-slide *ngFor="let slide of slides">
-      <img [src]="slide.img" class="slide-image">
+    <div>
+      <a [href]="slide.href"> <img [src]="slide.img" class="slide-image" >
+      </a>
+    </div>
     </ion-slide>
 
   </ion-slides>

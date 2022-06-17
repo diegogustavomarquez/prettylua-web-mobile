@@ -28,13 +28,13 @@
       <ion-col>
         <ion-list>
           <ion-item>
-            <ion-label>Servicios: </ion-label>
-            <ion-select placeholder="Pueden ser mas de uno" name="servicios" [(ngModel)]="store.servicios"
+            <ion-select placeholder="Servicios" name="servicios" [(ngModel)]="store.servicios"
               multiple="true" required>
               <ion-select-option [value]="servicio" *ngFor="let servicio of servicios">{{servicio}}
               </ion-select-option>
             </ion-select>
           </ion-item>
+
           <ion-item>
             <ion-label>Nombre comercial: </ion-label>
             <ion-input name="nombre" type="text" [(ngModel)]="store.nombre" size="50" max="50" maxlength="50" required>
@@ -135,9 +135,9 @@
       <ion-col>
         <ion-list>
           <ion-item>
-            <ion-label>Es horario de corrido</ion-label>
+            <p class="list-check-c">Es horario de corrido:</p>
             <ion-checkbox name="esDeCorrido" [(ngModel)]="store.esDeCorrido"></ion-checkbox>
-            <ion-label>Atención 24hs</ion-label>
+            <p class="list-check">Atención 24hs:</p>
             <ion-checkbox name="es24hs" [(ngModel)]="store.es24hs"></ion-checkbox>
           </ion-item>
           <ion-item>
