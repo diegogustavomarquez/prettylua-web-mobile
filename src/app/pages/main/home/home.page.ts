@@ -15,31 +15,31 @@ export class HomePage implements OnInit {
       img: '/assets/slides/promo1.png',
       titulo: '',
       desc: '',
-      href:'http://localhost:8100/main/main/stores/stores-view/62ab796b6e6916c19c0b923a'
+      href:'http://localhost:8100/main/main/stores/stores-view/62a822540f5c22b99ba95444'
     },
     {
       img: '/assets/slides/promo2.png',
       titulo: '',
       desc: '',
-      href:''
+      href:'http://localhost:8100/main/main/stores/stores-view/62a822540f5c22b99ba95444'
     },
     {
       img: '/assets/slides/promo3.png',
       titulo: '',
       desc: '',
-      href:''
+      href:'http://localhost:8100/main/main/stores/stores-view/62a822540f5c22b99ba95444'
     },
     {
       img: '/assets/slides/promo4.png',
       titulo: '',
       desc: '',
-      href:''
+      href:'http://localhost:8100/main/main/stores/stores-view/62a822540f5c22b99ba95444'
     },
     {
       img: '/assets/slides/promo5.png',
       titulo: '',
       desc: '',
-      href:''
+      href:'http://localhost:8100/main/main/stores/stores-view/62a822540f5c22b99ba95444'
     }
   ];
 
