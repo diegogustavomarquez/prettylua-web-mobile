@@ -47,8 +47,8 @@ export class HistoryFormPage implements OnInit {
   async ngOnInit() {
      this.tipos = this.commonsService.getTipoHistoriaClinica();
       this.id = this.activatedRoute.snapshot.paramMap.get('id');
-      this.historiaClinica.petId = this.mascotaService.mascota._id;
-      this.historiaClinica = await this.hc.getbyId(this.id);
+      this.historiaClinica.petId = this.id;
+      this.mascotas = await this.mascotaService.getbyId(this.id);
     }
   
 

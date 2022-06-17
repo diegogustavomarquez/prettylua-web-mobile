@@ -86,7 +86,7 @@ export class PetViewPage implements OnInit {
       this.isNew = false;
       this.mascota = await this.mascotaService.getbyId(this.id);
     }
-     //this.historiaClinica = await this.hc.getbyId(this.id);
+    this.historiaClinica = await this.hc.getbyPetId(this.id);
   }
 
   onCancel() {
