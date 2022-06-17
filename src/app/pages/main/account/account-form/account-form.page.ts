@@ -23,7 +23,7 @@ export class AccountFormPage implements OnInit {
                private navCtrl: NavController,
                public alertCtrl: AlertController) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.usuario = this.usuarioService.getUsuario();
     if(this.usuario.avatar){
       this.isPhotoPresent = true;
@@ -41,7 +41,7 @@ export class AccountFormPage implements OnInit {
     } else {
       this.usuario.avatar = '';
     }
-    const actualizado = await this.usuarioService.actualizarUsuario( this.usuario );
+    const actualizado = await this.usuarioService.actualizarUsuario(this.usuario);
     if ( actualizado ) {
       // toast con el mensaje de actualizado
       this.uiService.presentToast( 'Registro actualizado' );

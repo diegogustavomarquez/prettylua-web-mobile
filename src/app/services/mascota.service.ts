@@ -18,6 +18,8 @@ export class MascotaService {
   nuevaMascota = new EventEmitter<Mascota>();
   actualizarMascota = new EventEmitter<Mascota>();
   borrarMascota = new EventEmitter<Mascota>();
+  mascota:Mascota={};
+
 
   constructor(private http: HttpClient,
     private navCtrl: NavController,

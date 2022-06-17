@@ -7,34 +7,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  slides: { img: string, titulo: string, desc: string }[] = [
+  slides: { img: string, titulo: string, desc: string,href:string }[] = [
     
     
    
     {
       img: '/assets/slides/promo1.png',
       titulo: '',
-      desc: ''
+      desc: '',
+      href:'http://localhost:8100/main/main/stores/stores-view/62a822540f5c22b99ba95444'
     },
     {
       img: '/assets/slides/promo2.png',
       titulo: '',
-      desc: ''
+      desc: '',
+      href:'http://localhost:8100/main/main/stores/stores-view/62a822540f5c22b99ba95444'
     },
     {
       img: '/assets/slides/promo3.png',
       titulo: '',
-      desc: ''
+      desc: '',
+      href:'http://localhost:8100/main/main/stores/stores-view/62a822540f5c22b99ba95444'
     },
     {
       img: '/assets/slides/promo4.png',
       titulo: '',
-      desc: ''
+      desc: '',
+      href:'http://localhost:8100/main/main/stores/stores-view/62a822540f5c22b99ba95444'
     },
     {
       img: '/assets/slides/promo5.png',
       titulo: '',
-      desc: ''
+      desc: '',
+      href:'http://localhost:8100/main/main/stores/stores-view/62a822540f5c22b99ba95444'
     }
   ];
 
