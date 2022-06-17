@@ -54,6 +54,8 @@ export interface HistoriaClinica {
   comentarios?: string;//500
   fecha?: Date;//fecha de creacion; // lo agrega el backend
 
+}
+
 export interface Store {
   _id?:string;
   nombre?: string;
