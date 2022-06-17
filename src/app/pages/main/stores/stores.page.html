@@ -14,8 +14,8 @@
 
 <ion-content>
   <ion-item>
-    <ion-label slot="start">Servicio: </ion-label>
-    <ion-select name="servicio"
+   
+    <ion-select placeholder="Servicio" name="servicio"
     [(ngModel)]="filter.servicio">
       <ion-select-option [value]="item" *ngFor="let item of servicios">{{item}}
       </ion-select-option>
@@ -33,22 +33,32 @@
     <ion-label>Codigo Postal :  </ion-label>
     <ion-input name="codigo-postal" type="number" [(ngModel)]="filter.codigo"></ion-input>
   </ion-item>
-  <ion-button class="btn-login" type="submit" (click)="busqueda()" expand="block" fill="outline"  shape="round">
-    Buscar
-  </ion-button>
-  <ion-card class="ios hydrated">
-    <ion-list>
-        <ion-item *ngFor="let store of stores">
+
+  <ion-fab  horizontal="end" slot="fixed">
+    <ion-fab-button type="submit" (click)="busqueda()">
+      <ion-icon name="search-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-list class="list">
+    <ion-card class="ios hydrated">
+        <ion-item *ngFor ="let store of stores">
           <ion-label> 
-            <p> Nombre: {{store.nombre}}</p> 
-            <p> Localidad: {{store.localidad}}</p>
-            <p> Servicios: {{store.servicios}}</p> 
-            <p>Codigo Postal: {{store.codigoPostal}}</p> 
+             <h2><b> Nombre: {{store.nombre}}</b></h2>
+                <p>Telefono: {{store.telefono}}</p>
+                <p>Direccion : {{store.direccion}}</p>
+                <p> Localidad: {{store.localidad}}</p>
+                <p>Codigo Postal: {{store.codigoPostal}}</p> 
+                <p>Descripcion: {{store.descripcion}}</p>
+          </ion-label>
+          
             <ion-button icon-only shape="round" color="primary" slot="end" [routerLink]="['stores-view', store._id]">
               <ion-icon name="eye-outline"></ion-icon>
             </ion-button>
-          </ion-label>
+          
         </ion-item>
-      </ion-list>
-    </ion-card>
+        
+
+     </ion-card>
+ </ion-list>
 </ion-content>
