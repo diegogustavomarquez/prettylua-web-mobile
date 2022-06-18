@@ -14,56 +14,52 @@
 
 <ion-content [fullscreen]="true" mode="ios" class="ion-no-border">
   <ion-grid fixed>
+    <ion-card class="ion-padding">
+      <ion-avatar>
+        <img src="{{foto}}">
+      </ion-avatar>
+      <ion-card-content class="lineaTexto">
+        <ion-label>
+          <h2><b class="texto">{{mascotas.name}}</b></h2>
+          <p>{{mascotas.kind}}</p>
+          <p>{{mascotas.breed}}</p>
+          <p>{{mascotas.dateOfBirth}}</p>
+        </ion-label>
+ 
+      </ion-card-content>
+        
+    </ion-card>
     <form (ngSubmit)="historiaClinica._id? update(fRegistro): save(fRegistro)" #fRegistro="ngForm">
-      <div id="cont1">
-        <hr style="color :black; border-width:1px;" />
-      </div>
-      <div class="ion-text-center"><b>REGISTRAR HISTORIA CLINICA</b></div>
-      <div id="cont1">
-        <hr style="color :black; border-width:1px;" />
-      </div>
-      <ion-row>
-        <ion-col>
-          <ion-list>
-         
-            <ion-item lines="none">
-              <ion-label>Mascota : </ion-label>
-              <ion-label>{{mascotas.name}} </ion-label>
-            </ion-item>
+      <ion-item lines="none">
+        <ion-select placeholder="Seleccione Tipo" name="tipo" [(ngModel)]="historiaClinica.tipos" required>
+          <ion-select-option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</ion-select-option>
+        </ion-select>
+      </ion-item>
 
-            <ion-item lines="none">
-              <ion-select placeholder="Seleccione Tipo" name="tipo" [(ngModel)]="historiaClinica.tipos" multiple="true" required>
-                <ion-select-option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</ion-select-option>
-              </ion-select>
-            </ion-item>
+      <ion-item lines="none">
+        <ion-label>Descripcion : </ion-label>
+        <ion-input maxlength="50" name="name" type="text" [(ngModel)]="historiaClinica.descripcion" required>
+        </ion-input>
+      </ion-item>
 
-            <ion-item lines="none">
-              <ion-label>Descripcion : </ion-label>
-              <ion-input maxlength="50" name="name" type="text" [(ngModel)]="historiaClinica.descripcion" required>
-              </ion-input>
-            </ion-item>
+      <ion-item lines="none">
+        <ion-label>Comentario : </ion-label>
+        <ion-textarea [(ngModel)]="historiaClinica.comentarios" name="comentario" placeholder="ingrese algun comentario"
+          maxlength="500">
+        </ion-textarea>
+      </ion-item>
 
-            <ion-item lines="none">
-              <ion-label>Comentario : </ion-label>
-              <ion-textarea [(ngModel)]="historiaClinica.comentarios" name="comentario"
-                placeholder="ingrese algun comentario" maxlength="500">
-              </ion-textarea>
-            </ion-item>
-
-            <ion-item lines="none">
-              <ion-label>Adjuntos:</ion-label>
-              <input type="file" accept=".pdf, .jpg,.jpeg" (change)="loadImagen($event)" id="inputFile">
-              <label for="inputFile" class="labelInputFile">
-                <ion-icon size="large" name="document-attach-outline" class="icono1">
-                </ion-icon>
-              </label>
-              <ion-button icon-only shape="round" color="danger" (click)="kickImagen()" class="icono" slot="end">
-                <ion-icon name="trash-outline"></ion-icon>
-              </ion-button>
-            </ion-item>
-          </ion-list>
-        </ion-col>
-      </ion-row>
+      <ion-item lines="none">
+        <ion-label>Adjuntos:</ion-label>
+        <input type="file" accept=".pdf, .jpg,.jpeg" (change)="loadImagen($event)" id="inputFile">
+        <label for="inputFile" class="labelInputFile">
+          <ion-icon size="large" name="document-attach-outline" class="icono1">
+          </ion-icon>
+        </label>
+        <ion-button icon-only shape="round" color="danger" (click)="kickImagen()" class="icono" slot="end">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
 
       <ion-fab horizontal="end" slot="fixed">
         <ion-button class="classFab" [disabled]="fRegistro.invalid" type="submit">

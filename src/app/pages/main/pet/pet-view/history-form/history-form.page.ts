@@ -16,7 +16,7 @@ import { MascotaService } from '../../../../../services/mascota.service';
   styleUrls: ['./history-form.page.scss'],
 })
 export class HistoryFormPage implements OnInit {
-
+  foto:string;
 
   mascotas: Mascota = {};
 
@@ -45,10 +45,11 @@ export class HistoryFormPage implements OnInit {
     private mascotaService: MascotaService) { }
 
   async ngOnInit() {
-     this.tipos = this.commonsService.getTipoHistoriaClinica();
-      this.id = this.activatedRoute.snapshot.paramMap.get('id');
-      this.historiaClinica.petId = this.id;
-      this.mascotas = await this.mascotaService.getbyId(this.id);
+    this.tipos = this.commonsService.getTipoHistoriaClinica();
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.historiaClinica.petId = this.id;
+    this.mascotas = await this.mascotaService.getbyId(this.id);
+    this.foto = this.mascotas.pics[0];
     }
   
 
