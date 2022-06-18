@@ -23,7 +23,12 @@
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
-
+      <div>
+        <ion-button (click)="subscribeToNotifications()">Solicitar Permiso</ion-button>
+      </div>
+      <div>
+        <div>{{respuesta | json}}</div>
+      </div>
       <ion-list id="labels-list">
         <ion-item *ngFor="let label of labels" lines="none" [routerLink]="[label.url]" lines="none" detail="false">
           <ion-icon slot="start" [ios]="label.icon + '-outline'" [md]="label.icon + '-sharp'"></ion-icon>

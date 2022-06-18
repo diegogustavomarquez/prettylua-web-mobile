@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store, Usuario } from 'src/app/interfaces/interfaces';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { StoreService } from 'src/app/services/store.service';
+import { SwPush } from '@angular/service-worker';
 
 @Component({
   selector: 'app-main',
@@ -9,6 +10,9 @@ import { StoreService } from 'src/app/services/store.service';
   styleUrls: ['./main.page.scss'],
 })
 export class MainPage implements OnInit {
+
+  respuesta: any;
+  readonly VAPID_PUBLIC_KEY = "BDoY7Ap872g9qjnRrNQeQp58HMzw-6dQ9JyLWmozepSmGUPFeTNNwqe30SXQFLs1W1sEIE1klNWU9UppOdnvpVY";
 
   public appPages = [];
 
@@ -18,7 +22,8 @@ export class MainPage implements OnInit {
   store: Store;
 
   constructor(private usuarioService: UsuarioService,
-              private storeService: StoreService) { }
+              private storeService: StoreService,
+              private swPush: SwPush) { }
 
   async ngOnInit() {
     this.usuario = this.usuarioService.usuario;
@@ -68,6 +73,21 @@ export class MainPage implements OnInit {
       }
     }
     this.labels.push({ title: 'Cerrar Sesión', url: '/main/main/logout', icon: 'log-out' });
+  }
+
+  subscribeToNotifications() {
+    this.swPush.requestSubscription(
+      {
+        serverPublicKey: this.VAPID_PUBLIC_KEY
+      }
+    ).then(respuesta => {
+      console.log("respuesta",respuesta);
+      this.respuesta = respuesta
+    })
+      .catch(err => {
+        console.log("err",err);
+        this.respuesta = err
+      })
   }
 
 }
