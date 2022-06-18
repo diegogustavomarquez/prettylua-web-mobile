@@ -70,16 +70,18 @@
             <ion-input name="email" type="email" [(ngModel)]="store.email" required></ion-input>
           </ion-item>
           <ion-item>
-            <ion-icon name="logo-instagram"></ion-icon>&nbsp; 
-            <ion-input placeholder="Instagram" name="instagram" type="text" [(ngModel)]="store.instagram"></ion-input>
+
+            <ion-icon  name="logo-instagram"></ion-icon>
+            <ion-input placeholder="Por favor completa este campo con el link completo" name="instagram" type="text" [(ngModel)]="store.instagram">:  </ion-input>
           </ion-item>
           <ion-item>
-            <ion-icon name="logo-facebook"></ion-icon>&nbsp; 
-            <ion-input placeholder="Facebook" name="facebook" type="text" [(ngModel)]="store.facebook"></ion-input>
+            <ion-icon name="logo-facebook"></ion-icon>
+            <ion-input placeholder="Por favor completa este campo con el link completo" name="facebook" type="text" [(ngModel)]="store.facebook">: </ion-input>
           </ion-item>
           <ion-item>
-            <ion-icon color="twitter" name="logo-twitter"></ion-icon>&nbsp; 
-            <ion-input placeholder="Twitter" name="twitter" type="text" [(ngModel)]="store.twitter"></ion-input>
+            <ion-icon name="logo-twitter"></ion-icon>
+            <ion-input placeholder="Por favor completa este campo con el link completo" name="twitter" type="text" [(ngModel)]="store.twitter">: </ion-input>
+
           </ion-item>
         </ion-list>
   </ion-col>
@@ -175,25 +177,31 @@
       <ion-col>
         <ion-list>
           <ion-item>
-            <ion-textarea placeholder="Descipcion de Promociones y Beneficios" name="promocion" type="text" [(ngModel)]="store.promocion" size="500" max="500"
+
+            <ion-label>Promocion: </ion-label>
+            <ion-textarea placeholder="Describi tu promocion" name="promocion" type="text" [(ngModel)]="store.promocion" size="500" max="500"
               maxlength="500" required></ion-textarea>
           </ion-item>
-     
-          <ion-card-content class="ion-text-center">
+
+          
+         <p >Banner: </p>
+        
+          <ion-item class="text-center">
+            
             <img class="foto-generica" src="{{imageTemporal? imageTemporal  : '/assets/avatars/icon.png'}}">
-            <ion-item>
-              <input type="file" accept=".png, .jpg,.jpeg" (change)="loadImagen($event)" id="inputFile">
-              <label for="inputFile" class="labelInputFile">
-                <ion-icon size="large" name="camera" class="icono1">
-                </ion-icon>
-              </label>
-              <br>
-              <ion-button icon-only shape="round" color="danger" (click)="kickImagen()" class="icono">
-                <ion-icon name="trash-outline"></ion-icon>
-              </ion-button>
+            <input type="file" accept=".png, .jpg,.jpeg" (change)="loadImagen($event)" id="inputFile">
+          
+            <ion-button icon-only shape="round" color="danger" (click)="kickImagen()" class="icono">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+
+            <label for="inputFile" class="labelInputFile">
+              <ion-icon size="large" name="camera" class="icono1">
+              </ion-icon>
+            </label>
+         
             </ion-item>
-              <ion-card-subtitle>Imagenes de Promociones y Beneficios</ion-card-subtitle>
-          </ion-card-content>
+
         </ion-list>
       </ion-col>
     </ion-row>
