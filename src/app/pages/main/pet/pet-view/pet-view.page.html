@@ -58,7 +58,7 @@
     <ion-list>
       <ion-item *ngFor="let hc of historiaClinica">
         <ion-label>
-          <p>{{hc.fecha}}</p>
+          <p>{{hc.fecha | date: 'dd/MM/yyyy'}}</p>
           <p>{{hc.codigo}}</p>
           <p>{{hc.tipos}}</p>
           <p>{{hc.descripcion}}</p>

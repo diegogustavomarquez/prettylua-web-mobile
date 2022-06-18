@@ -13,44 +13,51 @@
   <ion-card-header class="ion-text-center">
     <ion-card-subtitle>INFORMACION</ion-card-subtitle>
   </ion-card-header>
- <ion-card>
-  
-  <img src="{{store.promocionFoto }}">
- 
-   <ion-item class="item-datos" lines="none">
-      <ion-label>Servicios : {{store.servicios}} </ion-label>
-    </ion-item>
-  <ion-item class="item-datos" lines="none">
-    <ion-label>Nombre : {{store.nombre}} </ion-label>
-  </ion-item>
-  <ion-item class="item-datos" lines="none">
-    <ion-label>Direccion : {{store.direccion}} </ion-label>
-  </ion-item>
-  <ion-item class="item-datos" lines="none">
-    <ion-label>Localidad : {{store.localidad}} </ion-label>
-  </ion-item>
-  <ion-item class="item-datos" lines="none">
-    <ion-label>Codigo Postal : {{store.codigoPostal}} </ion-label>
-  </ion-item>
-  
-  <ion-item class="item-datos" lines="none">
-    <ion-label>Telefono : {{store.telefono}} </ion-label>
-  </ion-item>
-  <ion-item class="item-datos" lines="none">
-    <ion-label>Descripcion : {{store.descripcion}} </ion-label>
-  </ion-item>
-  <ion-item class="item-datos" lines="none">
-    <ion-label> Horario de atencion: {{store.horarioDesde }} a {{store.horarioHasta}} hs </ion-label>
-  </ion-item>
-  <ion-item class="item-datos">
-   <a href="{{store.instagram}}"> <ion-icon  name="logo-instagram"></ion-icon> </a>
-    <a href="{{store.facebook}}"> <ion-icon name="logo-facebook"></ion-icon></a>
-   <a href="{{store.twitter}}"> <ion-icon name="logo-twitter"></ion-icon> </a>
-   <p class="turno">Solicitar turno</p>
-   <ion-button icon-only shape="round" color="warning">
-    <ion-icon name="create-outline"></ion-icon>
-  </ion-button>
-  </ion-item>
+  <ion-card class="ion-padding">
 
-</ion-card>
+    <img src="{{store.promocionFoto }}">
+
+    <ion-card-content class="lineaTexto">
+      <ion-item class="item-datos" lines="none">
+        <ion-label>Servicios : {{store.servicios}} </ion-label>
+      </ion-item>
+      <ion-item class="item-datos" lines="none">
+        <ion-label>Nombre : {{store.nombre}} </ion-label>
+      </ion-item>
+      <ion-item class="item-datos" lines="none">
+        <ion-label>Direccion : {{store.direccion}} </ion-label>
+      </ion-item>
+      <ion-item class="item-datos" lines="none">
+        <ion-label>Localidad : {{store.localidad}} </ion-label>
+      </ion-item>
+      <ion-item class="item-datos" lines="none">
+        <ion-label>Codigo Postal : {{store.codigoPostal}} </ion-label>
+      </ion-item>
+
+      <ion-item class="item-datos" lines="none">
+        <ion-label>Telefono : {{store.telefono}} </ion-label>
+      </ion-item>
+      <ion-item class="item-datos" lines="none">
+        <ion-label>Descripcion : {{store.descripcion}} </ion-label>
+      </ion-item>
+      <ion-item class="item-datos" lines="none">
+        <ion-label> Horario de atencion: {{store.horarioDesde }} a {{store.horarioHasta}} hs </ion-label>
+      </ion-item>
+      <ion-item class="item-datos">
+        <a href="{{store.instagram}}">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a>
+        <a href="{{store.facebook}}">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+        <a href="{{store.twitter}}">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a>
+        <p class="turno">Solicitar turno</p>
+        <ion-button icon-only shape="round" color="warning">
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
