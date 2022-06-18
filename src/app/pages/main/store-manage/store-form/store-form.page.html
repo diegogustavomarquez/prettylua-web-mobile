@@ -177,30 +177,24 @@
       <ion-col>
         <ion-list>
           <ion-item>
-
-            <ion-label>Promocion: </ion-label>
-            <ion-textarea placeholder="Describi tu promocion" name="promocion" type="text" [(ngModel)]="store.promocion" size="500" max="500"
+            <ion-textarea placeholder="Descipcion de Promociones y Beneficios" name="promocion" type="text" [(ngModel)]="store.promocion" size="500" max="500"
               maxlength="500" required></ion-textarea>
           </ion-item>
-
-          
-         <p >Banner: </p>
-        
-          <ion-item class="text-center">
-            
+          <ion-card-content class="ion-text-center">
             <img class="foto-generica" src="{{imageTemporal? imageTemporal  : '/assets/avatars/icon.png'}}">
-            <input type="file" accept=".png, .jpg,.jpeg" (change)="loadImagen($event)" id="inputFile">
-          
-            <ion-button icon-only shape="round" color="danger" (click)="kickImagen()" class="icono">
-              <ion-icon name="trash-outline"></ion-icon>
-            </ion-button>
-
-            <label for="inputFile" class="labelInputFile">
-              <ion-icon size="large" name="camera" class="icono1">
-              </ion-icon>
-            </label>
-         
+            <ion-item>
+              <input type="file" accept=".png, .jpg,.jpeg" (change)="loadImagen($event)" id="inputFile">
+              <label for="inputFile" class="labelInputFile">
+                <ion-icon size="large" name="camera" class="icono1">
+                </ion-icon>
+              </label>
+              <br>
+              <ion-button icon-only shape="round" color="danger" (click)="kickImagen()" class="icono">
+                <ion-icon name="trash-outline"></ion-icon>
+              </ion-button>
             </ion-item>
+              <ion-card-subtitle>Imagenes de Promociones y Beneficios</ion-card-subtitle>
+          </ion-card-content>
         </ion-list>
       </ion-col>
     </ion-row>
