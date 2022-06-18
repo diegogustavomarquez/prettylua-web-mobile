@@ -1,14 +1,17 @@
 #cont1 {
     width: 100%;
+
 }
 
 .icono {
-  margin-top:2px;
-  margin-left: 15px;
+  //margin-top:5px;
+ // margin-left:100px;
+  display: flex;
   }
   .icono1 {
  //   zoom: 1.0;
     margin-left: 235px;
+    display: flex;
     }  
   #inputFile {
     display: none;
@@ -26,9 +29,12 @@
 }
 
 .list-check{
-    margin-right: 20px;
-    margin-left: 462px;
+    margin-left:200px;
+    
 }
 .list-check-c{
-    margin-right: 20px;
+    margin-left:0px;
 }
+
+
+
