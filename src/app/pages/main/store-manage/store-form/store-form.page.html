@@ -6,7 +6,7 @@
     <ion-title class="ion-text-center">Configurar servicios</ion-title>
     <ion-buttons slot="end">
       <ion-button [routerLink]="['/main/main/store-manage']" color="primary" shape="round">
-        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        <ion-icon name="chevron-back-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -70,19 +70,19 @@
             <ion-input name="email" type="email" [(ngModel)]="store.email" required></ion-input>
           </ion-item>
           <ion-item>
-            <ion-icon name="logo-instagram"></ion-icon>
-            <ion-input name="instagram" type="text" [(ngModel)]="store.instagram"></ion-input>
+            <ion-icon name="logo-instagram"></ion-icon>&nbsp; 
+            <ion-input placeholder="Instagram" name="instagram" type="text" [(ngModel)]="store.instagram"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-icon name="logo-facebook"></ion-icon>
-            <ion-input name="facebook" type="text" [(ngModel)]="store.facebook"></ion-input>
+            <ion-icon name="logo-facebook"></ion-icon>&nbsp; 
+            <ion-input placeholder="Facebook" name="facebook" type="text" [(ngModel)]="store.facebook"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-icon name="logo-twitter"></ion-icon>
-            <ion-input name="twitter" type="text" [(ngModel)]="store.twitter"></ion-input>
+            <ion-icon color="twitter" name="logo-twitter"></ion-icon>&nbsp; 
+            <ion-input placeholder="Twitter" name="twitter" type="text" [(ngModel)]="store.twitter"></ion-input>
           </ion-item>
         </ion-list>
-      </ion-col>
+  </ion-col>
     </ion-row>
 
     <ion-col>
@@ -135,25 +135,29 @@
       <ion-col>
         <ion-list>
           <ion-item>
-            <p class="list-check-c">Es horario de corrido:</p>
-            <ion-checkbox name="esDeCorrido" [(ngModel)]="store.esDeCorrido"></ion-checkbox>
-            <p class="list-check">Atención 24hs:</p>
-            <ion-checkbox name="es24hs" [(ngModel)]="store.es24hs"></ion-checkbox>
-          </ion-item>
-          <ion-item>
-            <ion-label>Horario desde : </ion-label>
-            <ion-input name="horarioDesde" type="text" [(ngModel)]="store.horarioDesde" size="20" max="20"
-              maxlength="20" required></ion-input>
-            <ion-label>hasta : </ion-label>
-            <ion-input name="horarioHasta" type="text" [(ngModel)]="store.horarioHasta" size="20" max="20"
-              maxlength="20" required></ion-input>
-          </ion-item>
-          <ion-item>
             <ion-select slot="start" placeholder="Dias" name="dias" [(ngModel)]="store.dias" multiple="true" required>
               <ion-select-option [value]="dia" *ngFor="let dia of dias">{{dia}}
               </ion-select-option>
             </ion-select>
           </ion-item>
+      
+          <ion-item>
+            <ion-label>Horario desde : </ion-label>
+            <ion-input name="horarioDesde" type="text" [(ngModel)]="store.horarioDesde" size="20" max="20"
+              maxlength="20" required></ion-input>
+            <ion-label>Hasta : </ion-label>
+            <ion-input name="horarioHasta" type="text" [(ngModel)]="store.horarioHasta" size="20" max="20"
+              maxlength="20" required></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label>Es horario de corrido</ion-label>
+            <ion-checkbox  name="esDeCorrido" [(ngModel)]="store.esDeCorrido"></ion-checkbox>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label>Atención 24hs</ion-label>
+            <ion-checkbox name="es24hs" [(ngModel)]="store.es24hs"></ion-checkbox>
+          </ion-item>
+      
         </ion-list>
       </ion-col>
     </ion-row>
@@ -171,13 +175,10 @@
       <ion-col>
         <ion-list>
           <ion-item>
-            <ion-label>Promocion: </ion-label>
-            <ion-textarea name="promocion" type="text" [(ngModel)]="store.promocion" size="500" max="500"
+            <ion-textarea placeholder="Descipcion de Promociones y Beneficios" name="promocion" type="text" [(ngModel)]="store.promocion" size="500" max="500"
               maxlength="500" required></ion-textarea>
           </ion-item>
-          <ion-item>
-            <ion-label>Banner: </ion-label>
-          </ion-item>
+     
           <ion-card-content class="ion-text-center">
             <img class="foto-generica" src="{{imageTemporal? imageTemporal  : '/assets/avatars/icon.png'}}">
             <ion-item>
@@ -186,10 +187,12 @@
                 <ion-icon size="large" name="camera" class="icono1">
                 </ion-icon>
               </label>
-              <ion-button icon-only shape="round" color="danger" (click)="kickImagen()" class="icono" slot="end">
+              <br>
+              <ion-button icon-only shape="round" color="danger" (click)="kickImagen()" class="icono">
                 <ion-icon name="trash-outline"></ion-icon>
               </ion-button>
             </ion-item>
+              <ion-card-subtitle>Imagenes de Promociones y Beneficios</ion-card-subtitle>
           </ion-card-content>
         </ion-list>
       </ion-col>
