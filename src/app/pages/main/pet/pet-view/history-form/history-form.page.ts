@@ -19,10 +19,10 @@ export class HistoryFormPage implements OnInit {
 
 
   mascotas: Mascota = {};
-
+  foto:string;
+  
   tipos :string[]=[];
   isNew: boolean = false;
- // imagen: any = '/assets/avatars/icon.png';
   isPhotoPresent: boolean = false;
   public id: string;
   historiaClinica : HistoriaClinica = {
@@ -49,6 +49,9 @@ export class HistoryFormPage implements OnInit {
       this.id = this.activatedRoute.snapshot.paramMap.get('id');
       this.historiaClinica.petId = this.id;
       this.mascotas = await this.mascotaService.getbyId(this.id);
+      console.log(this.mascotas);
+      this.foto = this.mascotas.pics[0];
+      console.log("foto",this.foto);
     }
   
 
@@ -79,7 +82,11 @@ export class HistoryFormPage implements OnInit {
     this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
   }
 
-
+  /**
+   * 
+   * @param event 
+   * @returns 
+   */
   async loadImagen(event: any) {
     let archivos = event.target.files[0];
     let sizeFile: number = archivos.size;
