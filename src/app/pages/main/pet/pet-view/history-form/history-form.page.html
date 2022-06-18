@@ -14,17 +14,20 @@
 
 <ion-content [fullscreen]="true" mode="ios" class="ion-no-border">
   <ion-grid fixed>
-    <ion-card>
+    <ion-card class="ion-padding">
       <ion-avatar>
         <img src="{{foto}}">
       </ion-avatar>
-       <ion-label>
+      <ion-card-content class="lineaTexto">
+        <ion-label>
           <h2><b class="texto">{{mascotas.name}}</b></h2>
           <p>{{mascotas.kind}}</p>
           <p>{{mascotas.breed}}</p>
           <p>{{mascotas.dateOfBirth}}</p>
         </ion-label>
-  
+ 
+      </ion-card-content>
+        
     </ion-card>
     <form (ngSubmit)="historiaClinica._id? update(fRegistro): save(fRegistro)" #fRegistro="ngForm">
       <ion-item lines="none">

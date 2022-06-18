@@ -49,9 +49,8 @@ export class HistoryFormPage implements OnInit {
       this.id = this.activatedRoute.snapshot.paramMap.get('id');
       this.historiaClinica.petId = this.id;
       this.mascotas = await this.mascotaService.getbyId(this.id);
-      console.log(this.mascotas);
       this.foto = this.mascotas.pics[0];
-      console.log("foto",this.foto);
+   
     }
   
 
