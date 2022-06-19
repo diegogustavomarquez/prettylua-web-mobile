@@ -97,14 +97,7 @@
       </ion-col>
     </ion-row>
     
-
-    <ion-list>
-      <ion-item>
     
-        <ion-checkbox name="acceptTermAndCondition" slot="start" checked="false" [(ngModel)]="acceptTermAndCondition"></ion-checkbox>
-        <a [routerLink]="['/main/main/terms-and-conditions']">Acepto términos y condiciones de Pretty Lua</a>
-      </ion-item>
-    </ion-list>
     <ion-row>
       <ion-col text-center>
         <ion-button class="btnColor" type="submit" fill="outline" shape="round" expand="block">
@@ -112,6 +105,13 @@
         </ion-button>
       </ion-col>
     </ion-row>
+
+
+    <ion-fab horizontal="end" slot="fixed">
+      <ion-button class="classFab" type="submit">
+        <ion-icon name="checkmark-outline"></ion-icon>
+      </ion-button>
+    </ion-fab>
   </form>
 </ion-grid>
  

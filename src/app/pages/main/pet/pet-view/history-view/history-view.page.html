@@ -18,7 +18,7 @@
     <ion-card>
       <ion-card-content class="ion-no-padding">
         <ion-item class="ion-text-center" lines="none">
-          <img src="{{ mascotas.pics }}">
+          <img src="{{mascotas.pics? mascotas.pics  : '/assets/avatars/icon.png'}}">
           <ion-label class="texto">
             <h2><b>{{mascotas.name}}</b></h2>
           </ion-label>

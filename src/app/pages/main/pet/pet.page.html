@@ -23,7 +23,7 @@
     <ion-list>
       <ion-item *ngFor="let mascota of mascotas">
         <ion-avatar slot="start">
-          <img src="{{ mascota.pics }}">
+          <img class="foto-generica"  src="{{mascota.pics? mascota.pics  : '/assets/avatars/icon.png'}}">
         </ion-avatar>
         <ion-label>
           <h2><b class="texto">{{mascota.name}}</b></h2>

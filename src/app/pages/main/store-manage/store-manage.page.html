@@ -46,8 +46,20 @@
 
     <div style="text-align: center;">
       <div>¡Configura tu comercio para que puedas ofrecer tu servicio a miles de cliente!</div>
-      <ion-button class="btnColor" fill="outline" expand="block" shape="round" [routerLink]="['store-form']">Configurar servicios
+<!-- 
+  <ion-button class="btnColor" fill="outline" expand="block" shape="round" 
+      [routerLink]="['store-form']">Configurar servicios
       </ion-button>
+
+-->     
+    
+      <ion-fab horizontal="end" slot="fixed">
+      <ion-button class="classFab"   [routerLink]="['store-form']">
+        <ion-icon name="cog-outline"></ion-icon>
+      </ion-button>
+    </ion-fab>
     </div>
+
+
   </ion-grid>
 </ion-content>
