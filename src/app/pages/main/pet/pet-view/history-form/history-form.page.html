@@ -25,13 +25,14 @@
           <p>{{mascotas.breed}}</p>
           <p>{{mascotas.dateOfBirth}}</p>
         </ion-label>
- 
+
       </ion-card-content>
-        
+
     </ion-card>
     <form (ngSubmit)="historiaClinica._id? update(fRegistro): save(fRegistro)" #fRegistro="ngForm">
       <ion-item lines="none">
-        <ion-select placeholder="Seleccione Tipo" name="tipo" [(ngModel)]="historiaClinica.tipos" multiple="true" required>
+        <ion-select placeholder="Seleccione Tipo" name="tipo" [(ngModel)]="historiaClinica.tipos" multiple="true"
+          required>
           <ion-select-option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</ion-select-option>
         </ion-select>
       </ion-item>

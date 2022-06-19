@@ -1,11 +1,9 @@
-<ion-header [translucent]="true" no-border>
+<ion-header [translucent]="true" mode="ios" class="ion-no-border">
   <ion-toolbar>
 
-    <ion-title class="ion-text-center">Actualizar datos</ion-title>
-
+    <ion-title class="ion-text-center">ACTUALIZAR DATOS</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-
     </ion-buttons>
 
     <ion-buttons slot="end">
@@ -18,80 +16,64 @@
 
 
 <ion-content [fullscreen]="true">
+  <ion-grid fixed>
 
-  <div class="ion-text-center">
-    <img class="foto-generica" src="{{imageTemporal}}">
-    <a style="margin-left:30px;" (click)="kickImagen()">Quitar imagen</a>
-    <div style="text-align: center;">
-      <input type="file" accept=".png, .jpg,.jpeg" (change)="loadImagen($event)" id="inputFile">
-      <label for="inputFile" class="labelInputFile">
-        <img class="subir-foto" src="/assets/icon/subir-foto.png" alt="upload file">
-      </label>
-    </div>
-    <div>
-
-    </div>
-  </div>
   <form (ngSubmit)="actualizar( fActualizar )" #fActualizar="ngForm">
-    <ion-col>
-      <div id="cont1">
-        <hr style="color :black; border-width:1px;" />
-      </div>
-      <div class="ion-text-center"><b>DATOS PERSONALES</b></div>
-      <div id="cont1">
-        <hr style="color :black; border-width:1px;" />
-      </div>
-    </ion-col>
+    <ion-card>
+      <ion-card-content class="ion-text-center">
+        <div class="img-wrapper">
+          <img class="foto-generica" src="{{imageTemporal}}">
+          <ion-button shape="round" color="danger" (click)="kickImagen()">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+          <input type="file" accept=".png, .jpg,.jpeg" (change)="loadImagen($event)" id="inputFile">
+          <label for="inputFile" class="labelInputFile">
+            <ion-icon class="camera" size="large" name="camera">
+            </ion-icon>
+          </label>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    <ion-card-subtitle class="ion-text-center">
+      <label>DATOS PERSONALES</label>
+    </ion-card-subtitle>
 
-    <ion-row>
-      <ion-col>
+    <ion-list>
+      <ion-item>
+        <ion-label>Nombre : </ion-label>
+        <ion-input name="nombre" type="text" [(ngModel)]="usuario.nombre" required></ion-input>
+      </ion-item>
 
-        <ion-list>
-          <ion-item>
-            <ion-label>Nombre : </ion-label>
-            <ion-input name="nombre" type="text" [(ngModel)]="usuario.nombre" required></ion-input>
-          </ion-item>
+      <ion-item>
+        <ion-label>Apellido: </ion-label>
+        <ion-input name="apellido" type="text" [(ngModel)]="usuario.apellido" required></ion-input>
+      </ion-item>
 
-          <ion-item>
-            <ion-label>Apellido: </ion-label>
-            <ion-input name="apellido" type="text" [(ngModel)]="usuario.apellido" required></ion-input>
-          </ion-item>
+      <ion-item>
+        <ion-label>Telefono: </ion-label>
+        <ion-input name="telefono" type="number" [(ngModel)]="usuario.telefono" required></ion-input>
+      </ion-item>
+      <br>
+      <ion-card-subtitle class="ion-text-center">
+        <label>DATOS DE LA CUENTA</label>
+      </ion-card-subtitle>
+      <ion-item>
+        <ion-label>Email :</ion-label>
+        <ion-input name="email" type="email" [(ngModel)]="usuario.email" required></ion-input>
+      </ion-item>
 
-          <ion-item>
-            <ion-label>Telefono: </ion-label>
-            <ion-input name="telefono" type="number" [(ngModel)]="usuario.telefono" required></ion-input>
-          </ion-item>
-          <ion-col>
-            <div id="cont1">
-              <hr style="color :black; border-width:1px;" />
-            </div>
-            <div class="ion-text-center"><b>DATOS DE LA CUENTA</b></div>
-            <div id="cont1">
-              <hr style="color :black; border-width:1px;" />
-            </div>
-          </ion-col>
-
-          <ion-item>
-            <ion-label>Email :</ion-label>
-            <ion-input name="email" type="email" [(ngModel)]="usuario.email" required></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label>Password :</ion-label>
-            <ion-input name="password" type="password"></ion-input>
-          </ion-item>
-
-
-        </ion-list>
-      </ion-col>
-    </ion-row>
-
+      <ion-item>
+        <ion-label>Password :</ion-label>
+        <ion-input name="password" type="password"></ion-input>
+      </ion-item>
+    </ion-list>
+  
     <ion-fab horizontal="end" slot="fixed">
       <ion-button class="classFab" type="submit">
         <ion-icon name="checkmark-outline"></ion-icon>
       </ion-button>
     </ion-fab>
   </form>
-
+</ion-grid>
 
 </ion-content>

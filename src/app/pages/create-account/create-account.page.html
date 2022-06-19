@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content [fullscreen]="true">
 
   <ion-grid fixed>
     <ion-toolbar>
@@ -10,80 +10,66 @@
       </ion-buttons>
     </ion-toolbar>
     <form (ngSubmit)="registro(fRegistro)" #fRegistro="ngForm">
-      <ion-row>
-        <ion-col>
-          <!--  
 
-   <img class="foto-generica" src="{{registerUser.avatar? registerUser.avatar : '/assets/avatars/user.png'}}">
-          -->
-
-          <div style="text-align: center;">
-            <img class="foto-generica" src="{{registerUser.avatar? registerUser.avatar : '/assets/avatars/icon.png'}}">
-            <a style="margin-left:30px;" (click)="kickImagen()">Quitar imagen</a>
-            <div style="text-align: center;">
+ 
+        <ion-card>
+          <ion-card-content class="ion-text-center">
+            <div class="img-wrapper">
+              <img class="foto-generica" src="{{registerUser.avatar? registerUser.avatar : '/assets/avatars/userCta.png'}}">
+              <ion-button shape="round" color="danger" (click)="kickImagen()">
+                <ion-icon name="trash-outline"></ion-icon>
+              </ion-button>
               <input type="file" accept=".png, .jpg,.jpeg" (change)="loadImagen($event)" id="inputFile">
               <label for="inputFile" class="labelInputFile">
-                <img class="subir-foto" src="/assets/icon/subir-foto.png" alt="upload file">
+                <ion-icon class="camera" size="large" name="camera">
+                </ion-icon>
               </label>
             </div>
-            <div>
+          </ion-card-content>
+        </ion-card>
 
-            </div>
-          </div>
+    
+
+      <ion-list>
+        <ion-card-subtitle class="ion-text-center">
+          <label>INFORMACION BASICA</label>
+        </ion-card-subtitle>
+        <ion-item>
+          <ion-label position="floating">Nombre :</ion-label>
+          <ion-input name="nombre" placeholder="nombre" type="text" [(ngModel)]="registerUser.nombre" required>
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Apellido : </ion-label>
+          <ion-input name="apellido" placeholder="apellido" type="text" [(ngModel)]="registerUser.apellido" required>
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Telefono : </ion-label>
+          <ion-input name="telefono" placeholder="telefono" type="number" [(ngModel)]="registerUser.telefono" required>
+          </ion-input>
+        </ion-item>
+        <br>
+        <ion-card-subtitle class="ion-text-center">
+          <label>DATOS DE LA CUENTA</label>
+        </ion-card-subtitle>
+        <ion-item>
+          <ion-label position="floating">Email :</ion-label>
+          <ion-input name="email" type="email" placeholder="email"
+            pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [(ngModel)]="registerUser.email"
+            required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Password: </ion-label>
+          <ion-input name="password" type="password" placeholder="password" [(ngModel)]="registerUser.password"
+            required></ion-input>
+        </ion-item>
+        <ion-input name="perfil" type="hidden" placeholder="perfil" [(ngModel)]="registerUser.perfil" required>
+        </ion-input>
+      </ion-list>
 
 
-          <ion-list>
-            <ion-col>
-              <div id="cont1">
-                <hr style="color :black; border-width:1px;" />
-              </div>
-              <div class="ion-text-center"><b>INFORMACION BASICA</b></div>
-              <div id="cont1">
-                <hr style="color :black; border-width:1px;" />
-              </div>
-            </ion-col>
-            <ion-item lines="full">
-              <ion-label position="floating">Nombre :</ion-label>
-              <ion-input name="nombre" placeholder="nombre" type="text" [(ngModel)]="registerUser.nombre" required>
-              </ion-input>
-            </ion-item>
-            <ion-item lines="full">
-              <ion-label position="floating">Apellido : </ion-label>
-              <ion-input name="apellido" placeholder="apellido" type="text" [(ngModel)]="registerUser.apellido"
-                required></ion-input>
-            </ion-item>
-            <ion-item lines="full">
-              <ion-label position="floating">Telefono : </ion-label>
-              <ion-input name="telefono" placeholder="telefono" type="number" [(ngModel)]="registerUser.telefono"
-                required>
-              </ion-input>
-            </ion-item>
-            <ion-col>
-              <div id="cont1">
-                <hr style="color :black; border-width:1px;" />
-              </div>
-              <div class="ion-text-center"><b>DATOS DE LA CUENTA</b></div>
-              <div id="cont1">
-                <hr style="color :black; border-width:1px;" />
-              </div>
-            </ion-col>
-            <ion-item lines="full">
-              <ion-label position="floating">Email :</ion-label>
-              <ion-input name="email" type="email" placeholder="email"
-                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [(ngModel)]="registerUser.email"
-                required></ion-input>
-            </ion-item>
-
-            <ion-item lines="full">
-              <ion-label position="floating">Password: </ion-label>
-              <ion-input name="password" type="password" placeholder="password" [(ngModel)]="registerUser.password"
-                required></ion-input>
-            </ion-item>
-            <ion-input name="perfil" type="hidden" placeholder="perfil" [(ngModel)]="registerUser.perfil" required>
-            </ion-input>
-          </ion-list>
-        </ion-col>
-      </ion-row>
       <ion-fab horizontal="end" slot="fixed">
         <ion-button class="classFab" [disabled]="fRegistro.invalid" type="submit" shape="round">
           <ion-icon name="checkmark-outline"></ion-icon>

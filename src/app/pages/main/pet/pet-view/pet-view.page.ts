@@ -16,29 +16,7 @@ import { HcService } from '../../../../services/hc.service';
 })
 export class PetViewPage implements OnInit {
   
-  /*historiaClinica : HistoriaClinica[] = [
-     {
-      "codigo": "010",
-      "descripcion": "descripcion",
-      "fecha": new Date("2022-06-14"),
  
-  },      {
-    "codigo": "011",
-    "descripcion": "descripcion",
-    "fecha": new Date("2022-06-14"),
- 
-},      {
-  "codigo": "012",
-  "descripcion": "descripcion",
-  "fecha": new Date("2022-06-14"),
- 
-},      {
-  "codigo": "013",
-  "descripcion": "descripcion",
-  "fecha": new Date("2022-06-14"),
-  
-}
-  ];*/
 
   public id: string;
   listaAnio: number[] = [];

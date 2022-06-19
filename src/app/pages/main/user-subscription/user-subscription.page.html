@@ -1,4 +1,4 @@
-<ion-header [translucent]="true" no-border>
+<ion-header [translucent]="true" mode="ios" class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -6,24 +6,20 @@
     <ion-title class="ion-text-center">Suscripción</ion-title>
     <ion-buttons slot="end">
       <ion-button [routerLink]="['/main/main/home']" color="primary" shape="round">
-        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        <ion-icon name="chevron-back-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form (ngSubmit)="crearCuenta( fCuenta )" #fCuenta="ngForm">
-    <ion-col>
-      <div id="cont1">
-        <hr style="color :black; border-width:1px;" />
-      </div>
-      <div class="ion-text-center"><b>DATOS DEL COMERCIO</b></div>
-      <div id="cont1">
-        <hr style="color :black; border-width:1px;" />
-      </div>
-    </ion-col>
-
+  <ion-grid fixed>
+     <form (ngSubmit)="crearCuenta( fCuenta )" #fCuenta="ngForm">
+ 
+<br>
+    <ion-card-subtitle class="ion-text-center">
+      <label>DATOS DEL COMERCIO</label>
+    </ion-card-subtitle>
     <ion-row>
       <ion-col>
         <ion-list>
@@ -74,19 +70,11 @@
     </ion-row>
 
     <ion-col>
-      <div class="ion-text-left"><b>Plan de Servicio: Profesional $1400,00</b></div>
+      <div class="ion-text-center"><b>Plan de Servicio: Profesional $1400,00</b></div>
     </ion-col>
-
-
-    <ion-col>
-      <div id="cont1">
-        <hr style="color :black; border-width:1px;" />
-      </div>
-      <div class="ion-text-center"><b>Tarjeta de Crédito / Débito</b></div>
-      <div id="cont1">
-        <hr style="color :black; border-width:1px;" />
-      </div>
-    </ion-col>
+    <ion-card-subtitle class="ion-text-center">
+      <label class="ion-text-uppercase" >Tarjeta de Crédito / Débito</label>
+    </ion-card-subtitle>
 
     <ion-row>
       <ion-col>
@@ -119,10 +107,12 @@
     </ion-list>
     <ion-row>
       <ion-col text-center>
-        <ion-button type="submit" fill="outline" shape="round" expand="block">
+        <ion-button class="btnColor" type="submit" fill="outline" shape="round" expand="block">
           Suscribir
         </ion-button>
       </ion-col>
     </ion-row>
   </form>
+</ion-grid>
+ 
 </ion-content>

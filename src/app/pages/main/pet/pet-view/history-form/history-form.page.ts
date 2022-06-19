@@ -16,26 +16,26 @@ import { MascotaService } from '../../../../../services/mascota.service';
   styleUrls: ['./history-form.page.scss'],
 })
 export class HistoryFormPage implements OnInit {
-  foto:string;
+  foto: string;
 
   mascotas: Mascota = {};
 
-  tipos :string[]=[];
+  tipos: string[] = [];
   isNew: boolean = false;
- // imagen: any = '/assets/avatars/icon.png';
+
   isPhotoPresent: boolean = false;
   public id: string;
-  historiaClinica : HistoriaClinica = {
-        codigo:'', //Lo agrega BA
-        petId:'',
-        tipos:[],
-    descripcion:'',
-    adjuntos:null,
-    comentarios:'',
-    fecha:null,//lo agrega ell BA
-    _id:'',
+  historiaClinica: HistoriaClinica = {
+    codigo: '',
+    petId: '',
+    tipos: [],
+    descripcion: '',
+    adjuntos: null,
+    comentarios: '',
+    fecha: null,
+    _id: '',
   };
- 
+
   constructor(private navCtrl: NavController,
     private uiService: UiServiceService,
     private usuarioService: UsuarioService,
@@ -50,8 +50,8 @@ export class HistoryFormPage implements OnInit {
     this.historiaClinica.petId = this.id;
     this.mascotas = await this.mascotaService.getbyId(this.id);
     this.foto = this.mascotas.pics[0];
-    }
-  
+  }
+
 
   /**
    * 
@@ -68,14 +68,14 @@ export class HistoryFormPage implements OnInit {
       this.uiService.alertaInformativa('Error al Guardar');
     }
   }
-  
+
   /**
    * 
    * @param historiaClinica 
    */
-  async update(historiaClinica: NgForm) {}
+  async update(historiaClinica: NgForm) { }
 
-  
+
   onCancel() {
     this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
   }
@@ -102,7 +102,7 @@ export class HistoryFormPage implements OnInit {
    * @param event 
    */
   async kickImagen() {
-   // this.historiaClinica.adjuntos = this.imagen;
+    // this.historiaClinica.adjuntos = this.imagen;
     this.isPhotoPresent = false;
   }
 

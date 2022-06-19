@@ -23,21 +23,8 @@ export class AccountPage implements OnInit {
     this.usuario = this.usuarioService.usuario;
     this.usuarioService.getUpdateUserObservable().subscribe((data) => {
     this.usuario = data;
-   // this.usuarioService.actualizarUser
-  //  .subscribe(user=>{this.usuario.splice(this.usuario
-     //  .finIndex(index =>.)))
-  
     });
 
-    /**
-     * await this.mascotaService.getbyUserId().then(p => this.actualizadas = p);
-      this.mascotaService.actualizarMascota
-      .subscribe(pet => {
-        this.mascotas.splice(this.mascotas
-          .findIndex(index => index._id === pet._id), 1, pet);
-      });
-     */
-    
   }
   goAccount() {
     this.navCtrl.navigateRoot('/main/main/account/account-form', { animated: true });
