@@ -13,18 +13,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-grid>
+  <ion-grid fixed>
      <form (ngSubmit)="crearCuenta( fCuenta )" #fCuenta="ngForm">
-    <!--  <ion-col>
-      <div id="cont1">
-        <hr style="color :black; border-width:1px;" />
-      </div>
-      <div class="ion-text-center"><b>DATOS DEL COMERCIO</b></div>
-      <div id="cont1">
-        <hr style="color :black; border-width:1px;" />
-      </div>
-    </ion-col> -->
-  
+ 
 <br>
     <ion-card-subtitle class="ion-text-center">
       <label>DATOS DEL COMERCIO</label>
@@ -84,19 +75,7 @@
     <ion-card-subtitle class="ion-text-center">
       <label class="ion-text-uppercase" >Tarjeta de Crédito / Débito</label>
     </ion-card-subtitle>
-<!-- 
-  <ion-col>
-      <div id="cont1">
-        <hr style="color :black; border-width:1px;" />
-      </div>
-      <div class="ion-text-center"><b>Tarjeta de Crédito / Débito</b></div>
-      <div id="cont1">
-        <hr style="color :black; border-width:1px;" />
-      </div>
-    </ion-col>
 
-  
--->
     <ion-row>
       <ion-col>
         <ion-list>
