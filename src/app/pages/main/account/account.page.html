@@ -1,87 +1,77 @@
-<ion-header [translucent]="true" no-border>
+<ion-header [translucent]="true" mode="ios" class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title class="ion-text-center">Mi cuenta</ion-title>
     <ion-buttons slot="end">
       <ion-button [routerLink]="['/main/main/home']" color="primary" shape="round">
         <ion-icon name="chevron-back-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
+    <ion-title class="ion-text-center">Mi cuenta</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-grid fixed>
 
-  <div id="container">
-    <div>
-      <ion-row>
-        <ion-col>
-          <ion-header class="logo">
-            <img class="foto-generica" src="{{usuario.avatar? usuario.avatar : '/assets/avatars/icon.png'}}">
+    <ion-card>
+      <ion-card-content class="ion-text-center">
+        <img class="foto-generica" src="{{usuario.avatar? usuario.avatar : '/assets/avatars/userCta.png'}}">
+      </ion-card-content>
+    </ion-card>
 
-          </ion-header>
-        </ion-col>
-      </ion-row>
-    </div>
-    <ion-col>
-      <div id="cont1">
-        <hr style="color :black; border-width:1px;" />
-      </div>
-      <div class="ion-text-center"><b>DATOS PERSONALES</b></div>
-      <div id="cont1">
-        <hr style="color :black; border-width:1px;" />
-      </div>
-    </ion-col>
+    <ion-card-subtitle class="ion-text-center">
+      <label>DATOS PERSONALES</label>
+    </ion-card-subtitle>
 
-    <ion-item>
+    <ion-item lines="none">
       <ion-label>Nombre: {{usuario.nombre}}</ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item lines="none">
       <ion-label> Apellido : {{usuario.apellido}}</ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item lines="none">
       <ion-label>Telefono: {{usuario.telefono}}</ion-label>
     </ion-item>
-    <ion-col>
-      <div id="cont1">
-        <hr style="color :black; border-width:1px;" />
-      </div>
-      <div class="ion-text-center"><b>DATOS DE LA CUENTA</b></div>
-      <div id="cont1">
-        <hr style="color :black; border-width:1px;" />
-      </div>
-    </ion-col>
+    <br>
+    <ion-card-subtitle class="ion-text-center">
+      <label>DATOS DE LA CUENTA</label>
+    </ion-card-subtitle>
 
-    <ion-item>
+    <ion-item lines="none">
       <ion-label>Email: {{usuario.email}}</ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item lines="none">
       <ion-label> Perfil: {{usuario.perfil}}</ion-label>
     </ion-item>
 
 
-    <ion-fab horizontal="end" slot="fixed">
-      <ion-fab-button (click)="goAccount()">
-        <ion-icon name="create-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-  </div>
-  <div id="cont1">
-    <hr style="color :black; border-width:1px;" />
-  </div>
-
-  <div style="text-align: center;" *ngIf="usuario.perfil==='Propietario'">
-    <div>
-      <h6>¿Queres promocionar tu negocio?</h6>
+    <ion-card-content>
+      <ion-fab horizontal="end" slot="fixed">
+        <ion-fab-button (click)="goAccount()">
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ion-card-content>
+    <div id="cont1">
+      <hr style="color :black; border-width:1px;" />
     </div>
-    <div>¡Forma parte de la mayor red de servicios y productos para mascotas!</div>
-    <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round" [routerLink]="['/main/main/user-subscription']">Subscribite como empresa
-    </ion-button>
-  </div>
-  <div style="text-align: center;" *ngIf="usuario.perfil==='Empresa'">
-    <ion-button style="margin-top: 20px;" class="ion-no-border" fill="outline" expand="block" shape="round" (click)="anularSubscripcion()">Anular subscripción como empresa
-    </ion-button>
-  </div>
+
+    <div class="ion-text-center" *ngIf="usuario.perfil==='Propietario'">
+      <div>
+        <h6>¿Queres promocionar tu negocio?</h6>
+      </div>
+      <div>¡Forma parte de la mayor red de servicios y productos para mascotas!</div>
+      <ion-button class="btnColor" fill="outline" expand="block"
+        shape="round" [routerLink]="['/main/main/user-subscription']">Subscribite como empresa
+      </ion-button>
+    </div>
+    <div class="ion-text-center" *ngIf="usuario.perfil==='Empresa'">
+      <ion-button class="btnColor"  fill="outline" expand="block"
+        shape="round" (click)="anularSubscripcion()">Anular subscripción como empresa
+      </ion-button>
+    </div>
+
+  </ion-grid>
 </ion-content>
