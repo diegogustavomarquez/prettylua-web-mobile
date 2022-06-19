@@ -63,7 +63,7 @@ export class HistoryViewPage implements OnInit {
     link.click();
   }
   
-  onClickDownloadPdf(){
+  onClickDownloadFiles(){
     let index : number = 1;
     this.historiaClinica.adjuntos.forEach( file => {
       let mimeType = file.match(/[^:/]\w+(?=;|,)/)[0];
