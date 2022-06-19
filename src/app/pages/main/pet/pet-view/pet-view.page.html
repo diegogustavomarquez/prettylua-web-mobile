@@ -14,18 +14,20 @@
 
 <ion-content [fullscreen]="true" mode="ios" class="ion-no-border">
   <ion-grid fixed>
+    <ion-card class="ion-padding">
+        <ion-item lines="none" class="ion-text-center">
+          <ion-avatar>
+          <img src="{{mascota.pics? mascota.pics  : '/assets/avatars/icon.png'}}">
+        </ion-avatar>
+          <ion-label class="ion-text-uppercase">
+            <h2><b>{{mascota.name}}</b></h2>
+          </ion-label>
+        </ion-item>
+    <br>
+      </ion-card>
 
     <form (ngSubmit)="mascota._id">
-      <ion-card>
-        <ion-card-content class="ion-no-padding">
-          <ion-item class="ion-text-center">
-            <img src="{{ mascota.pics }}">
-            <ion-label class="ion-text-uppercase">
-              <h2><b>{{mascota.name}}</b></h2>
-            </ion-label>
-          </ion-item>
-        </ion-card-content>
-      </ion-card>
+    
 
       <ion-card-content>
         <ion-card-header class="ion-no-padding">
@@ -59,7 +61,6 @@
         <ion-item *ngFor="let hc of historiaClinica">
           <ion-label>
             <p>{{hc.fecha | date: 'dd/MM/yyyy'}}</p>
-            <p>{{hc.codigo}}</p>
             <p>{{hc.tipos}}</p>
             <p>{{hc.descripcion}}</p>
           </ion-label>
