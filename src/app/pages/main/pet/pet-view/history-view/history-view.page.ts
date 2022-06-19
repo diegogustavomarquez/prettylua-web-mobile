@@ -17,8 +17,7 @@ export class HistoryViewPage implements OnInit {
 
   tipos :string[]=[];
   isNew: boolean = false;
- // imagen: any = '/assets/avatars/icon.png';
-  isPhotoPresent: boolean = false;
+
   public id: string;
   historiaClinica : HistoriaClinica = {
     codigo:'', //Lo agrega BA
@@ -31,6 +30,8 @@ export class HistoryViewPage implements OnInit {
     _id:'',
   };
  
+  contieneAdjuntos : boolean = false;
+
   constructor(private navCtrl: NavController,
     private uiService: UiServiceService,
     private activatedRoute: ActivatedRoute,
@@ -42,10 +43,33 @@ export class HistoryViewPage implements OnInit {
       this.id = this.activatedRoute.snapshot.paramMap.get('id');
       this.historiaClinica = await this.hcService.getbyId(this.id);
       this.mascotas = await this.mascotaService.getbyId(this.historiaClinica.petId);
+      this.contieneAdjuntos = this.historiaClinica.adjuntos.length > 0 ? true : false;
+    
     }
   
   onCancel() {
     this.navCtrl.navigateRoot(`/main/main/pet/pet-view/${this.mascotas._id}`, { animated: true });
+  }
+
+  descargar() : string {
+    return this.historiaClinica.adjuntos[0];
+  }
+
+  downloadPdf(base64String, fileName,mimeType) {
+    const source = base64String;
+    const link = document.createElement("a");
+    link.href = source;
+    link.download = `${fileName}.${mimeType}`
+    link.click();
+  }
+  
+  onClickDownloadPdf(){
+    let index : number = 1;
+    this.historiaClinica.adjuntos.forEach( file => {
+      let mimeType = file.match(/[^:/]\w+(?=;|,)/)[0];
+      this.downloadPdf(file,`${this.historiaClinica.codigo}${index}`,mimeType);
+      ++index;
+    });
   }
 
 }

@@ -52,14 +52,19 @@
 
       <ion-item lines="none">
         <ion-label>Adjuntos:</ion-label>
-        <input type="file" accept=".pdf, .jpg,.jpeg" (change)="loadImagen($event)" id="inputFile">
+        <input type="file" accept=".pdf, .jpg,.jpeg" multiple (change)="loadImagen($event)" id="inputFile">
         <label for="inputFile" class="labelInputFile">
           <ion-icon size="large" name="document-attach-outline" class="icono1">
           </ion-icon>
         </label>
-        <ion-button icon-only shape="round" color="danger" (click)="kickImagen()" class="icono" slot="end">
+        <ion-button icon-only shape="round" color="danger" (click)="kickFiles()" class="icono" slot="end">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-button>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label *ngIf="adjuntos.length===0">No se adjuntaron archivos</ion-label>
+        <ion-label *ngIf="adjuntos.length>0">Se adjuntaron {{adjuntos.length}} archivos</ion-label>
       </ion-item>
 
       <ion-fab horizontal="end" slot="fixed">

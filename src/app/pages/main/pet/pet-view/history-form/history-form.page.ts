@@ -35,6 +35,7 @@ export class HistoryFormPage implements OnInit {
     fecha: null,
     _id: '',
   };
+  adjuntos: string[] = [];
 
   constructor(private navCtrl: NavController,
     private uiService: UiServiceService,
@@ -52,7 +53,6 @@ export class HistoryFormPage implements OnInit {
     this.foto = this.mascotas.pics[0];
   }
 
-
   /**
    * 
    * @param historiaClinica 
@@ -60,6 +60,11 @@ export class HistoryFormPage implements OnInit {
    */
   async save(historiaClinica: NgForm) {
     if (historiaClinica.invalid) { return; }
+
+    for (var i = 0; i < this.adjuntos.length; i++) {
+      this.historiaClinica.adjuntos = this.adjuntos;
+    }
+
     const valido = await this.hc.save(this.historiaClinica);
     if (valido) {
       this.uiService.presentToast('La historia Clinica se guardo correctamente');
@@ -75,35 +80,27 @@ export class HistoryFormPage implements OnInit {
    */
   async update(historiaClinica: NgForm) { }
 
-
   onCancel() {
     this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
   }
 
-
-  async loadImagen(event: any) {
-    let archivos = event.target.files[0];
-    let sizeFile: number = archivos.size;
-    if (sizeFile > 100000) {
-      this.uiService.alertaInformativa('Por favor. Adjunte archivo menos a 100kb.');
-      return;
-    }
-    let reader = new FileReader();
-    reader.readAsDataURL(archivos);
-    reader.onloadend = () => {
-      this.historiaClinica.adjuntos = reader.result as string;
-      this.isPhotoPresent = true;
+  loadImagen(event: any) {
+    for (var i = 0; i < event.target.files.length; i++) {
+      let reader = new FileReader();
+      reader.readAsDataURL(event.target.files[i]);
+      reader.onloadend = () => {
+        this.adjuntos.push(reader.result as string);
+      }
     }
   }
 
   /**
-   * Saca la foto seleccionada
+   * Saca los archivos adjuntos
    * 
    * @param event 
    */
-  async kickImagen() {
-    // this.historiaClinica.adjuntos = this.imagen;
-    this.isPhotoPresent = false;
+  async kickFiles() {
+    this.adjuntos = [];
   }
 
 }

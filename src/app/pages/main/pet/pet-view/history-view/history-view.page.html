@@ -43,8 +43,11 @@
           <ion-label class="ion-text-wrap">Comentarios: {{historiaClinica.comentarios}} </ion-label>
 
         </ion-item>
-        <ion-item lines="none">
-          <ion-label class="ion-text-wrap">Adjuntos:{{historiaClinica.adjuntos}} </ion-label>
+        <ion-item lines="none" *ngIf="contieneAdjuntos">
+          <ion-label class="ion-text-wrap" >Contiene archivos adjuntos</ion-label>
+          <ion-button (click)="onClickDownloadPdf()" color="primary" shape="round">
+            <ion-icon name="chevron-back-circle-outline"></ion-icon>
+          </ion-button>
         </ion-item>
       </ion-list>
     </ion-card-content>
