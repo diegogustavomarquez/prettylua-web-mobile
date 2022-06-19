@@ -49,6 +49,11 @@ export class StoreFormPage implements OnInit {
       return;
     }
 
+    if(!this.isPhotoPresent){
+      this.uiServiceService.alertaInformativa("La imagen de la promoción es obligatoria.");
+      return;
+    }
+
     this.store.promocionFoto = this.imageTemporal;
 
     let resultado: boolean = false;
