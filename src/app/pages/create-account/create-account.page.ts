@@ -12,7 +12,7 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class CreateAccountPage implements OnInit {
 
-  imagen: any = '/assets/avatars/userCta.png';
+  imagen: any = '/assets/avatars/user.png';
 
   isPhotoPresent: boolean = false;
 

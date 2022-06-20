@@ -12,7 +12,7 @@ import { AlertController, NavController } from '@ionic/angular';
 })
 export class AccountFormPage implements OnInit {
 
-  imagen: any = '/assets/avatars/userCta.png';
+  imagen: any = '/assets/avatars/user.png';
   imageTemporal: any;
   isPhotoPresent: boolean = false;
 
