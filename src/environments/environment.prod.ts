@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url: 'https://pretty-lua.herokuapp.com'
+  url: 'http://localhost:3000'
 };
