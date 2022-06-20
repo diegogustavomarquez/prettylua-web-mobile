@@ -74,10 +74,7 @@ export class UserSubscriptionPage implements OnInit {
       return false;
     }
 
-    if (!this.acceptTermAndCondition) {
-      this.uiServiceService.alertaInformativa("Se deben aceptar los términos y condiciones");
-      return false;
-    }
+  
     return true;
   }
 

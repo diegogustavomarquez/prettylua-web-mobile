@@ -52,12 +52,14 @@
 
       <ion-item lines="none">
         <ion-label>Adjuntos:</ion-label>
+      </ion-item>
+      <ion-item> 
         <input type="file" accept=".pdf, .jpg,.jpeg" multiple (change)="loadImagen($event)" id="inputFile">
         <label for="inputFile" class="labelInputFile">
-          <ion-icon size="large" name="document-attach-outline" class="icono1">
+          <ion-icon size="large" name="document-attach-outline" class="icono1" >
           </ion-icon>
         </label>
-        <ion-button icon-only shape="round" color="danger" (click)="kickFiles()" class="icono" slot="end">
+        <ion-button icon-only shape="round" color="danger" (click)="kickFiles()">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-button>
       </ion-item>
