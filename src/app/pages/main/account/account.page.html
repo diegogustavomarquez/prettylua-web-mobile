@@ -59,7 +59,11 @@
     <div id="cont1">
       <hr style="color :black; border-width:1px;" />
     </div>
-
+    <div class="ion-text-center">
+      <ion-button class="btnColor"  fill="outline" expand="block"
+        shape="round" (click)="subscribeToNotifications()">Subscribirte a las notificaciones
+      </ion-button>
+    </div>
     <div class="ion-text-center" *ngIf="usuario.perfil==='Propietario'">
       <div>
         <h6>¿Queres promocionar tu negocio?</h6>

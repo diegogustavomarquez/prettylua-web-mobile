@@ -3,68 +3,64 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-  <ion-title class="ion-text-center">BIENVENIDOS</ion-title>
+    <ion-title class="ion-text-center">BIENVENIDOS</ion-title>
   </ion-toolbar>
   <ion-row><br></ion-row>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-slides id="slide-alto" [options]="slideOpts">
-   <ion-slide *ngFor="let slide of slides">
-    <div>
-      <a [href]="slide.href"> <img [src]="slide.img" class="slide-image" >
-      </a>
-    </div>
+    <ion-slide *ngFor="let slide of slides">
+      <div>
+        <a [href]="slide.href"> <img [src]="slide.img" class="slide-image">
+        </a>
+      </div>
     </ion-slide>
 
   </ion-slides>
 
 
-  <ion-grid  fixed>
+  <ion-grid fixed>
     <ion-row>
-      <ion-col  size="6" >
-          <ion-card>
-            <img class="img-chequeo" src="/assets/icon/chequeo.png" >
-           <p>Veterinario</p>
-          </ion-card>
+      <ion-col size="6">
+        <ion-card>
+          <img class="img-chequeo" src="/assets/icon/chequeo.png">
+          <p>Veterinario</p>
+        </ion-card>
       </ion-col>
 
       <ion-col size="6">
-         <ion-card>
-            <img   class="img-petShop" src="/assets/icon/pet-shop.png">
-            <div class="ion-text-center">
+        <ion-card>
+          <img class="img-petShop" src="/assets/icon/pet-shop.png">
+          <div class="ion-text-center">
             <p>Pet Shop</p>
-            </div>
-          </ion-card>
+          </div>
+        </ion-card>
       </ion-col>
     </ion-row>
 
-    
+
 
     <ion-row>
       <ion-col size="6">
         <ion-card>
-          <img  class="img-jeringa" src="/assets/icon/jeringuilla.png">
+          <img class="img-jeringa" src="/assets/icon/jeringuilla.png">
           <div class="ion-text-center">
-          <p>Vacunacion</p>
+            <p>Vacunacion</p>
           </div>
         </ion-card>
       </ion-col>
 
-      
+
       <ion-col size="6">
         <ion-card>
-          <img  class="img-peine" src="/assets/icon/peine.png">
+          <img class="img-peine" src="/assets/icon/peine.png">
           <div class="ion-text-center">
-          <p>Peluqueria</p>
-        </div>
+            <p>Peluqueria</p>
+          </div>
         </ion-card>
       </ion-col>
     </ion-row>
-    
-  </ion-grid>
 
-  <div>
-    <ion-button (click)="subscribeToNotifications()">Subscribite</ion-button>
-  </div>
+  </ion-grid>
 </ion-content>
