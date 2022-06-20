@@ -19,7 +19,7 @@
       <ion-card-content class="ion-no-padding">
         <ion-item class="ion-text-center" lines="none">
           <img src="{{mascotas.pics? mascotas.pics  : '/assets/avatars/icon.png'}}">
-          <ion-label class="texto">
+          <ion-label class="ion-text-uppercase">
             <h2><b>{{mascotas.name}}</b></h2>
           </ion-label>
         </ion-item>
@@ -45,8 +45,8 @@
         </ion-item>
         <ion-item lines="none" *ngIf="contieneAdjuntos">
           <ion-label class="ion-text-wrap" >Contiene archivos adjuntos</ion-label>
-          <ion-button (click)="onClickDownloadFiles()" color="primary" shape="round">
-            <ion-icon name="chevron-back-circle-outline"></ion-icon>
+          <ion-button class="classFab" (click)="onClickDownloadFiles()"  shape="round">
+            <ion-icon name="download-outline"></ion-icon>
           </ion-button>
         </ion-item>
       </ion-list>

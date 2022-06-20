@@ -51,7 +51,8 @@ export class PetViewPage implements OnInit {
     private uiService: UiServiceService,
     private usuarioService: UsuarioService,
     private activatedRoute: ActivatedRoute,
-    private hc: HcService) { }
+    private hc: HcService,
+    private alertController: AlertController) { }
 
   async ngOnInit() {
     this.listaAnio = this.commonsService.getYears();
@@ -80,9 +81,9 @@ export class PetViewPage implements OnInit {
 
   
  
-  /*async presentAlertConfirm(id: string) {
-    //nose de donde sale
-    const alert = await this.navCtrl.create({
+  async presentAlertConfirm(id: string) {
+   
+    const alert = await this.alertController.create({
       header: '',
       message: "¿Esta seguro que desea eliminar?",
       buttons: [
@@ -109,7 +110,6 @@ export class PetViewPage implements OnInit {
       ]
     });
     await alert.present();
-  }*/
-  async presentAlertConfirm(id: string) {
   }
+
 }
