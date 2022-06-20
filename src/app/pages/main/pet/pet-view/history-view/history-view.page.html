@@ -49,6 +49,9 @@
             <ion-icon name="download-outline"></ion-icon>
           </ion-button>
         </ion-item>
+        <ion-item lines="none" *ngIf="!contieneAdjuntos">
+          <ion-label class="ion-text-wrap" >No contiene archivos adjuntos</ion-label>
+        </ion-item>
       </ion-list>
     </ion-card-content>
   </ion-grid>

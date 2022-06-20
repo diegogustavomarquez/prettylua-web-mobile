@@ -41,10 +41,10 @@ export class HistoryViewPage implements OnInit {
 
   async ngOnInit() {
       this.id = this.activatedRoute.snapshot.paramMap.get('id');
+      const idMascota = this.activatedRoute.snapshot.paramMap.get('idMascota');
       this.historiaClinica = await this.hcService.getbyId(this.id);
-      this.mascotas = await this.mascotaService.getbyId(this.historiaClinica.petId);
-      this.contieneAdjuntos = this.historiaClinica.adjuntos.length > 0 ? true : false;
-    
+      this.mascotas = await this.mascotaService.getbyId(idMascota);
+      this.contieneAdjuntos = this.historiaClinica.adjuntos && this.historiaClinica.adjuntos.length > 0 ? true : false;
     }
   
   onCancel() {

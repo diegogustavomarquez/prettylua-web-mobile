@@ -64,7 +64,7 @@
             <p>{{hc.tipos}}</p>
             <p>{{hc.descripcion}}</p>
           </ion-label>
-          <ion-button icon-only shape="round" color="primary" [routerLink]="['history-view', hc._id]">
+          <ion-button icon-only shape="round" color="primary" [routerLink]="['history-view', hc._id, mascota._id]">
             <ion-icon name="eye-outline"></ion-icon>
           </ion-button>
           <ion-button icon-only shape="round" color="danger" (click)="presentAlertConfirm(hc._id)">

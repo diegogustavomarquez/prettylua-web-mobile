@@ -13,7 +13,7 @@ const routes: Routes = [
     loadChildren: () => import('./history-form/history-form.module').then( m => m.HistoryFormPageModule)
   },
   {
-    path: 'history-view/:id',
+    path: 'history-view/:id/:idMascota',
     loadChildren: () => import('./history-view/history-view.module').then( m => m.HistoryViewPageModule)
   }
 ];
