@@ -11,8 +11,8 @@ import { Store } from '../../../interfaces/interfaces';
 })
 export class StoresPage implements OnInit {
 
-  servicios :string[]=[];
-  
+  servicios: string[] = [];
+
   filter = {
     nombre: '',
     localidad: '',
@@ -20,11 +20,11 @@ export class StoresPage implements OnInit {
     servicio: ''
   }
 
-  stores : Store[] = [];
+  stores: Store[] = [];
 
   constructor(private storeService: StoreService,
-              private uiServiceService: UiServiceService,
-              private commonsService: CommonsService) { }
+    private uiServiceService: UiServiceService,
+    private commonsService: CommonsService) { }
 
   ngOnInit() {
     this.servicios = this.commonsService.getRolesByEmpresa();
@@ -35,7 +35,12 @@ export class StoresPage implements OnInit {
       this.uiServiceService.alertaInformativa("El campo servicio es obligatorio.");
       return;
     }
-    await this.storeService.find(this.filter).then(p => this.stores = p);
+    await this.storeService.find(this.filter).then(p => {
+      this.stores = p;
+      if (!this.stores || this.stores.length == 0) {
+        this.uiServiceService.alertaInformativa("No se encontraron servicios para su búsqueda.");
+      }
+    });
   }
 
 }
