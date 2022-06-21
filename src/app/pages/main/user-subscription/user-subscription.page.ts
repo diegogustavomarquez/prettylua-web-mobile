@@ -57,6 +57,10 @@ export class UserSubscriptionPage implements OnInit {
   }
 
   validate(): boolean {
+    if(!this.subscription.fechaInicio){
+      this.uiServiceService.alertaInformativa("La fecha de inicio de actividad es obligatoria");
+      return false;
+    }
     if (!this.isNumber(this.cuilPrefijo) || !this.isNumber(this.cuil) || !this.isNumber(this.cuilSufijo)) {
       this.uiServiceService.alertaInformativa("El cuit debe ser númerico");
       return false;
