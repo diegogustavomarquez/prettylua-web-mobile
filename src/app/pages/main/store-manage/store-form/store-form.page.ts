@@ -31,6 +31,8 @@ export class StoreFormPage implements OnInit {
     private uiServiceService: UiServiceService) { }
 
   ngOnInit() {
+    this.store.es24hs = false;
+    this.store.esDeCorrido = false;
     this.provincias = this.commonsService.getProvincias();
     this.servicios = this.commonsService.getRolesByEmpresa();
     this.dias = this.commonsService.getDias();
