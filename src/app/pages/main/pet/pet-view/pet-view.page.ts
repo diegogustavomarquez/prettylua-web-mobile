@@ -15,8 +15,6 @@ import { HcService } from '../../../../services/hc.service';
   styleUrls: ['./pet-view.page.scss'],
 })
 export class PetViewPage implements OnInit {
-  
- 
 
   public id: string;
   listaAnio: number[] = [];
@@ -25,7 +23,7 @@ export class PetViewPage implements OnInit {
   genders: string[] = [];
   titulo: string = '';
   isNew: boolean = false;
-  
+
   mascota: Mascota = {
     _id: '',
     name: '',
@@ -42,8 +40,7 @@ export class PetViewPage implements OnInit {
   };
 
   usuario: Usuario = {};
-  public mascotas: Mascota[] = [];
-  public historiaClinica: HistoriaClinica [] =[];
+  public historiaClinica: HistoriaClinica[] = [];
 
   constructor(private navCtrl: NavController,
     private commonsService: CommonsService,
@@ -79,10 +76,10 @@ export class PetViewPage implements OnInit {
     this.navCtrl.navigateRoot('/main/main/pet/pet-view/history-form/history-form', { animated: true });
   }
 
-  
- 
+
+
   async presentAlertConfirm(id: string) {
-   
+
     const alert = await this.alertController.create({
       header: '',
       message: "¿Esta seguro que desea eliminar?",
@@ -99,9 +96,10 @@ export class PetViewPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             const actualizado = this.hc.delete(id);
+            this.historiaClinica.splice(this.historiaClinica
+              .findIndex(index => index._id === id), 1);
             if (actualizado) {
               this.uiService.presentToast('Se elimino la historia Clinica');
-              this.navCtrl.navigateRoot('/main/main/pet', { animated: true });
             } else {
               this.uiService.presentToast('No se pudo eliminar');
             }
