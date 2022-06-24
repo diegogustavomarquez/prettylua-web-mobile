@@ -1,6 +1,6 @@
 {
-  "name": "app",
-  "short_name": "app",
+  "name": "Pretty Lua",
+  "short_name": "Pretty Lua",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
