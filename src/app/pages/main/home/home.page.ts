@@ -13,31 +13,31 @@ export class HomePage implements OnInit {
       img: '/assets/slides/promo1.png',
       titulo: '',
       desc: '',
-      href:'http://localhost:8100/main/main/stores/stores-view/62a822540f5c22b99ba95444'
+      href:'https://prettyluamobile.web.app/main/main/stores/stores-view/62b50420ba8bee8572361e8d'
     },
     {
       img: '/assets/slides/promo2.png',
       titulo: '',
       desc: '',
-      href:'http://localhost:8100/main/main/stores/stores-view/62a822540f5c22b99ba95444'
+      href:'https://prettyluamobile.web.app/main/main/stores/stores-view/62b500baba8bee8572361e71'
     },
     {
       img: '/assets/slides/promo3.png',
       titulo: '',
       desc: '',
-      href:'http://localhost:8100/main/main/stores/stores-view/62a822540f5c22b99ba95444'
+      href:'https://prettyluamobile.web.app/main/main/stores/stores-view/62b50291ba8bee8572361e7e'
     },
     {
       img: '/assets/slides/promo4.png',
       titulo: '',
       desc: '',
-      href:'http://localhost:8100/main/main/stores/stores-view/62a822540f5c22b99ba95444'
+      href:'https://prettyluamobile.web.app/main/main/stores/stores-view/62b4ff4aba8bee8572361e64'
     },
     {
       img: '/assets/slides/promo5.png',
       titulo: '',
       desc: '',
-      href:'http://localhost:8100/main/main/stores/stores-view/62a822540f5c22b99ba95444'
+      href:'https://prettyluamobile.web.app/main/main/stores/stores-view/62b4fbb5ba8bee8572361e23'
     }
   ];
 
